@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>吴东的个人博客</title>
+  
+  <subtitle>coding for fun！</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://zoomdong.site/"/>
+  <updated>2017-11-11T14:34:48.526Z</updated>
+  <id>http://zoomdong.site/</id>
+  
+  <author>
+    <name>吴东</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用vitural box创建一个虚拟机</title>
+    <link href="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/"/>
+    <id>http://zoomdong.site/2017/11/06/Ubutun-anzhuang/</id>
+    <published>2017-11-06T12:37:48.000Z</published>
+    <updated>2017-11-11T14:34:48.526Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="希望能帮助那些正在安装虚拟机的朋友们"><a href="#希望能帮助那些正在安装虚拟机的朋友们" class="headerlink" title="希望能帮助那些正在安装虚拟机的朋友们"></a>希望能帮助那些正在安装虚拟机的朋友们</h1><hr><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先下载一个Vitural box，用这个软件来模拟虚拟机。点击这里–&gt;<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载地址</a>   下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。当然vitural box也可以模拟出很多其他的系统比如windows 或者mac。</p><h2 id="安装完成之后"><a href="#安装完成之后" class="headerlink" title="安装完成之后"></a>安装完成之后</h2><hr><p>安装的界面应该是这个样子的：<br><img src="/2017/11/06/Ubutun-anzhuang/3333.png" alt="如图"></p><p>PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕竟要建立一个链接。这里你的物理电脑断开网络链接是比较正常的。</p><p>emmm，安装完成之后打开电脑上应该会出现Vitural box的快捷方式。<br>下图为点开后的效果图：<br><img src="/2017/11/06/Ubutun-anzhuang/222.png" alt="点开后的效果图"></p><h2 id="下载一个镜像光盘（为后面创建虚拟机打基础）"><a href="#下载一个镜像光盘（为后面创建虚拟机打基础）" class="headerlink" title="下载一个镜像光盘（为后面创建虚拟机打基础）"></a>下载一个镜像光盘（为后面创建虚拟机打基础）</h2><p>在Ubuntu官网里面下一个镜像文件就可以啦。<a href="http://cn.ubuntu.com/?_ga=2.25279998.215727107.1510361750-922053796.1508687335" target="_blank" rel="external">官网地址请点击</a><br>下载界面如下图：<br><img src="/2017/11/06/Ubutun-anzhuang/444.png" alt="下载界面"><br>选择一个64位（现在一般windows都是64位，具体情况自己定）开始下载，可能下载比较慢，多等一会儿就行了。<br>这个文件是你未来虚拟机的系统吧。<br>下载完成后的文件形式如下图：<br><img src="/2017/11/06/Ubutun-anzhuang/555.png" alt="下载完成后"></p><h2 id="开始创建一个虚拟机"><a href="#开始创建一个虚拟机" class="headerlink" title="开始创建一个虚拟机"></a>开始创建一个虚拟机</h2><p>当一切都被搞定之后,是时候来搞一波创建了。<br>步骤如下：</p><p>1 打开vitural box点开新建，自己给虚拟机取名称，这里按自己喜好。不影响啥。</p><p>2 分配内存，这里是运行内存，分配视具体电脑的内存而定。不是很懂这个可以按照上面的推荐点击。</p><p>3 分配硬盘容量，这里同样是把电脑的硬盘容量分一部分给你的虚拟机。同2。</p><p>4 虚拟硬盘文件类型是磁盘映像（前面有下载）。</p><p>5 关于动态分配和固定大小类似于选择之后以后虚拟机内存还能不能修改，这里我选择的是动态分配。</p><p>6 文件位置和大小，自己选择一个文件夹去保存虚拟硬盘文件就行了。自己找的到就行。</p><p>7 创建完成之后。你的vitural box就会变成这个样子（当然我们设置的那些参数可能会不一样）：<br><img src="/2017/11/06/Ubutun-anzhuang/111.png" alt="如图"></p><p>然后点击启动就可以使用你的虚拟机啦！！<br><img src="/2017/11/06/Ubutun-anzhuang/666.png" alt="我的虚拟机"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚拟机相当于在你自己的电脑上又重新开了一台新的电脑，你在这个电脑上有任何操作都不会对你的物理电脑造成任何影响。可能虚拟机在你的眼里可能就只是一个软件。但相对于你的物理电脑而言，却又是一台电脑了。因而借助虚拟机，你可进行很多骚操作（比如写病毒），同时这台电脑的权限也属于你，你有技术可以进行很多你想要的操作。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;希望能帮助那些正在安装虚拟机的朋友们&quot;&gt;&lt;a href=&quot;#希望能帮助那些正在安装虚拟机的朋友们&quot; class=&quot;headerlink&quot; title=&quot;希望能帮助那些正在安装虚拟机的朋友们&quot;&gt;&lt;/a&gt;希望能帮助那些正在安装虚拟机的朋友们&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>搭建blog时踩过的坑</title>
+    <link href="http://zoomdong.site/2017/10/10/name/"/>
+    <id>http://zoomdong.site/2017/10/10/name/</id>
+    <published>2017-10-10T15:35:04.000Z</published>
+    <updated>2017-11-06T13:03:19.955Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="希望能帮助那些在学习搭建的朋友们"><a href="#希望能帮助那些在学习搭建的朋友们" class="headerlink" title="希望能帮助那些在学习搭建的朋友们"></a>希望能帮助那些在学习搭建的朋友们</h1><hr><h2 id="搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。"><a href="#搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。" class="headerlink" title="搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。"></a>搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。</h2><h2 id="博客的安装套路"><a href="#博客的安装套路" class="headerlink" title="博客的安装套路"></a>博客的安装套路</h2><p>参考教程<br><a href="https://rivercome.github.io/2017/09/27/undefined-title/" target="_blank" rel="external">5分钟教会你黑科技</a><br>（王鹏学长教科书般的教学）（5分钟速成版）<br><a href="http://blog.csdn.net/erchowyo/article/details/54407601" target="_blank" rel="external">百度的搭建方法</a><br>（CSDNdalao操作）（对着不同的教程学，取长补短）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先看如何搭建一个内地博客（如果你会下面直接跳过）</div></pre></td></tr></table></figure></p><h2 id="安装工作"><a href="#安装工作" class="headerlink" title="安装工作"></a>安装工作</h2><p>先安装node和git，安装地址前面的网址里面有，跟着教学里一步步走，保你不（yi）会（ding）出错，node的安装环境以windows为例，在这里安装64位的安装包，因为32位的安装包里面指令功能不齐全（并没有任何卵用）。这里我强烈建议的是这里大家可以先下载一个sublime：<a href="http://www.sublimetext.com/2" target="_blank" rel="external">下载地址</a><br>因为如果经常用记事本会出现一些你我都难以预测的错误。</p><h2 id="从git这里正式开始"><a href="#从git这里正式开始" class="headerlink" title="从git这里正式开始"></a>从git这里正式开始</h2><p>git的安装看永辉学长的教程就可以了（我觉得还行）<br><a href="http://andyhui.top/2017/09/20/gitfirstuse/" target="_blank" rel="external">git安装及使用指南</a><br>下载git的过程教程都有（注意一下那些小的细节即可）<br>安装完成后，emmm，这些都比较简单。<br>检测成功安装git后，后面那些花式操作先别管。<br>搭建博客可以直接跳到生成SSH秘匙那步。<br>按照相应的操作生成完并连接上之后。<br>回到王鹏学长的教程<a href="https://rivercome.github.io/2017/09/27/undefined-title/" target="_blank" rel="external">5分钟教你黑科技</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">友情提示1：</div><div class="line">永辉学长的git和github的其他操作。</div><div class="line">初次接触git建议先别学习，咱们先搭建博客。</div><div class="line">以免遇到神奇bug猝死凌晨（like me）</div></pre></td></tr></table></figure><h2 id="搭建本地blog（我觉得还行）"><a href="#搭建本地blog（我觉得还行）" class="headerlink" title="搭建本地blog（我觉得还行）"></a>搭建本地blog（我觉得还行）</h2><p>按照步骤走，定义出属于你自己的blog文件夹。<br>注意这个文件夹相当于就是你博客的根，放在一个你找得到的地方，毕竟以后写博客，更换主题还要依靠这个文件夹。文件夹创造好了，相当于你的博客有了地基，以后你的一系列操作都要围绕这个文件夹展开。</p><p>##cmd操作<br>王鹏学长用的那个操作指令上面没有使用git操作，他个人比较喜欢cmd，当然，我个人也觉得输入指令用cmd比较好，因为windows下用命令安装一些东西（比如后面的文件）会出现丢失情况（这个是我多次碰壁之后学长传授的经验），所以建议大家用cmd（操作和git差不多，在博客文件夹内按住shift，点击鼠标右键，会弹出一个“在此处打开命令窗口”这就是cmd）。</p><h2 id="hexo指令"><a href="#hexo指令" class="headerlink" title="hexo指令"></a>hexo指令</h2><p>如果你的hexo指令在git上老莫名奇妙出现errors（like me），有2种方法。<br>1，自行百度解决困难。<br>2，用cmd进行操作。（前提是你的noje等那些基础应用安装好了）<br>反正2种我都试过，个人比较推荐第一种，自己动手丰衣足食。</p><h2 id="内地成功之后"><a href="#内地成功之后" class="headerlink" title="内地成功之后"></a>内地成功之后</h2><p>到这里你应该是能打开以landscape为主题的hexo界面<br>后面继续分析如何把博客由独乐乐变为众乐乐</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 友情提示2：</span></div><div class="line">这里可能会好奇关于主题的问题。</div><div class="line">我建议大家先别学（先把地基搞好再骚）。</div><div class="line">最后我会分享一个我觉得不错的教程（赞）。</div><div class="line">这里直接进入网络同步</div></pre></td></tr></table></figure><h2 id="关于网络同步（瑟瑟发抖）"><a href="#关于网络同步（瑟瑟发抖）" class="headerlink" title="关于网络同步（瑟瑟发抖）"></a>关于网络同步（瑟瑟发抖）</h2><p>生成SSH钥匙那步，结合一下永辉学长git教程上创建github仓库那步，但一定要注意的是：永辉学长取仓库名并不是为了搭建博客，所以比较随意，而我们这里搭建博客是一定要仓库名（在github上创建）必须是github账户名.github.io，一定要是这个格式，否则后面全都GG，这里我错了2次，直接重来了3波。（全屏bug，错的你怀疑人生）。前面那个仓库名就是你博客的网址名，比如我个人的是fireairforce.github.io（安利一波），然后后面乖乖按照操作走，慢慢会成功的。</p><h2 id="总结一波"><a href="#总结一波" class="headerlink" title="总结一波"></a>总结一波</h2><p>我本人搭建博客一共花了整整三天时间（请原谅我的菜），真的是踩了各种坑，关于那些坑太多，我真的。。。。（emmmm）（粘受），我这里给大家分享的都是我踩坑后的解决办法（可能有点水），但真的是干掉了很多bug之后才出现的AC，看见自己的博客出来的时候还蛮激动的，emmm。<br>其实这整个过程当你搭建成功之后再后头看的时候真的很简单。就几个指令（或许真的可以5分钟就解决的），但大家遇到问题的时候还是要先百度去debug，有些错误百度不能给出答案可以找找学长解决。但必须要有自己思考的一个过程。菜鸡的第一遍博客，望各位不要嫌弃。</p><h2 id="NEXT主题的小广告【乱入】"><a href="#NEXT主题的小广告【乱入】" class="headerlink" title="NEXT主题的小广告【乱入】"></a>NEXT主题的小广告【乱入】</h2><p>分享一个网站：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">请点击</a>，里面讲解的灰常详细，看看就好。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;希望能帮助那些在学习搭建的朋友们&quot;&gt;&lt;a href=&quot;#希望能帮助那些在学习搭建的朋友们&quot; class=&quot;headerlink&quot; title=&quot;希望能帮助那些在学习搭建的朋友们&quot;&gt;&lt;/a&gt;希望能帮助那些在学习搭建的朋友们&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;搭建博客
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Welcome to my blog</title>
+    <link href="http://zoomdong.site/2017/10/09/hello-world/"/>
+    <id>http://zoomdong.site/2017/10/09/hello-world/</id>
+    <published>2017-10-09T08:39:27.821Z</published>
+    <updated>2017-10-13T18:11:40.681Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
