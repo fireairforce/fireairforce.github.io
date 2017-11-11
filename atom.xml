@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2017-11-11T14:34:48.526Z</updated>
+  <updated>2017-11-11T14:53:05.916Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/"/>
     <id>http://zoomdong.site/2017/11/06/Ubutun-anzhuang/</id>
     <published>2017-11-06T12:37:48.000Z</published>
-    <updated>2017-11-11T14:34:48.526Z</updated>
+    <updated>2017-11-11T14:53:05.916Z</updated>
     
     <content type="html"><![CDATA[<h1 id="希望能帮助那些正在安装虚拟机的朋友们"><a href="#希望能帮助那些正在安装虚拟机的朋友们" class="headerlink" title="希望能帮助那些正在安装虚拟机的朋友们"></a>希望能帮助那些正在安装虚拟机的朋友们</h1><hr><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先下载一个Vitural box，用这个软件来模拟虚拟机。点击这里–&gt;<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载地址</a>   下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。当然vitural box也可以模拟出很多其他的系统比如windows 或者mac。</p><h2 id="安装完成之后"><a href="#安装完成之后" class="headerlink" title="安装完成之后"></a>安装完成之后</h2><hr><p>安装的界面应该是这个样子的：<br><img src="/2017/11/06/Ubutun-anzhuang/3333.png" alt="如图"></p><p>PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕竟要建立一个链接。这里你的物理电脑断开网络链接是比较正常的。</p><p>emmm，安装完成之后打开电脑上应该会出现Vitural box的快捷方式。<br>下图为点开后的效果图：<br><img src="/2017/11/06/Ubutun-anzhuang/222.png" alt="点开后的效果图"></p><h2 id="下载一个镜像光盘（为后面创建虚拟机打基础）"><a href="#下载一个镜像光盘（为后面创建虚拟机打基础）" class="headerlink" title="下载一个镜像光盘（为后面创建虚拟机打基础）"></a>下载一个镜像光盘（为后面创建虚拟机打基础）</h2><p>在Ubuntu官网里面下一个镜像文件就可以啦。<a href="http://cn.ubuntu.com/?_ga=2.25279998.215727107.1510361750-922053796.1508687335" target="_blank" rel="external">官网地址请点击</a><br>下载界面如下图：<br><img src="/2017/11/06/Ubutun-anzhuang/444.png" alt="下载界面"><br>选择一个64位（现在一般windows都是64位，具体情况自己定）开始下载，可能下载比较慢，多等一会儿就行了。<br>这个文件是你未来虚拟机的系统吧。<br>下载完成后的文件形式如下图：<br><img src="/2017/11/06/Ubutun-anzhuang/555.png" alt="下载完成后"></p><h2 id="开始创建一个虚拟机"><a href="#开始创建一个虚拟机" class="headerlink" title="开始创建一个虚拟机"></a>开始创建一个虚拟机</h2><p>当一切都被搞定之后,是时候来搞一波创建了。<br>步骤如下：</p><p>1 打开vitural box点开新建，自己给虚拟机取名称，这里按自己喜好。不影响啥。</p><p>2 分配内存，这里是运行内存，分配视具体电脑的内存而定。不是很懂这个可以按照上面的推荐点击。</p><p>3 分配硬盘容量，这里同样是把电脑的硬盘容量分一部分给你的虚拟机。同2。</p><p>4 虚拟硬盘文件类型是磁盘映像（前面有下载）。</p><p>5 关于动态分配和固定大小类似于选择之后以后虚拟机内存还能不能修改，这里我选择的是动态分配。</p><p>6 文件位置和大小，自己选择一个文件夹去保存虚拟硬盘文件就行了。自己找的到就行。</p><p>7 创建完成之后。你的vitural box就会变成这个样子（当然我们设置的那些参数可能会不一样）：<br><img src="/2017/11/06/Ubutun-anzhuang/111.png" alt="如图"></p><p>然后点击启动就可以使用你的虚拟机啦！！<br><img src="/2017/11/06/Ubutun-anzhuang/666.png" alt="我的虚拟机"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚拟机相当于在你自己的电脑上又重新开了一台新的电脑，你在这个电脑上有任何操作都不会对你的物理电脑造成任何影响。可能虚拟机在你的眼里可能就只是一个软件。但相对于你的物理电脑而言，却又是一台电脑了。因而借助虚拟机，你可进行很多骚操作（比如写病毒），同时这台电脑的权限也属于你，你有技术可以进行很多你想要的操作。</p>]]></content>
     
