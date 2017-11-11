@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="希望能帮助那些正在安装虚拟机的朋友们 首先下载一个Vitural box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。安装完成之后 安装的界面应该是这个样子的：！如图PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建一个虚拟机">
+<meta property="og:url" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/index.html">
+<meta property="og:site_name" content="吴东的个人博客">
+<meta property="og:description" content="希望能帮助那些正在安装虚拟机的朋友们 首先下载一个Vitural box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。安装完成之后 安装的界面应该是这个样子的：！如图PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/222.png">
+<meta property="og:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/444.png">
+<meta property="og:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/555.png">
+<meta property="og:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/111.png">
+<meta property="og:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/666.png">
+<meta property="og:updated_time" content="2017-11-11T01:22:51.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建一个虚拟机">
+<meta name="twitter:description" content="希望能帮助那些正在安装虚拟机的朋友们 首先下载一个Vitural box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。安装完成之后 安装的界面应该是这个样子的：！如图PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕">
+<meta name="twitter:image" content="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/222.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/"/>
+
+
+
+
+
+  <title>创建一个虚拟机 | 吴东的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">吴东的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">coding for fun！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/11/06/Ubutun-anzhuang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴东">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴东的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">创建一个虚拟机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T20:37:48+08:00">
+                2017-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="希望能帮助那些正在安装虚拟机的朋友们"><a href="#希望能帮助那些正在安装虚拟机的朋友们" class="headerlink" title="希望能帮助那些正在安装虚拟机的朋友们"></a>希望能帮助那些正在安装虚拟机的朋友们</h1><hr>
+<h2 id="首先下载一个Vitural-box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural-box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。"><a href="#首先下载一个Vitural-box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural-box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。" class="headerlink" title="首先下载一个Vitural box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。"></a>首先下载一个Vitural box，用这个软件来模拟虚拟机。<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载地址</a>下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。</h2><h2 id="安装完成之后"><a href="#安装完成之后" class="headerlink" title="安装完成之后"></a>安装完成之后</h2><hr>
+<p>安装的界面应该是这个样子的：<br>！<a href="Ubutun-anzhuang/111.png">如图</a><br>PS:安装过程可能会出现物理电脑断网的情况，这是很正常的，毕竟要建立一个链接。<br>emmm，安装完成之后打开电脑上应该会出现Vitural box的快捷方式。<br><img src="/2017/11/06/Ubutun-anzhuang/222.png" alt="点开后的效果图"></p>
+<h2 id="下载一个镜像光盘（为后面创建虚拟机打基础）"><a href="#下载一个镜像光盘（为后面创建虚拟机打基础）" class="headerlink" title="下载一个镜像光盘（为后面创建虚拟机打基础）"></a>下载一个镜像光盘（为后面创建虚拟机打基础）</h2><p>在Ubuntu官网里面下一个镜像文件就可以啦。<a href="http://cn.ubuntu.com/?_ga=2.25279998.215727107.1510361750-922053796.1508687335" target="_blank" rel="external">下载地址</a><br><img src="/2017/11/06/Ubutun-anzhuang/444.png" alt="下载界面"><br>选择一个64位（现在一般windows都是64位，具体情况自己定）开始下载，可能下载比较慢，多等一会儿就行了。<br>这个文件类似于你的虚拟机的系统吧。<br>下完后应该是这个文件的形式。<br><img src="/2017/11/06/Ubutun-anzhuang/555.png" alt="下载完成后"></p>
+<h2 id="开始创建一个虚拟机"><a href="#开始创建一个虚拟机" class="headerlink" title="开始创建一个虚拟机"></a>开始创建一个虚拟机</h2><p>好哒，一切都搞定之后,是时候来搞一波创建。<br>步骤如下：</p>
+<p>1 打开vitural box点开新建，自己给虚拟机取名称，这里按自己喜好。不影响啥。</p>
+<p>2 分配内存，这里是运行内存，分配视具体电脑的内存而定。不是很懂这个可以按照上面的推荐点击。</p>
+<p>3 分配硬盘容量，这里同样是把电脑的硬盘容量分一部分给你的虚拟机。同2。</p>
+<p>4 虚拟硬盘文件类型是磁盘映像（前面有下载）。</p>
+<p>5 关于动态分配和固定大小类似于选择之后以后虚拟机内存还能不能修改，这里我选择的是动态分配。</p>
+<p>6 文件位置和大小，自己选择一个文件夹去保存虚拟硬盘文件就行了。自己找的到就行。</p>
+<p>7 创建完成之后。你的vitural box就会变成这个样子：<br><img src="/2017/11/06/Ubutun-anzhuang/111.png" alt="如图"></p>
+<p>然后点击启动就可以使用你的虚拟机啦！！<br><img src="/2017/11/06/Ubutun-anzhuang/666.png" alt="我的虚拟机"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>虚拟机相当于在你自己的电脑上又重新开了一台新的电脑，你在这个电脑上有任何操作都不会对你的物理电脑造成任何影响。可能虚拟机在你的眼里可能就只是一个软件。但相对于你的物理电脑而言，却又是一台电脑了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/name/" rel="next" title="搭建blog时踩过的坑">
+                <i class="fa fa-chevron-left"></i> 搭建blog时踩过的坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/wd.png"
+                alt="吴东" />
+            
+              <p class="site-author-name" itemprop="name">吴东</p>
+              <p class="site-description motion-element" itemprop="description">我不和谁争，谁和我争我也不屑。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cplusplus.com/" title="C++学习天地" target="_blank">C++学习天地</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.vocabulary.com/" title="英语学习网站" target="_blank">英语学习网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="百度" target="_blank">百度</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#希望能帮助那些正在安装虚拟机的朋友们"><span class="nav-number">1.</span> <span class="nav-text">希望能帮助那些正在安装虚拟机的朋友们</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先下载一个Vitural-box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural-box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。"><span class="nav-number">1.1.</span> <span class="nav-text">首先下载一个Vitural box，用这个软件来模拟虚拟机。下载地址下载最新的版本（各位一般都是用Windows系统，那就下Windows的）。（其实这里不用Vitural box也可以，也有一些其他的虚拟机软件例如VMware）。个人感觉区别不是很大。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装完成之后"><span class="nav-number">1.2.</span> <span class="nav-text">安装完成之后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载一个镜像光盘（为后面创建虚拟机打基础）"><span class="nav-number">1.3.</span> <span class="nav-text">下载一个镜像光盘（为后面创建虚拟机打基础）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始创建一个虚拟机"><span class="nav-number">1.4.</span> <span class="nav-text">开始创建一个虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴东</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript"
+color="0,0,225" opacity='1' zIndex="-3" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
