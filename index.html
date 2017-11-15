@@ -608,22 +608,16 @@
 
       
         
-          
-            <h1 id="希望能帮助那些在学习搭建的朋友们"><a href="#希望能帮助那些在学习搭建的朋友们" class="headerlink" title="希望能帮助那些在学习搭建的朋友们"></a>希望能帮助那些在学习搭建的朋友们</h1><hr>
-<h2 id="搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。"><a href="#搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。" class="headerlink" title="搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。"></a>搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。</h2><h2 id="博客的安装套路"><a href="#博客的安装套路" class="headerlink" title="博客的安装套路"></a>博客的安装套路</h2><p>参考教程<br><a href="https://rivercome.github.io/2017/09/27/undefined-title/" target="_blank" rel="external">5分钟教会你黑科技</a><br>（王鹏学长教科书般的教学）（5分钟速成版）<br><a href="http://blog.csdn.net/erchowyo/article/details/54407601" target="_blank" rel="external">百度的搭建方法</a><br>（CSDNdalao操作）（对着不同的教程学，取长补短）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先看如何搭建一个内地博客（如果你会下面直接跳过）</div></pre></td></tr></table></figure></p>
-<h2 id="安装工作"><a href="#安装工作" class="headerlink" title="安装工作"></a>安装工作</h2><p>先安装node和git，安装地址前面的网址里面有，跟着教学里一步步走，保你不（yi）会（ding）出错，node的安装环境以windows为例，在这里安装64位的安装包，因为32位的安装包里面指令功能不齐全（并没有任何卵用）。这里我强烈建议的是这里大家可以先下载一个sublime：<a href="http://www.sublimetext.com/2" target="_blank" rel="external">下载地址</a><br>因为如果经常用记事本会出现一些你我都难以预测的错误。</p>
-<h2 id="从git这里正式开始"><a href="#从git这里正式开始" class="headerlink" title="从git这里正式开始"></a>从git这里正式开始</h2><p>git的安装看永辉学长的教程就可以了（我觉得还行）<br><a href="http://andyhui.top/2017/09/20/gitfirstuse/" target="_blank" rel="external">git安装及使用指南</a><br>下载git的过程教程都有（注意一下那些小的细节即可）<br>安装完成后，emmm，这些都比较简单。<br>检测成功安装git后，后面那些花式操作先别管。<br>搭建博客可以直接跳到生成SSH秘匙那步。<br>按照相应的操作生成完并连接上之后。<br>回到王鹏学长的教程<a href="https://rivercome.github.io/2017/09/27/undefined-title/" target="_blank" rel="external">5分钟教你黑科技</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">友情提示1：</div><div class="line">永辉学长的git和github的其他操作。</div><div class="line">初次接触git建议先别学习，咱们先搭建博客。</div><div class="line">以免遇到神奇bug猝死凌晨（like me）</div></pre></td></tr></table></figure>
-<h2 id="搭建本地blog（我觉得还行）"><a href="#搭建本地blog（我觉得还行）" class="headerlink" title="搭建本地blog（我觉得还行）"></a>搭建本地blog（我觉得还行）</h2><p>按照步骤走，定义出属于你自己的blog文件夹。<br>注意这个文件夹相当于就是你博客的根，放在一个你找得到的地方，毕竟以后写博客，更换主题还要依靠这个文件夹。文件夹创造好了，相当于你的博客有了地基，以后你的一系列操作都要围绕这个文件夹展开。</p>
-<p>##cmd操作<br>王鹏学长用的那个操作指令上面没有使用git操作，他个人比较喜欢cmd，当然，我个人也觉得输入指令用cmd比较好，因为windows下用命令安装一些东西（比如后面的文件）会出现丢失情况（这个是我多次碰壁之后学长传授的经验），所以建议大家用cmd（操作和git差不多，在博客文件夹内按住shift，点击鼠标右键，会弹出一个“在此处打开命令窗口”这就是cmd）。</p>
-<h2 id="hexo指令"><a href="#hexo指令" class="headerlink" title="hexo指令"></a>hexo指令</h2><p>如果你的hexo指令在git上老莫名奇妙出现errors（like me），有2种方法。<br>1，自行百度解决困难。<br>2，用cmd进行操作。（前提是你的noje等那些基础应用安装好了）<br>反正2种我都试过，个人比较推荐第一种，自己动手丰衣足食。</p>
-<h2 id="内地成功之后"><a href="#内地成功之后" class="headerlink" title="内地成功之后"></a>内地成功之后</h2><p>到这里你应该是能打开以landscape为主题的hexo界面<br>后面继续分析如何把博客由独乐乐变为众乐乐</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## 友情提示2：</span></div><div class="line">这里可能会好奇关于主题的问题。</div><div class="line">我建议大家先别学（先把地基搞好再骚）。</div><div class="line">最后我会分享一个我觉得不错的教程（赞）。</div><div class="line">这里直接进入网络同步</div></pre></td></tr></table></figure>
-<h2 id="关于网络同步（瑟瑟发抖）"><a href="#关于网络同步（瑟瑟发抖）" class="headerlink" title="关于网络同步（瑟瑟发抖）"></a>关于网络同步（瑟瑟发抖）</h2><p>生成SSH钥匙那步，结合一下永辉学长git教程上创建github仓库那步，但一定要注意的是：永辉学长取仓库名并不是为了搭建博客，所以比较随意，而我们这里搭建博客是一定要仓库名（在github上创建）必须是github账户名.github.io，一定要是这个格式，否则后面全都GG，这里我错了2次，直接重来了3波。（全屏bug，错的你怀疑人生）。前面那个仓库名就是你博客的网址名，比如我个人的是fireairforce.github.io（安利一波），然后后面乖乖按照操作走，慢慢会成功的。</p>
-<h2 id="总结一波"><a href="#总结一波" class="headerlink" title="总结一波"></a>总结一波</h2><p>我本人搭建博客一共花了整整三天时间（请原谅我的菜），真的是踩了各种坑，关于那些坑太多，我真的。。。。（emmmm）（粘受），我这里给大家分享的都是我踩坑后的解决办法（可能有点水），但真的是干掉了很多bug之后才出现的AC，看见自己的博客出来的时候还蛮激动的，emmm。<br>其实这整个过程当你搭建成功之后再后头看的时候真的很简单。就几个指令（或许真的可以5分钟就解决的），但大家遇到问题的时候还是要先百度去debug，有些错误百度不能给出答案可以找找学长解决。但必须要有自己思考的一个过程。菜鸡的第一遍博客，望各位不要嫌弃。</p>
-<h2 id="NEXT主题的小广告【乱入】"><a href="#NEXT主题的小广告【乱入】" class="headerlink" title="NEXT主题的小广告【乱入】"></a>NEXT主题的小广告【乱入】</h2><p>分享一个网站：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">请点击</a>，里面讲解的灰常详细，看看就好。</p>
-
-          
+          <h1 id="希望能帮助那些在学习搭建的朋友们"><a href="#希望能帮助那些在学习搭建的朋友们" class="headerlink" title="希望能帮助那些在学习搭建的朋友们"></a>希望能帮助那些在学习搭建的朋友们</h1><hr>
+<p>搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/10/name/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
