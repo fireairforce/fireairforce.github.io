@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2017-11-19T13:58:43.318Z</updated>
+  <updated>2017-11-20T14:21:40.012Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>动态规划算法</title>
+    <link href="http://zoomdong.site/2017/11/20/dp/"/>
+    <id>http://zoomdong.site/2017/11/20/dp/</id>
+    <published>2017-11-20T14:20:38.000Z</published>
+    <updated>2017-11-20T14:21:40.012Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="这周开动态规划算法，占坑待更。。。。。。。"><a href="#这周开动态规划算法，占坑待更。。。。。。。" class="headerlink" title="这周开动态规划算法，占坑待更。。。。。。。"></a>这周开动态规划算法，占坑待更。。。。。。。</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;这周开动态规划算法，占坑待更。。。。。。。&quot;&gt;&lt;a href=&quot;#这周开动态规划算法，占坑待更。。。。。。。&quot; class=&quot;headerlink&quot; title=&quot;这周开动态规划算法，占坑待更。。。。。。。&quot;&gt;&lt;/a&gt;这周开动态规划算法，占坑待更。。。。。。。&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="ACM" scheme="http://zoomdong.site/tags/ACM/"/>
+    
+  </entry>
   
   <entry>
     <title>程序中无穷大量的引入（0x3f3f3f3f）</title>
