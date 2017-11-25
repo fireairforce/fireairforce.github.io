@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua）">
+<meta name="description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua） 大家仔细看看应该很容易弄懂的。（逃。">
 <meta name="keywords" content="ACM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划算法">
 <meta property="og:url" content="http://zoomdong.site/2017/11/20/dp/index.html">
 <meta property="og:site_name" content="吴东的个人博客">
-<meta property="og:description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua）">
+<meta property="og:description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua） 大家仔细看看应该很容易弄懂的。（逃。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-23T00:52:09.177Z">
+<meta property="og:updated_time" content="2017-11-25T03:36:28.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划算法">
-<meta name="twitter:description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua）">
+<meta name="twitter:description" content="动态规划（dp）介绍。知乎dalao的讲解，讲的很清晰了。什么是动态规划？动态规划的意义是什么？ 什么是动态规划？动态规划的意义是什么？ 2篇帖子介绍的很好。（mua） 大家仔细看看应该很容易弄懂的。（逃。">
 
 
 
@@ -347,8 +347,9 @@
         <h2 id="动态规划（dp）介绍。"><a href="#动态规划（dp）介绍。" class="headerlink" title="动态规划（dp）介绍。"></a>动态规划（dp）介绍。</h2><p>知乎dalao的讲解，讲的很清晰了。<br><a href="https://www.zhihu.com/question/23995189/answer/35324479?utm_source=com.tencent.tim&amp;utm_medium=social" target="_blank" rel="external">什么是动态规划？动态规划的意义是什么？</a></p>
 <p><a href="https://www.zhihu.com/question/23995189/answer/35429905?utm_source=com.tencent.tim&amp;utm_medium=social" target="_blank" rel="external">什么是动态规划？动态规划的意义是什么？</a></p>
 <p>2篇帖子介绍的很好。（mua）</p>
+<p>大家仔细看看应该很容易弄懂的。（逃。</p>
 <a id="more"></a>
-<p>直接从我们这周的DP题目开始搞事吧（hiahia~~）PS：这周题目真的是很好翻译。。。</p>
+<p>直接从我们这周的DP题目开始搞事吧（hiahia~~）PS：这周题目真的是很好翻译。。。没有什么高级词汇。</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="A-Longest-Ordered-Subsequence"><a href="#A-Longest-Ordered-Subsequence" class="headerlink" title="A - Longest Ordered Subsequence"></a>A - Longest Ordered Subsequence</h3><p>A numeric sequence of ai is ordered if a1 &lt; a2 &lt; … &lt; aN. Let the subsequence of the given numeric sequence ( a1, a2, …, aN) be any sequence ( ai1, ai2, …, aiK), where 1 &lt;= i1 &lt; i2 &lt; … &lt; iK &lt;= N. For example, sequence (1, 7, 3, 5, 9, 4, 8) has ordered subsequences, e. g., (1, 7), (3, 4, 8) and many others. All longest ordered subsequences are of length 4, e. g., (1, 3, 5, 8). </p>
 <p>Your program, when given the numeric sequence, must find the length of its longest ordered subsequence.<br>Input<br>The first line of input file contains the length of sequence N. The second line contains the elements of sequence - N integers in the range from 0 to 10000 each, separated by spaces. 1 &lt;= N &lt;= 1000<br>Output<br>Output file must contain a single integer - the length of the longest ordered subsequence of the given sequence.</p>
 <h4 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">7</div><div class="line">1 7 3 5 9 4 8</div></pre></td></tr></table></figure>
