@@ -276,6 +276,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/03/07/java环境变量配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴东">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴东的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/java环境变量配置/" itemprop="url">java环境变量配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T18:31:30+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="这学期开始学java了QAQ。记录记录一下吧！"><a href="#这学期开始学java了QAQ。记录记录一下吧！" class="headerlink" title="这学期开始学java了QAQ。记录记录一下吧！"></a>这学期开始学java了QAQ。记录记录一下吧！</h2><hr>
+<h2 id="关于环境变量"><a href="#关于环境变量" class="headerlink" title="关于环境变量"></a>关于环境变量</h2><p>首先我们要了解的是，要能够在电脑上编译某一种语言的代码，首先要具备的便是该种语言的环境。例如C++的gcc和clang，java同样也一样，要想使你的java代码能够运行，我们则需要相应的java环境。java的环境变量被叫做jdk。关于其历史我不做过多的介绍，目前最新的版本应该使jdk9.0。<br>&lt;!–more– &gt;</p>
+<h2 id="jdk的下载"><a href="#jdk的下载" class="headerlink" title="jdk的下载"></a>jdk的下载</h2><hr>
+<p>jdk的下载位于oracle的官网，地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">jdk下载地址</a> 担心大家在官网找的麻烦，这里直接给出javase的jdk的地址。</p>
+<p>点击图中所示的按钮。这里所标记的是最新的jdk版本。下面有一些以前的jdk版本，看看就好。</p>
+<p><img src="/2018/03/07/java环境变量配置/1.png" alt="如图"><br>点击进去出现的界面如下图所示。</p>
+<p><img src="/2018/03/07/java环境变量配置/2.png" alt="如图"></p>
+<p>记得要点那个接受协议，这样才能下载。这里点了不收费，并不会造成多大的影响。</p>
+<h2 id="jdk的安装"><a href="#jdk的安装" class="headerlink" title="jdk的安装"></a>jdk的安装</h2><hr>
+<p>大约300多MB，下载完成之后是这个样子。</p>
+<p><img src="/2018/03/07/java环境变量配置/3.png" alt="如图"></p>
+<p>忽略掉我写的那个js文件，点击下面那个jdk程序开始运行，然后一路开始确认安装。</p>
+<p>这里要注意的是它会默认给你装到C盘，这里你可以修改位置，但是我建议尽量不要改，因为可能会由于权限问题或者其他一些问题导致后面环境变量配置不好。所以就让下载的jdk和jre保存在电脑的C盘文件里面。<br>保存的是这样子的：</p>
+<p><img src="/2018/03/07/java环境变量配置/4.png" alt="如图"><br>jre和jdk文件放置在一起比较安全。也为后面的环境变量配置带来安全。</p>
+<h2 id="配置javac环境"><a href="#配置javac环境" class="headerlink" title="配置javac环境"></a>配置javac环境</h2><hr>
+<p>这里我们今天的重头戏就要开始啦。前面安装好环境后，这里就需要我们自己手动配置了。</p>
+<p>首先点击”我的电脑”属性一栏打开一个这样的框框。<br><img src="/2018/03/07/java环境变量配置/5.png" alt="如图"></p>
+<p>点击图中的高级系统设置。</p>
+<p><img src="/2018/03/07/java环境变量配置/6.png" alt="如图"></p>
+<p>然后开始环境变量的配置。<br>首先先新建一个变量名叫做JAVA_HOME的环境变量名。</p>
+<p><img src="/2018/03/07/java环境变量配置/8.png" alt="如图"></p>
+<p>下面那一栏直接把jdk所在的文件的绝对路径复制粘贴过去确认就行了</p>
+<p><img src="/2018/03/07/java环境变量配置/7.png" alt="如图"></p>
+<p>配置完javahome之后，然后配置路径，路径按照下面的方式进行配置，对path进行编辑，只需要在前面加上一行字符:%JAVA_HOME%\bin%JAVA_HOME%\jre\bin;（千万注意最后有个分号，代表结束）。如果是自己手动输入的要注意是英文字符。<br><img src="/2018/03/07/java环境变量配置/9.png" alt="如图"></p>
+<h2 id="检验"><a href="#检验" class="headerlink" title="检验"></a>检验</h2><hr>
+<p>那么配置完成之后，我们要如何检验才能知道我们是否配置成功呢？打开命令窗口。windows+R输入cmd，运行cmd窗口，输入java。<br>看是否会出现如图所示的信息。如果没有，则证明前面有些步骤没有使用正确，应该回去检查一遍是否环境变量保存或是路径弄错的一些问题。</p>
+<p><img src="/2018/03/07/java环境变量配置/10.png" alt="如图"></p>
+<p>然后输入javac，看是否出现下面信息：</p>
+<p><img src="/2018/03/07/java环境变量配置/11.png" alt="如图">.</p>
+<p>一般来说，java运行成功的话，javac不会出错。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><hr>
+<p>fighting！zoomdong！！！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/11/25/快速幂/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1443,7 +1594,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1456,7 +1607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1546,7 +1697,7 @@
       <div class="footer-inner">
         <script async src="https://dn-
 lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
