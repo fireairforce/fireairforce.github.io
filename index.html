@@ -276,6 +276,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/03/16/Javascript学习笔记第一卷/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴东">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴东的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/16/Javascript学习笔记第一卷/" itemprop="url">Javascript学习笔记第一卷</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T12:45:55+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="正在学习前端的道路上，也写点东西分享吧。"><a href="#正在学习前端的道路上，也写点东西分享吧。" class="headerlink" title="正在学习前端的道路上，也写点东西分享吧。"></a>正在学习前端的道路上，也写点东西分享吧。</h2><p>首先随便了解一下JS，用一个代码熟悉一下QAQ。<br>代码如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span> /&gt;</div><div class="line">&lt;title&gt;我们互动下&lt;/title&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">   <span class="keyword">function</span> jump()  </div><div class="line">    &#123;</div><div class="line">    var mymessage=confirm(<span class="string">"来看chenlao女装啊"</span>);</div><div class="line">    <span class="keyword">if</span>(mymessage==<span class="literal">true</span>)</div><div class="line">    &#123;</div><div class="line">        document.write(<span class="string">"%chenlao!"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        document.write(<span class="string">"= =!chenlao女装都不想看吗？"</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;       </div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p id=<span class="string">"con"</span>&gt;js进阶篇&lt;/p&gt;</div><div class="line">&lt;form&gt;</div><div class="line">       &lt;input <span class="built_in">type</span>=<span class="string">"button"</span> onclick=<span class="string">"jump()"</span> value=<span class="string">"点击进入"</span> /&gt; </div><div class="line">       //通过点击按钮啦触发js,好玩的一比！</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>###对js文件的外联式引入方法<br>在<head>标签里面写个<script type="text/script" src="script.js"></script><br>然后就可以通过在外面通过 script.js对js文件进行读写并对其进行引入。<br>同样js的内联式也要注意<script type="text/javascript"></script></head></p>
+<p>###js里面的变量申明<br>var 变量名;<br>和c++里面的方式差不多。<br>比较方便的是JavaScript里面可以申明各种变量。一个var可以声明字符，字符串，数组，同时强制类型转换直接一个”=”就可以实现。</p>
+<p>###js里面的符号操作符<br>“+”不仅可以进行加和，还可以对2个字符串进行拼接。</p>
+<p><script type="text/javascript"><br>    var num1=”qaq”;<br>    var num2=”emm”;<br>    document.write(num1+num2);<br></script><br>比较运算符，js里面的比较运算符和c++里面差不多但是c++里面表示的方法是0和1，js里面的则是”true”和”false”。<br>document.write是js里面的输出语言，可以在网页上直接输出结果。</p>
+<p>###js的一些常规操作<br>类似于java，js里面定义数组的方式是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myarr =new Array();//然后对该数组进行赋值就可以啦。这是个不定长数组的定义。</div><div class="line">var qaq=new Array(n);//n代表的是这个数组的大小。</div><div class="line">申明数组如果不对其进行复制的话，那么document.write(qaq[0]);结果会是undifined。</div><div class="line">同样的是这里对数组可以进行任何类型的赋值。</div></pre></td></tr></table></figure></p>
+<p>数组的一些属性，比如myarray.length;可以获得该数组的长度。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var myarray=new Array(8);</div><div class="line">document.write(myarray.length);//可以输出该数组的长度。类似于c++里面的a.size();</div></pre></td></tr></table></figure>
+<p>申明二维数组也可以采用类似方法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var myarr=new Array();//先声明一维。</div><div class="line"><span class="keyword">for</span>(var i=0;i&lt;2;i++)</div><div class="line">&#123;</div><div class="line">	myarr[i]=new Array();//在申明二维。</div><div class="line">	<span class="keyword">for</span>(var j=0;j&lt;3;j++)</div><div class="line">	&#123;</div><div class="line">		myarr[i][j]=i+j;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>if语句<br>if语句是基础条件成立才执行相应的代码。<br>例如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">var mycarrer=<span class="string">"html"</span>;</div><div class="line"><span class="keyword">if</span>(mycarrer==<span class="string">"html"</span>)</div><div class="line">&#123;</div><div class="line">   document.write(<span class="string">"congrations to you"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> </div><div class="line">&#123;</div><div class="line">	doucument.write(<span class="string">"sorry,you are failed"</span>);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/JavaScript"</span>&gt;</div><div class="line">var myage=99;</div><div class="line"><span class="keyword">if</span>(myage&lt;=44)</div><div class="line">&#123;</div><div class="line">	document.write(<span class="string">"弱鸡"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(myage&lt;=59)</div><div class="line">&#123;</div><div class="line">	document.write(<span class="string">"菜逼"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(myage&lt;=89)</div><div class="line">&#123;</div><div class="line">	document.write(<span class="string">"changlao"</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">	document.write(<span class="string">"chenlao"</span>);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>利用js实现一个工作安排表，简单的js技术<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">    &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">    &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">    &lt;script <span class="built_in">type</span>=<span class="string">"text/JavaScript"</span>&gt;</div><div class="line">      <span class="keyword">function</span> <span class="function"><span class="title">b</span></span>() &#123;</div><div class="line">          var qaq=document.getElementById(<span class="string">"a"</span>).value;//获取被标签标记的a的值。</div><div class="line">          <span class="keyword">if</span>(qaq==1||qaq==2)</div><div class="line">          &#123;</div><div class="line">              alert(<span class="string">"大物，高数，英语hhh"</span>);</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">else</span> <span class="keyword">if</span>(qaq==3||qaq==4)</div><div class="line">          &#123;</div><div class="line">              alert(<span class="string">"体育，线代，无机hhh"</span>);</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">else</span> <span class="keyword">if</span>(qaq==5||qaq==6)</div><div class="line">          &#123;</div><div class="line">              alert(<span class="string">"算法实验班hhh"</span>);</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">else</span> </div><div class="line">          &#123;</div><div class="line">              alert(<span class="string">"去北戴河hhh"</span>);</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div&gt;输入星期几吧：&lt;/div&gt;</div><div class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> id =<span class="string">"a"</span>&gt;</div><div class="line">    &lt;input <span class="built_in">type</span> =<span class="string">"button"</span> value =<span class="string">"查看工作安排"</span> onclick=<span class="string">"b()"</span>&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>###js里面的循环语句</p>
+<p>####for循环</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">for</span>(var num=1;num&lt;=6;num++)</div><div class="line">&#123;</div><div class="line">	document.write(<span class="string">"输出"</span>+num+<span class="string">"的值"</span>);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>####while循环</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">var num=0;</div><div class="line"><span class="keyword">while</span>(num&lt;=6)</div><div class="line">&#123;</div><div class="line">   document.write(<span class="string">"取出第"</span>+num+<span class="string">"个数字"</span>);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>####do…while循环</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">num=1;</div><div class="line"><span class="keyword">do</span></div><div class="line">&#123;</div><div class="line">    document.write(<span class="string">"数值为："</span>+ num+<span class="string">"&lt;br&gt;"</span>);</div><div class="line">    num++;</div><div class="line">&#125;<span class="keyword">while</span>(num&lt;=5)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>ps：跳出循环语句和C++里面的是一样的，都写个if…break既可以了。</p>
+<p>###javascript的函数<br>函数的作用，可以写一次代码，然后反复重用这个代码。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">function</span> add2(a,b)</div><div class="line">&#123;</div><div class="line">    sum=a+b;</div><div class="line">    alert(sum);</div><div class="line">&#125;</div><div class="line">alert(2,4);</div><div class="line">alert(7,8);</div></pre></td></tr></table></figure></p>
+<p>###函数的调用</p>
+<p>####在<script type="text/javascript">标签里面对函数进行调用。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"type/javascript"</span>&gt;</div><div class="line">  <span class="keyword">function</span> add2()</div><div class="line">  &#123;</div><div class="line">  	sum=2;</div><div class="line">  	alert(sum);</div><div class="line">  &#125;</div><div class="line"> add2();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>####在HTML文件里面调用，通过点击按钮来调用定义好的函数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;head&gt;</div><div class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">  <span class="keyword">function</span> add2()</div><div class="line">  &#123;</div><div class="line">  	sum=16;</div><div class="line">  	alert(sum);</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line"> &lt;form&gt;</div><div class="line"> &lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"点击看陈lao女装啊"</span> onclick=<span class="string">"add2()"</span>&gt;//按钮，onclick点击事件，直接写函数名。</div><div class="line"> &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure></p>
+<p>###总结<br>兄弟们这一卷就先跟完了，详情请看下一卷。</p>
+</script></p>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/03/07/java环境变量配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1389,137 +1533,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/10/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴东">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/wd.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吴东的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/hello-world/" itemprop="url">Welcome to my blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T16:39:27+08:00">
-                2017-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1568,7 +1588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1581,7 +1601,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
