@@ -1833,7 +1833,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #20f737;
+  background: #b60b38;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3002,10 +3002,10 @@ pre .javascript .function {
   }
 }
 body {
-  background: url("/images/mmm1.jpg");
+  background: url("/images/saber.jpg");
 }
 .header-inner {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .main-inner {
   opacity: 0.8;
