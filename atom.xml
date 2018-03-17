@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>吴东的个人博客</title>
+  <title>吴东&#39;s blog</title>
   
-  <subtitle>coding for fun！</subtitle>
+  <subtitle>something for nothing</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2018-03-16T05:15:44.176Z</updated>
+  <updated>2018-03-17T15:39:24.094Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
-    <name>吴东</name>
+    <name>zoomdong</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim使用技巧</title>
+    <link href="http://zoomdong.site/2018/03/17/vim%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/"/>
+    <id>http://zoomdong.site/2018/03/17/vim使用技巧/</id>
+    <published>2018-03-17T15:34:20.000Z</published>
+    <updated>2018-03-17T15:39:24.094Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。"><a href="#以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。" class="headerlink" title="以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。"></a>以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。</h2><h2 id="ps-javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。"><a href="#ps-javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。" class="headerlink" title="ps:javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。"></a>ps:javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。</h2><a id="more"></a><p>## </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。&quot;&gt;&lt;a href=&quot;#以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。&quot; class=&quot;headerlink&quot; title=&quot;以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。&quot;&gt;&lt;/a&gt;以前整理的一套vim使用技巧，整理的用的txt，还是以markdown的形式写出来吧。&lt;/h2&gt;&lt;h2 id=&quot;ps-javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。&quot;&gt;&lt;a href=&quot;#ps-javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。&quot; class=&quot;headerlink&quot; title=&quot;ps:javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。&quot;&gt;&lt;/a&gt;ps:javascript快整理完了，我会陆续发布到博客上面的（虽然我知道啥人看）。&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Javascript学习笔记第一卷</title>
