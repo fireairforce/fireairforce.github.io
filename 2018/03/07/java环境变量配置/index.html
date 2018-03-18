@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://zoomdong.site/2018/03/07/java环境变量配置/9.png">
 <meta property="og:image" content="http://zoomdong.site/2018/03/07/java环境变量配置/10.png">
 <meta property="og:image" content="http://zoomdong.site/2018/03/07/java环境变量配置/11.png">
-<meta property="og:updated_time" content="2018-03-11T13:37:23.080Z">
+<meta property="og:updated_time" content="2018-03-18T03:13:09.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java环境变量配置">
 <meta name="twitter:description" content="这学期开始学java了QAQ。记录记录一下吧！ 关于环境变量首先我们要了解的是，要能够在电脑上编译某一种语言的代码，首先要具备的便是该种语言的环境。例如C++的gcc和clang，java同样也一样，要想使你的java代码能够运行，我们则需要相应的java环境。java的环境变量被叫做jdk。关于其历史我不做过多的介绍，目前最新的版本应该使jdk9.0。">
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  788
+                  811
                 </span>
               
 
@@ -442,11 +442,11 @@
 <p>首先点击”我的电脑”属性一栏打开一个这样的框框。<br><img src="/2018/03/07/java环境变量配置/5.png" alt="如图"></p>
 <p>点击图中的高级系统设置。</p>
 <p><img src="/2018/03/07/java环境变量配置/6.png" alt="如图"></p>
-<p>然后开始环境变量的配置。<br>首先先新建一个变量名叫做JAVA_HOME的环境变量名。</p>
+<p>然后开始环境变量的配置。<br>首先在下面的系统换将变量的那一栏新建一个变量名叫做JAVA_HOME的环境变量名。</p>
 <p><img src="/2018/03/07/java环境变量配置/8.png" alt="如图"></p>
 <p>下面那一栏直接把jdk所在的文件的绝对路径复制粘贴过去确认就行了</p>
 <p><img src="/2018/03/07/java环境变量配置/7.png" alt="如图"></p>
-<p>配置完javahome之后，然后配置路径，路径按照下面的方式进行配置，对path进行编辑，只需要在前面加上一行字符:%JAVA_HOME%\bin%JAVA_HOME%\jre\bin;（千万注意最后有个分号，代表结束）。如果是自己手动输入的要注意是英文字符。<br><img src="/2018/03/07/java环境变量配置/9.png" alt="如图"></p>
+<p>配置完javahome之后，然后配置路径，路径按照下面的方式进行配置，对path进行编辑，只需要在前面加上一行字符”.%JAVA_HOME%\bin%JAVA_HOME%\jre\bin;”(千万注意最后有个分号，代表结束,不包含我写的2个引号）。如果是自己手动输入的要注意是英文字符。<br><img src="/2018/03/07/java环境变量配置/9.png" alt="如图"></p>
 <h2 id="检验"><a href="#检验" class="headerlink" title="检验"></a>检验</h2><hr>
 <p>那么配置完成之后，我们要如何检验才能知道我们是否配置成功呢？打开命令窗口。windows+R输入cmd，运行cmd窗口，输入java。<br>看是否会出现如图所示的信息。如果没有，则证明前面有些步骤没有使用正确，应该回去检查一遍是否环境变量保存或是路径弄错的一些问题。</p>
 <p><img src="/2018/03/07/java环境变量配置/10.png" alt="如图"></p>
@@ -734,7 +734,7 @@ lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">13.8k</span>
+    <span title="Site words total count">15.5k</span>
   
 </div>
 
