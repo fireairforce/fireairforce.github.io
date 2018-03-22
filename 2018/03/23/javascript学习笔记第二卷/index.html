@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。 比如我前面讲过的123&amp;lt;input type=&quot;button&quot; value=&quot;点击看chenlao女装&quot; onclick=&quot;emm()&quot; &amp;gt;//就是通过点击按钮触发函数。` 主要的事件表">
+<meta name="description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript学习笔记第二卷">
 <meta property="og:url" content="http://zoomdong.site/2018/03/23/javascript学习笔记第二卷/index.html">
 <meta property="og:site_name" content="吴东&#39;s blog">
-<meta property="og:description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。 比如我前面讲过的123&amp;lt;input type=&quot;button&quot; value=&quot;点击看chenlao女装&quot; onclick=&quot;emm()&quot; &amp;gt;//就是通过点击按钮触发函数。` 主要的事件表">
+<meta property="og:description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T18:42:21.478Z">
+<meta property="og:updated_time" content="2018-03-22T18:44:44.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript学习笔记第二卷">
-<meta name="twitter:description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。 比如我前面讲过的123&amp;lt;input type=&quot;button&quot; value=&quot;点击看chenlao女装&quot; onclick=&quot;emm()&quot; &amp;gt;//就是通过点击按钮触发函数。` 主要的事件表">
+<meta name="twitter:description" content="正在学习前端的路上，写点东西分享一下吧。js的事件JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。">
 
 
 
@@ -412,6 +412,7 @@
 
       
         <h2 id="正在学习前端的路上，写点东西分享一下吧。"><a href="#正在学习前端的路上，写点东西分享一下吧。" class="headerlink" title="正在学习前端的路上，写点东西分享一下吧。"></a>正在学习前端的路上，写点东西分享一下吧。</h2><h3 id="js的事件"><a href="#js的事件" class="headerlink" title="js的事件"></a>js的事件</h3><p>JavaScript创建动态的页面。事件是可以被JavaScript侦测到的行为。网页中的每个元素都可以产生触发JavaScript函数或程序的事件。</p>
+<a id="more"></a>
 <p>比如我前面讲过的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"点击看chenlao女装"</span> onclick=<span class="string">"emm()"</span> &gt;</div><div class="line">//就是通过点击按钮触发函数。</div><div class="line">`</div></pre></td></tr></table></figure></p>
 <p>主要的事件表有:<br>onclick          鼠标点击事件<br>onmouseover      鼠标经过事件<br>onmouseout       鼠标移开事件<br>onchange         文本框内容改变事件<br>onselect         文本框内容被选中事件<br>onfocus          光标聚集<br>onblur           光标离开<br>onload           网页导入<br>onunload         关闭网页  </p>
 <h4 id="鼠标点击事件"><a href="#鼠标点击事件" class="headerlink" title="鼠标点击事件"></a>鼠标点击事件</h4><p>onclick是鼠标点击事件，当在网页上面单击鼠标的时候，就会发生该事件。onclick通常与按钮一起使用。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</div><div class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</div><div class="line">  &lt;title&gt;Document&lt;/title&gt;</div><div class="line">  &lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">     <span class="keyword">function</span> emm()</div><div class="line">     &#123;</div><div class="line">       window.open(<span class="string">'http://zoomdong.site/'</span>,<span class="string">'_blank'</span>,<span class="string">'height=600'</span>,<span class="string">'width=400'</span>,<span class="string">'top=100'</span>,<span class="string">'toolbar=no'</span>,<span class="string">'left=0'</span>,<span class="string">'menubar=no'</span>,<span class="string">'scrollbars=no'</span>,<span class="string">'status=no'</span>);</div><div class="line">       //通过该函数可以点击弹出相应的网页地址，并且在后面可以设置css样式。</div><div class="line">     &#125;</div><div class="line">  &lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;input name=<span class="string">"点击我"</span> <span class="built_in">type</span>=<span class="string">"button"</span> onclick=<span class="string">"emm()"</span> value=<span class="string">"点击看陈lao女装"</span>&gt;</div><div class="line"></div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
