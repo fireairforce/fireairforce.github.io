@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2018-04-05T04:05:48.363Z</updated>
+  <updated>2018-04-06T14:28:48.211Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用python图形库把图片转换成素描图</title>
+    <link href="http://zoomdong.site/2018/04/06/python/"/>
+    <id>http://zoomdong.site/2018/04/06/python/</id>
+    <published>2018-04-06T13:56:59.000Z</published>
+    <updated>2018-04-06T14:28:48.211Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="最近在学习Python的路上，写点东西分享吧"><a href="#最近在学习Python的路上，写点东西分享吧" class="headerlink" title="最近在学习Python的路上，写点东西分享吧"></a>最近在学习Python的路上，写点东西分享吧</h2><p><img src="/2018/04/06/python/2.png" alt="如图"></p><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在mooc上面学习python语言和爬虫，然后那个BIT教授在介绍python的一些好玩的玩法的时候，突然讲到把一个照片生成素描画的操作。顿时觉得很骚，然后就去学习了一手，想起了陈lao前几天拿着python的字符画在窝的面前装逼，<a href="http://elatis.cn/posts/1949c298/#more" target="_blank" rel="external">装逼地址</a>,于是窝很愤怒，也去学了一手python。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>希望大家能学到这个好玩的技能QAQ。</p><h3 id="用到的库"><a href="#用到的库" class="headerlink" title="用到的库"></a>用到的库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pillow(Image)+numpy库</div></pre></td></tr></table></figure><h3 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h3><p>安装方法如图：<br><img src="/2018/04/06/python/1.png" alt="如图"></p><h3 id="对图片进行黑白变换"><a href="#对图片进行黑白变换" class="headerlink" title="对图片进行黑白变换"></a>对图片进行黑白变换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">a=np.array(Image.open(<span class="string">'saber.jpg'</span>).convert(<span class="string">'L'</span>)) <span class="comment">#.convert将图片变成黑白的</span></div><div class="line"></div><div class="line">b=<span class="number">255</span>-a  <span class="comment">#在对应的颜色通道减去他自己变成黑白底片的效果</span></div><div class="line">im=Image.fromarray(b.astype(<span class="string">'uint8'</span>))</div><div class="line">im.save(<span class="string">'saber1.jpg'</span>)</div><div class="line"></div><div class="line"></div><div class="line">c=(<span class="number">100</span>/<span class="number">255</span>)*a+<span class="number">150</span><span class="comment">#区间变换,颜色比较淡的灰度的图片</span></div><div class="line">im=Image.fromarray(c.astype(<span class="string">'uint8'</span>))</div><div class="line">im.save(<span class="string">'saber2.jpg'</span>)</div><div class="line"></div><div class="line">d=<span class="number">255</span>*(a/<span class="number">255</span>)**<span class="number">2</span><span class="comment">#像素平方,颜色比较深的图</span></div><div class="line">im=Image.fromarray(d.astype(<span class="string">'uint8'</span>))</div><div class="line">im.save(<span class="string">'saber3.jpg'</span>)</div></pre></td></tr></table></figure><h3 id="图像手绘效果变换的代码"><a href="#图像手绘效果变换的代码" class="headerlink" title="图像手绘效果变换的代码"></a>图像手绘效果变换的代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </div><div class="line">a=np.array(Image.open(<span class="string">r'D:\saber.jpg'</span>).convert(<span class="string">'L'</span>)).astype(<span class="string">'float'</span>)</div><div class="line">depth=<span class="number">10</span></div><div class="line">grad=np.gradient(a)      <span class="comment">#去图像灰度的梯度值</span></div><div class="line">grad_x,grad_y=grad      <span class="comment">#分别取横纵图像梯度值</span></div><div class="line">grad_x=grad_x*depth/<span class="number">100</span></div><div class="line">grad_y=grad_y*depth/<span class="number">100</span></div><div class="line">A=np.sqrt(grad_x**<span class="number">2</span>+grad_y**<span class="number">2</span>+<span class="number">1</span>)</div><div class="line">uni_x=grad_x/A</div><div class="line">uni_y=grad_y/A</div><div class="line">uni_z=<span class="number">1.</span>/A</div><div class="line">vec_el=np.pi/<span class="number">2.2</span>  <span class="comment">#光源的俯视角度，弧度值</span></div><div class="line">vec_az=np.pi/<span class="number">4</span>   <span class="comment">#光源的方位角度，弧度值</span></div><div class="line">dx=np.cos(vec_el)*np.cos(vec_az) <span class="comment">#光源对x轴的影响</span></div><div class="line">dy=np.sin(vec_el)*np.sin(vec_az)  <span class="comment">#光源对y轴的影响</span></div><div class="line">dz=np.sin(vec_el)   <span class="comment">#光源对z轴的影响</span></div><div class="line">b=<span class="number">255</span>*(dx*uni_x+dy*uni_y+dz*uni_z)  <span class="comment">#光源归一化</span></div><div class="line">b=b.clip(<span class="number">0</span>,<span class="number">255</span>)</div><div class="line">im=Image.fromarray(b.astype(<span class="string">'uint8'</span>))  <span class="comment">#重构图像</span></div><div class="line">im.save(<span class="string">r'D:\saber1.jpg'</span>)</div></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>没陈lao那么能水，这个代码挺简单的，很好看的。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;最近在学习Python的路上，写点东西分享吧&quot;&gt;&lt;a href=&quot;#最近在学习Python的路上，写点东西分享吧&quot; class=&quot;headerlink&quot; title=&quot;最近在学习Python的路上，写点东西分享吧&quot;&gt;&lt;/a&gt;最近在学习Python的路上，写点东西分享吧&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/2018/04/06/python/2.png&quot; alt=&quot;如图&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://zoomdong.site/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>爬虫初窥--用爬虫定向爬取网页的数据</title>
