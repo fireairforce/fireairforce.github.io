@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2018-04-06T14:28:48.211Z</updated>
+  <updated>2018-04-10T14:21:14.045Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sublime配置python环境记录</title>
+    <link href="http://zoomdong.site/2018/04/10/sublime%E9%85%8D%E7%BD%AEpython%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/"/>
+    <id>http://zoomdong.site/2018/04/10/sublime配置python环境记录/</id>
+    <published>2018-04-10T13:41:53.000Z</published>
+    <updated>2018-04-10T14:21:14.045Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="正在学习python的路上，写点东西分享吧。"><a href="#正在学习python的路上，写点东西分享吧。" class="headerlink" title="正在学习python的路上，写点东西分享吧。"></a>正在学习python的路上，写点东西分享吧。</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很久没有在博客上面写东西了hhh，最近实在是太忙了，就拿周二来说，周二早晨6：20起床去进行运动方阵的训练，然后早晨还有大物和英语，中午还要去进行方阵的训练，下午又有体育和C++课，晚上上完Java课之后还有去进行运动会短跑训练，呜呜呜实在是太惨啦！</p><a id="more"></a><p>今天这篇博客正是在周二写的，至于关于为啥周二突然有时间了，hhh显然是逃掉了晚上的Java课和院队训练才有今天的我啊QAQ。23333。吐槽一句我们英语老师真的是太好看辣！</p><h2 id="真-前言"><a href="#真-前言" class="headerlink" title="真.前言"></a>真.前言</h2><p>爬虫学习到后面一部分发现不是很懂python的语法学习学的很难受，尤其是那个恶心的正则表达式和那个.format（）输出格式啥的，于是我又去mooc上面学了一波python入门，学到一半突然觉得IDLE这款入门编辑器已经不能带给我写代码的快感，于是窝决定去搞一款全新的编译器，本来刚开始考虑的是python的IDE，但想到优秀的程序员一般都是用文本编辑器写代码，想起寒假配vscode的gcc环境被折腾的死去活来的时候，于是决定放弃使用VSCODE，这个时候我想到了我一直用来写博客的这个文本编辑器–SulimeText3！这款配置是真的简单真的爽！但同时也经历了很多波折。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>首先强调一下这篇文章是基于电脑上有python3.0的环境，这个自己去官网下载就可以了。<br>刚开始用sublime的时候由于写的是爬虫代码，并没有直接写那种关于交互相关的代码，写出来的感觉是这样的:</p><p><img src="/2018/04/10/sublime配置python环境记录/1.png" alt="如图"></p><p>是不是感觉看上去很爽？而且很又装逼的味道在里面，其实运行这种代码并没有需要很麻烦的步骤，只要打开Tools-&gt;Buile System然后在那个选择栏里面点击python就可以了。这个时候你按ctrl+B就可以运行你对应python代码了，是不是觉得很爽？当时我也是这么觉得QAQ,然后这也为我后来的GG埋下了伏笔。</p><p>本来用sublime写python绘制图形，爬虫爽了几天，终于到了今天这个忙碌的星期二晚上，然后我开始搞那个python的输入功能，就类似一个交互功能。<br>我写完一个很简单的字符输入处理程序，然后想输入数字来看结果，结果却是这样的:</p><p><img src="/2018/04/10/sublime配置python环境记录/2.png" alt="如图"><br>然后我？黑人问号.jpg？<br>发现没有输出结果，于是我去进行了baidufirstsearch(即bfs),终于找到了解决办法，<br>这个问题我们可以通过安装一个sublimeREPL插件来解决问题,按ctrl+shift+p快捷键呼出一个输入框，输入Install Package，回车，在新出现的输入框里输入SublimeREPL，在下面的选择列表中选中回车就会开始安装，一般几秒钟就能装完。<br>在刚刚的python文件的界面里点击上方菜单栏的tools-&gt;sublimeREPL-&gt;python-&gt;python run current file，这时候就像IDLE一样，会弹出一个新的窗口，而且是可交互的，可以输入。</p><p><img src="/2018/04/10/sublime配置python环境记录/3.png" alt="如图"><br>然后我上面的那个代码就可以这样进行交互输入了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;正在学习python的路上，写点东西分享吧。&quot;&gt;&lt;a href=&quot;#正在学习python的路上，写点东西分享吧。&quot; class=&quot;headerlink&quot; title=&quot;正在学习python的路上，写点东西分享吧。&quot;&gt;&lt;/a&gt;正在学习python的路上，写点东西分享吧。&lt;/h2&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;很久没有在博客上面写东西了hhh，最近实在是太忙了，就拿周二来说，周二早晨6：20起床去进行运动方阵的训练，然后早晨还有大物和英语，中午还要去进行方阵的训练，下午又有体育和C++课，晚上上完Java课之后还有去进行运动会短跑训练，呜呜呜实在是太惨啦！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://zoomdong.site/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>利用python图形库把图片转换成素描图</title>
@@ -397,27 +417,6 @@
       &lt;h1 id=&quot;希望能帮助那些在学习搭建的朋友们&quot;&gt;&lt;a href=&quot;#希望能帮助那些在学习搭建的朋友们&quot; class=&quot;headerlink&quot; title=&quot;希望能帮助那些在学习搭建的朋友们&quot;&gt;&lt;/a&gt;希望能帮助那些在学习搭建的朋友们&lt;/h1&gt;&lt;hr&gt;
 &lt;p&gt;搭建博客的很多操作我们都没见识过。尽量为大家指点迷津。&lt;/p&gt;
 &lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Welcome to my blog</title>
-    <link href="http://zoomdong.site/2017/10/09/hello-world/"/>
-    <id>http://zoomdong.site/2017/10/09/hello-world/</id>
-    <published>2017-10-09T08:39:27.821Z</published>
-    <updated>2017-10-13T18:11:40.681Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
     
     </summary>
     
