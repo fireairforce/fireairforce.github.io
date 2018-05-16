@@ -413,27 +413,14 @@
 
       
         
-          
-            <h2 id="正在学习前端的路上，写点东西记录一下吧。"><a href="#正在学习前端的路上，写点东西记录一下吧。" class="headerlink" title="正在学习前端的路上，写点东西记录一下吧。"></a>正在学习前端的路上，写点东西记录一下吧。</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。</p>
-<p>相关链接：<br><a href="https://rivercome.github.io/2018/05/08/enov/" target="_blank" rel="external">学长的博客</a><br><a href="http://huziketang.mangojuice.top/books/react/lesson5" target="_blank" rel="external">React.js小书</a></p>
-<h2 id="npm的安装"><a href="#npm的安装" class="headerlink" title="npm的安装"></a>npm的安装</h2><p>这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装，但当我花了半套线代试题的时间发现还是没有安装成功的时候，于是决定找新的办法。于是我找了些新的安装方法。<br>首先打开终端，输入命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.xz</div></pre></td></tr></table></figure></p>
-<p>这里我们不用sudo（下载出来的版本太低了），学长的blog里面用的是nvm，但我的linux用nvm下载很慢，于是这里我们直接用淘宝源下载，然后解压。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xz -d node-v8.9.3-linux-x64.tar.xz</div><div class="line">tar -xvf node-v8.9.3-linux-x64.tar</div></pre></td></tr></table></figure>
-<p>之后，我们把node移动到指定的目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv node-v8.9.3-linux-x64 /usr/<span class="built_in">local</span>/node</div></pre></td></tr></table></figure></p>
-<p>然后在/usr/bin目录下面建立软连接，变为全局<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/bin</div><div class="line"><span class="comment">#建立node软链接</span></div><div class="line">ln -s /usr/<span class="built_in">local</span>/node/bin/node node</div><div class="line"><span class="comment">#建立npm软链接</span></div><div class="line">ln -s /usr/<span class="built_in">local</span>/node/bin/npm npm</div></pre></td></tr></table></figure></p>
-<p>之后我们在终端输入<strong>npm -v</strong>和<strong>node -v</strong>输入命令，如果出现版本信息，则证明我们的安装大功告成。</p>
-<h2 id="react的安装"><a href="#react的安装" class="headerlink" title="react的安装"></a>react的安装</h2><p>安装好环境之后，这个时候我们来安装<strong>create-react-app</strong>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g create-react-app</div></pre></td></tr></table></figure></p>
-<p>这条命令会往我们的机器上面安装一条叫create-react-app的命令，安装好之后就可以用这个命令来构建一个叫做react的前端工程:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create-react-app hello-react</div></pre></td></tr></table></figure>
-<p>当然这里有时候会出现问题，比如说这个时候终端会弹出一条消息告诉你，找不到这条命令，<br>这个时候我们可以参考一下这篇blog:<br><a href="https://blog.csdn.net/wirelessqa/article/details/53393248" target="_blank" rel="external">解决方案</a></p>
-<p>出问题的一般就是环境变量，我们设置一下环境变量就可以了。<br>输入下面的命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -e <span class="string">"export PATH=<span class="variable">$(npm prefix -g)</span>/bin:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</div><div class="line"><span class="comment"># 上面的命令中使用的是npm prefix -g 来获取node安装目录</span></div></pre></td></tr></table></figure></p>
-<p>这个时候我们关闭终端再重新输入 创建react工程的那个命令就不会出现找不到命令这种操作了。<br>创建完工程之后，我们之后启动工程，哦，对了，这里npm安装速度如果比较慢的话，我们可以把npm的源改成国内的淘宝源，这样可以大大增加速度。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
-<p>进入工程然后用npm启动工程:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> hello-react</div><div class="line">npm start</div></pre></td></tr></table></figure></p>
-<p>这个时候终端提示成功：<br><img src="/2018/05/16/react初体验/1.png" alt="如图"></p>
-<p>并且会自动打开浏览器，我们就可以看见React工程顺利运行的结果:<br><img src="/2018/05/16/react初体验/2.png" alt="如图"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>进击的前端小菜鸡，加油！！</p>
-
-          
+          <h2 id="正在学习前端的路上，写点东西记录一下吧。"><a href="#正在学习前端的路上，写点东西记录一下吧。" class="headerlink" title="正在学习前端的路上，写点东西记录一下吧。"></a>正在学习前端的路上，写点东西记录一下吧。</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/16/react初体验/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -83,20 +83,20 @@
 
 
 
-<meta name="description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
+<meta name="description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react安装与配置">
 <meta property="og:url" content="http://zoomdong.site/2018/05/16/react初体验/index.html">
 <meta property="og:site_name" content="吴东&#39;s blog">
-<meta property="og:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
+<meta property="og:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zoomdong.site/2018/05/16/react初体验/1.png">
 <meta property="og:image" content="http://zoomdong.site/2018/05/16/react初体验/2.png">
-<meta property="og:updated_time" content="2018-05-16T21:35:47.737Z">
+<meta property="og:updated_time" content="2018-05-16T21:38:42.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react安装与配置">
-<meta name="twitter:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
+<meta name="twitter:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。">
 <meta name="twitter:image" content="http://zoomdong.site/2018/05/16/react初体验/1.png">
 
 
@@ -415,6 +415,7 @@
 
       
         <h2 id="正在学习前端的路上，写点东西记录一下吧。"><a href="#正在学习前端的路上，写点东西记录一下吧。" class="headerlink" title="正在学习前端的路上，写点东西记录一下吧。"></a>正在学习前端的路上，写点东西记录一下吧。</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。</p>
+<a id="more"></a>
 <p>相关链接：<br><a href="https://rivercome.github.io/2018/05/08/enov/" target="_blank" rel="external">学长的博客</a><br><a href="http://huziketang.mangojuice.top/books/react/lesson5" target="_blank" rel="external">React.js小书</a></p>
 <h2 id="npm的安装"><a href="#npm的安装" class="headerlink" title="npm的安装"></a>npm的安装</h2><p>这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装，但当我花了半套线代试题的时间发现还是没有安装成功的时候，于是决定找新的办法。于是我找了些新的安装方法。<br>首先打开终端，输入命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.xz</div></pre></td></tr></table></figure></p>
 <p>这里我们不用sudo（下载出来的版本太低了），学长的blog里面用的是nvm，但我的linux用nvm下载很慢，于是这里我们直接用淘宝源下载，然后解压。</p>
