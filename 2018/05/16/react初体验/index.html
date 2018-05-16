@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="C++," />
+  <meta name="keywords" content="前端," />
 
 
 
@@ -83,18 +83,21 @@
 
 
 
-<meta name="description" content="来自于自己从CSDN一些博客上的总结。">
-<meta name="keywords" content="C++">
+<meta name="description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
+<meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程序中无穷大量的引入（0x3f3f3f3f）">
-<meta property="og:url" content="http://zoomdong.site/2017/11/19/无穷大量的引入/index.html">
+<meta property="og:title" content="react安装与配置">
+<meta property="og:url" content="http://zoomdong.site/2018/05/16/react初体验/index.html">
 <meta property="og:site_name" content="吴东&#39;s blog">
-<meta property="og:description" content="来自于自己从CSDN一些博客上的总结。">
+<meta property="og:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-19T13:58:43.318Z">
+<meta property="og:image" content="http://zoomdong.site/2018/05/16/react初体验/1.png">
+<meta property="og:image" content="http://zoomdong.site/2018/05/16/react初体验/2.png">
+<meta property="og:updated_time" content="2018-05-16T21:35:47.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="程序中无穷大量的引入（0x3f3f3f3f）">
-<meta name="twitter:description" content="来自于自己从CSDN一些博客上的总结。">
+<meta name="twitter:title" content="react安装与配置">
+<meta name="twitter:description" content="正在学习前端的路上，写点东西记录一下吧。前言折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。 相关链接：学长的博客React.js小书 npm的安装这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装">
+<meta name="twitter:image" content="http://zoomdong.site/2018/05/16/react初体验/1.png">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://zoomdong.site/2017/11/19/无穷大量的引入/"/>
+  <link rel="canonical" href="http://zoomdong.site/2018/05/16/react初体验/"/>
 
 
 
 
 
-  <title>程序中无穷大量的引入（0x3f3f3f3f） | 吴东's blog</title>
+  <title>react安装与配置 | 吴东's blog</title>
   
 
 
@@ -313,7 +316,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/11/19/无穷大量的引入/">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/05/16/react初体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zoomdong">
@@ -330,7 +333,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">程序中无穷大量的引入（0x3f3f3f3f）</h1>
+          <h1 class="post-title" itemprop="name headline">react安装与配置</h1>
         
 
         <div class="post-meta">
@@ -342,8 +345,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-19T21:53:49+08:00">
-                2017-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T23:57:39+08:00">
+                2018-05-16
               </time>
             
 
@@ -374,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,005
+                  803
                 </span>
               
 
@@ -390,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -411,9 +414,24 @@
       
 
       
-        <h1 id="来自于自己从CSDN一些博客上的总结。"><a href="#来自于自己从CSDN一些博客上的总结。" class="headerlink" title="来自于自己从CSDN一些博客上的总结。"></a>来自于自己从CSDN一些博客上的总结。</h1><a id="more"></a>
-<p>做DP题目的时候这个小细节可能会有点用。<br>随便更一发吧，emmm。</p>
-<p>如果问题中各数据的范围明确，那么无穷大的设定不是问题，在不明确的情况下，很多程序员都取0x7fffffff作为无穷大，因为这是32-bit int的最大值。如果这个无穷大只用于一般的比较（比如求最小值时min变量的初值），那么0x7fffffff确实是一个完美的选择，但是在更多的情况 下，0x7fffffff并不是一个好的选择。<br>很多时候我们并不只是单纯拿无穷大来作比较，而是会运算后再做比较，例如在大部分最短路径算法中都会使用的松弛操作：<br>if (d[u]+w[u][v]&lt;d[v]) d[v]=d[u]+w[u][v];<br>我们知道如果u,v之间没有边，那么w[u][v]=INF，如果我们的INF取0x7fffffff，那么d[u]+w[u][v]会溢出而变成负数， 我们的松弛操作便出错了，更一般的说，0x7fffffff不能满足“无穷大加一个有穷的数依然是无穷大”，它变成了一个很小的负数。<br>除了要满足加上一个常数依然是无穷大之外，我们的常量还应该满足“无穷大加无穷大依然是无穷大”，至少两个无穷大相加不应该出现灾难性的错误，这一点上0x7fffffff依然不能满足我们。<br>所以我们需要一个更好的家伙来顶替0x7fffffff，最严谨的办法当然是对无穷大进行特别处理而不是找一个很大很大的常量来代替它（或者说模拟 它），但是这样会让我们的编程过程变得很麻烦。在我读过的代码中，最精巧的无穷大常量取值是0x3f3f3f3f，我不知道是谁最先开始使用这个精妙的常 量来做无穷大，不过我的确是从一位不认识的ACMer(ID:Staginner)的博客上学到的，他/她的很多代码中都使用了这个常量，于是我自己也尝试了一下，发现非常好用，而当我对这个常量做更深入的分析时，就发现它真的是非常精巧了。<br>0x3f3f3f3f的十进制是1061109567，也就是10^9级别的（和0x7fffffff一个数量级），而一般场合下的数据都是小于10^9的，所以它可以作为无穷大使用而不致出现数据大于无穷大的情形。<br>另一方面，由于一般的数据都不会大于10^9，所以当我们把无穷大加上一个数据时，它并不会溢出（这就满足了“无穷大加一个有穷的数依然是无穷 大”），事实上0x3f3f3f3f+0x3f3f3f3f=2122219134，这非常大但却没有超过32-bit int的表示范围，所以0x3f3f3f3f还满足了我们“无穷大加无穷大还是无穷大”的需求。<br>最后，0x3f3f3f3f还能给我们带来一个意想不到的额外好处：如果我们想要将某个数组清零，我们通常会使用 memset(a,0,sizeof(a))这样的代码来实现（方便而高效），但是当我们想将某个数组全部赋值为无穷大时（例如解决图论问题时邻接矩阵的 初始化），就不能使用memset函数而得自己写循环了（写这些不重要的代码真的很痛苦），我们知道这是因为memset是按字节操作的，它能够对数组清 零是因为0的每个字节都是0，现在好了，如果我们将无穷大设为0x3f3f3f3f，那么奇迹就发生了，0x3f3f3f3f的每个字节都是0x3f！所 以要把一段内存全部置为无穷大，我们只需要memset(a,0x3f,sizeof(a))。<br>所以在通常的场合下，0x3f3f3f3f真的是一个非常棒的选择。</p>
+        <h2 id="正在学习前端的路上，写点东西记录一下吧。"><a href="#正在学习前端的路上，写点东西记录一下吧。" class="headerlink" title="正在学习前端的路上，写点东西记录一下吧。"></a>正在学习前端的路上，写点东西记录一下吧。</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>折腾了好久，终于勉强把linux下面的一些关于react的环境配置好了，我也是个快死的人了，中间踩的坑比较多，花的时间比较多，但相较于以前，这次只花了一个晚上就完成了，说明还是有点进步的。</p>
+<p>相关链接：<br><a href="https://rivercome.github.io/2018/05/08/enov/" target="_blank" rel="external">学长的博客</a><br><a href="http://huziketang.mangojuice.top/books/react/lesson5" target="_blank" rel="external">React.js小书</a></p>
+<h2 id="npm的安装"><a href="#npm的安装" class="headerlink" title="npm的安装"></a>npm的安装</h2><p>这个玩意儿有点坑说实话，开始按照正常安装的时候进程卡在30%-90%，然后停止下来，本来刚开始使用的是nvm安装，但当我花了半套线代试题的时间发现还是没有安装成功的时候，于是决定找新的办法。于是我找了些新的安装方法。<br>首先打开终端，输入命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.xz</div></pre></td></tr></table></figure></p>
+<p>这里我们不用sudo（下载出来的版本太低了），学长的blog里面用的是nvm，但我的linux用nvm下载很慢，于是这里我们直接用淘宝源下载，然后解压。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xz -d node-v8.9.3-linux-x64.tar.xz</div><div class="line">tar -xvf node-v8.9.3-linux-x64.tar</div></pre></td></tr></table></figure>
+<p>之后，我们把node移动到指定的目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mv node-v8.9.3-linux-x64 /usr/<span class="built_in">local</span>/node</div></pre></td></tr></table></figure></p>
+<p>然后在/usr/bin目录下面建立软连接，变为全局<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/bin</div><div class="line"><span class="comment">#建立node软链接</span></div><div class="line">ln -s /usr/<span class="built_in">local</span>/node/bin/node node</div><div class="line"><span class="comment">#建立npm软链接</span></div><div class="line">ln -s /usr/<span class="built_in">local</span>/node/bin/npm npm</div></pre></td></tr></table></figure></p>
+<p>之后我们在终端输入<strong>npm -v</strong>和<strong>node -v</strong>输入命令，如果出现版本信息，则证明我们的安装大功告成。</p>
+<h2 id="react的安装"><a href="#react的安装" class="headerlink" title="react的安装"></a>react的安装</h2><p>安装好环境之后，这个时候我们来安装<strong>create-react-app</strong>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g create-react-app</div></pre></td></tr></table></figure></p>
+<p>这条命令会往我们的机器上面安装一条叫create-react-app的命令，安装好之后就可以用这个命令来构建一个叫做react的前端工程:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create-react-app hello-react</div></pre></td></tr></table></figure>
+<p>当然这里有时候会出现问题，比如说这个时候终端会弹出一条消息告诉你，找不到这条命令，<br>这个时候我们可以参考一下这篇blog:<br><a href="https://blog.csdn.net/wirelessqa/article/details/53393248" target="_blank" rel="external">解决方案</a></p>
+<p>出问题的一般就是环境变量，我们设置一下环境变量就可以了。<br>输入下面的命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> -e <span class="string">"export PATH=<span class="variable">$(npm prefix -g)</span>/bin:<span class="variable">$PATH</span>"</span> &gt;&gt; ~/.bashrc &amp;&amp; <span class="built_in">source</span> ~/.bashrc</div><div class="line"><span class="comment"># 上面的命令中使用的是npm prefix -g 来获取node安装目录</span></div></pre></td></tr></table></figure></p>
+<p>这个时候我们关闭终端再重新输入 创建react工程的那个命令就不会出现找不到命令这种操作了。<br>创建完工程之后，我们之后启动工程，哦，对了，这里npm安装速度如果比较慢的话，我们可以把npm的源改成国内的淘宝源，这样可以大大增加速度。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>进入工程然后用npm启动工程:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> hello-react</div><div class="line">npm start</div></pre></td></tr></table></figure></p>
+<p>这个时候终端提示成功：<br><img src="/2018/05/16/react初体验/1.png" alt="如图"></p>
+<p>并且会自动打开浏览器，我们就可以看见React工程顺利运行的结果:<br><img src="/2018/05/16/react初体验/2.png" alt="如图"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>进击的前端小菜鸡，加油！！</p>
 
       
     </div>
@@ -441,7 +459,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"> <i class="fa fa-tag"></i> C++</a>
+            <a href="/tags/前端/" rel="tag"> <i class="fa fa-tag"></i> 前端</a>
           
         </div>
       
@@ -454,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/19/一些小的ACM技巧/" rel="next" title="一些ACM注意事项">
-                <i class="fa fa-chevron-left"></i> 一些ACM注意事项
+              <a href="/2018/05/13/前端布局入门/" rel="next" title="前端布局入门">
+                <i class="fa fa-chevron-left"></i> 前端布局入门
               </a>
             
           </div>
@@ -463,10 +481,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/20/dp/" rel="prev" title="动态规划算法">
-                动态规划算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#来自于自己从CSDN一些博客上的总结。"><span class="nav-number">1.</span> <span class="nav-text">来自于自己从CSDN一些博客上的总结。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正在学习前端的路上，写点东西记录一下吧。"><span class="nav-number">1.</span> <span class="nav-text">正在学习前端的路上，写点东西记录一下吧。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm的安装"><span class="nav-number">3.</span> <span class="nav-text">npm的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react的安装"><span class="nav-number">4.</span> <span class="nav-text">react的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
