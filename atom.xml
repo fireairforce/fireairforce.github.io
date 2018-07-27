@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2018-06-18T23:26:58.503Z</updated>
+  <updated>2018-07-27T01:40:37.988Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>latex初体验-环境的安装与配置</title>
+    <link href="http://zoomdong.site/2018/07/26/latex%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <id>http://zoomdong.site/2018/07/26/latex初体验/</id>
+    <published>2018-07-26T02:16:56.000Z</published>
+    <updated>2018-07-27T01:40:37.988Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很久没有更新博客了。由于下学期要开始数学建模国赛了，所以准备这个暑假多学习一些关于数学建模相关方面的东西，希望未来比赛用得上。上周吧，安装了latex然后也在学习怎么使用hhh。</p><a id="more"></a><p>首先要先找一个latex的发行版软件，这个玩意儿有很多。这里我用的是texlive，我们要首先去官方网站找到texlive的镜像文件。<br><a href="http://mirror.las.iastate.edu/tex-archive/systems/texlive/Images/" target="_blank" rel="external">官网地址</a><br><img src="/2018/07/26/latex初体验/1.png" alt="如图"><br>我们选择哪个后缀名为.iso的文件进行下载，这个文件的比较大，一般选择网络环境比较好的情况进行下载。(我挂着小飞机下了一晚上才下下来。23333)</p><p>下载完成之后我们点击.bat的脚本文件进行安装。<br><img src="/2018/07/26/latex初体验/2.png" alt="如图"></p><p>安装也需要花费一些时间，安装成功之后。可以用cmd打开命令窗口输入以下进行安装检测。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tex -v</div><div class="line">latex -v</div><div class="line">xelatex -v</div></pre></td></tr></table></figure></p><p>如果有相应的信息显示，则证明安装ok。<br>为了得到最新的更新我们可以使用一个下面的命令对其进行更新。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tlmgr update --all</div></pre></td></tr></table></figure></p><p>安装好之后我们就可以自己创建latex文件了，后缀名一般为tex。<br>这里我们直接用cmd命令行来进行操作。<br>操作过程如下:<br><img src="/2018/07/26/latex初体验/3.png" alt="如图"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir testLatex  //创建一个latex文件夹</div><div class="line"><span class="built_in">cd</span> testLatex   //进入这个文件夹</div><div class="line">notepad test.tex //用记事本打开latex文件然后进行编辑</div><div class="line">latex test.tex   //用latex对文件进行编译，回生成一个.dvi文件</div><div class="line">dvipdfmx test.dvi //把这个.dvi文件转换成为pdf的形式。</div></pre></td></tr></table></figure></p><p>然后打开这个.pdf就可以看见我们想要的效果了。<br><img src="/2018/07/26/latex初体验/4.png" alt="如图"></p><p>但是上面的过程比较繁琐，我们这里可以直接用一个命令让源文件编译并生成为pdf文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xelatex test.tex  //直接对latex文件进行编译生成。</div></pre></td></tr></table></figure></p><p>这个编译过程是不同于上一个过程的。</p><p>由于上面那些过程是用cmd进行操作的，但如果我们每次都这么做的话是会很麻烦的，这里我们就直接可以使用一个批处理文件对这个过程进行缩短。<br><img src="/2018/07/26/latex初体验/5.png" alt="如图"><br>批处理文件的内容是这样的<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">latex test.tex</div><div class="line">dvipdfmx test.dvi</div><div class="line">del *.aux *.dvi *.<span class="built_in">log</span>      //删除掉那些编译过程中产生的多余的文件。</div></pre></td></tr></table></figure></p><p>我们第二种命令形式也是可以转换成为批处理文件的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xelatex test.tex</div><div class="line">del *.aux *.dvi *.<span class="built_in">log</span></div></pre></td></tr></table></figure></p><p>转换成批处理之后我们可以直接就用cmd输入批处理文件进行编译就行了。</p><p>如果想在latex里面进行中文的论文撰写，就讲.tex文件的保存方式改成<strong>utf-8</strong>的形式就行了。<br>然后同时记得加一行代码。<br>引入一个宏包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125;</div><div class="line"></div><div class="line">\usepackage&#123;ctex&#125; </div><div class="line"></div><div class="line">\begin&#123;document&#125;</div><div class="line"></div><div class="line">你好, \LaTeX.</div><div class="line"></div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure></p><p>这样中文的字符就可以显示出来了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实我今天写的这些东西你下个IDE就可以进行操作了，但我还是想了解一下底层的东西。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;很久没有更新博客了。由于下学期要开始数学建模国赛了，所以准备这个暑假多学习一些关于数学建模相关方面的东西，希望未来比赛用得上。上周吧，安装了latex然后也在学习怎么使用hhh。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数学建模" scheme="http://zoomdong.site/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>随笔感想</title>
@@ -397,26 +417,6 @@
     
     
       <category term="JavaScript" scheme="http://zoomdong.site/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>zoomdong做的第一个项目</title>
-    <link href="http://zoomdong.site/2018/03/26/%E9%A1%B9%E7%9B%AE1%E5%8F%B7/"/>
-    <id>http://zoomdong.site/2018/03/26/项目1号/</id>
-    <published>2018-03-26T10:19:46.000Z</published>
-    <updated>2018-03-27T10:34:45.904Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="正在学习前端的道路上，写点东西分享吧。"><a href="#正在学习前端的道路上，写点东西分享吧。" class="headerlink" title="正在学习前端的道路上，写点东西分享吧。"></a>正在学习前端的道路上，写点东西分享吧。</h2><a id="more"></a><p>先占个坑，项目代码有点复杂我后续会放上来，github仓库里面已经有了。<br>传送门：<img src="https://github.com/fireairforce/gogogo" alt="github仓库地址"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;正在学习前端的道路上，写点东西分享吧。&quot;&gt;&lt;a href=&quot;#正在学习前端的道路上，写点东西分享吧。&quot; class=&quot;headerlink&quot; title=&quot;正在学习前端的道路上，写点东西分享吧。&quot;&gt;&lt;/a&gt;正在学习前端的道路上，写点东西分享吧。&lt;/h2&gt;
-    
-    </summary>
-    
-    
-      <category term="html+css+javascript" scheme="http://zoomdong.site/tags/html-css-javascript/"/>
     
   </entry>
   
