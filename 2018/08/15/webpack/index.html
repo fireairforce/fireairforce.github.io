@@ -80,7 +80,7 @@
 
 
 
-  <meta name="keywords" content="ACM," />
+  <meta name="keywords" content="前端," />
 
 
 
@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="做个记录，防止以后忘记。这玩意儿挺好用的。（逃首先，介绍一下快速幂吧。正如其名字所表示的含义一样。快速幂的目的就是让我们做到快速求出某个数的幂次。 比如我们要求的是a^b,如果按照最正常的计算方法。就相当于要把a相互乘，乘b次就可以出来我们的结果。可这样一来如果遇见大的数字很容易会出现时间复杂度GG。要花费很多时间。这个时候快速幂能把这个变快好多好多。">
-<meta name="keywords" content="ACM">
+<meta name="description" content="前言最近学了点webpack，整理了点笔记发出来吧。 webpack的安装和配置首先在终端输入1mkdir webpack_demo 然后进入这个文件夹1cd webpack_demo 然后对全局进行webpack的安装1npm install -g webpack 如果安装了webpack包之后在命令栏输入webpack -v显示不出版本的话,这个时候我们就需要再安装一个 webpack-cli">
+<meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法里面快速幂的操作">
-<meta property="og:url" content="http://zoomdong.site/2017/11/25/快速幂/index.html">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="http://zoomdong.site/2018/08/15/webpack/index.html">
 <meta property="og:site_name" content="吴东&#39;s blog">
-<meta property="og:description" content="做个记录，防止以后忘记。这玩意儿挺好用的。（逃首先，介绍一下快速幂吧。正如其名字所表示的含义一样。快速幂的目的就是让我们做到快速求出某个数的幂次。 比如我们要求的是a^b,如果按照最正常的计算方法。就相当于要把a相互乘，乘b次就可以出来我们的结果。可这样一来如果遇见大的数字很容易会出现时间复杂度GG。要花费很多时间。这个时候快速幂能把这个变快好多好多。">
+<meta property="og:description" content="前言最近学了点webpack，整理了点笔记发出来吧。 webpack的安装和配置首先在终端输入1mkdir webpack_demo 然后进入这个文件夹1cd webpack_demo 然后对全局进行webpack的安装1npm install -g webpack 如果安装了webpack包之后在命令栏输入webpack -v显示不出版本的话,这个时候我们就需要再安装一个 webpack-cli">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-25T03:33:50.303Z">
+<meta property="og:updated_time" content="2018-08-14T17:22:04.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法里面快速幂的操作">
-<meta name="twitter:description" content="做个记录，防止以后忘记。这玩意儿挺好用的。（逃首先，介绍一下快速幂吧。正如其名字所表示的含义一样。快速幂的目的就是让我们做到快速求出某个数的幂次。 比如我们要求的是a^b,如果按照最正常的计算方法。就相当于要把a相互乘，乘b次就可以出来我们的结果。可这样一来如果遇见大的数字很容易会出现时间复杂度GG。要花费很多时间。这个时候快速幂能把这个变快好多好多。">
+<meta name="twitter:title" content="webpack">
+<meta name="twitter:description" content="前言最近学了点webpack，整理了点笔记发出来吧。 webpack的安装和配置首先在终端输入1mkdir webpack_demo 然后进入这个文件夹1cd webpack_demo 然后对全局进行webpack的安装1npm install -g webpack 如果安装了webpack包之后在命令栏输入webpack -v显示不出版本的话,这个时候我们就需要再安装一个 webpack-cli">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://zoomdong.site/2017/11/25/快速幂/"/>
+  <link rel="canonical" href="http://zoomdong.site/2018/08/15/webpack/"/>
 
 
 
 
 
-  <title>算法里面快速幂的操作 | 吴东's blog</title>
+  <title>webpack | 吴东's blog</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/11/25/快速幂/">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/08/15/webpack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zoomdong">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法里面快速幂的操作</h1>
+          <h1 class="post-title" itemprop="name headline">webpack</h1>
         
 
         <div class="post-meta">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T11:16:01+08:00">
-                2017-11-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T01:18:00+08:00">
+                2018-08-15
               </time>
             
 
@@ -384,7 +384,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  316
+                  1,111
                 </span>
               
 
@@ -400,7 +400,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -421,12 +421,35 @@
       
 
       
-        <h2 id="做个记录，防止以后忘记。这玩意儿挺好用的。（逃"><a href="#做个记录，防止以后忘记。这玩意儿挺好用的。（逃" class="headerlink" title="做个记录，防止以后忘记。这玩意儿挺好用的。（逃"></a>做个记录，防止以后忘记。这玩意儿挺好用的。（逃</h2><p>首先，介绍一下快速幂吧。正如其名字所表示的含义一样。快速幂的目的就是让我们做到快速求出某个数的幂次。</p>
-<p>比如我们要求的是a^b,如果按照最正常的计算方法。就相当于要把a相互乘，乘b次就可以出来我们的结果。可这样一来如果遇见大的数字很容易会出现时间复杂度GG。要花费很多时间。这个时候快速幂能把这个变快好多好多。</p>
-<a id="more"></a>
-<p>举个例子而言 假设我们计算a^b,那么我们可以利用程序里面的位运算符号来把，b拆分成一个二进制数，for instance，b==11的话。那么11拆成二进制就是1011,11=2^3<em>1+2^2</em>0+2^1<em>1+2^0+1,那么a的11次方就被我们转换成a^1</em>a^2*a^8。可以看出以前要计算11次的，但现在却只用计算三次就OK了。那么怎么求这三项？后面将会带来讲解。</p>
-<p>由于是二进制运算，我们很自然而言的想到要用 位运算操作：&amp;和&gt;&gt;</p>
-<p>to be continued…..</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近学了点webpack，整理了点笔记发出来吧。</p>
+<h3 id="webpack的安装和配置"><a href="#webpack的安装和配置" class="headerlink" title="webpack的安装和配置"></a>webpack的安装和配置</h3><p>首先在终端输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir webpack_demo</div></pre></td></tr></table></figure></p>
+<p>然后进入这个文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> webpack_demo</div></pre></td></tr></table></figure></p>
+<p>然后对全局进行webpack的安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g webpack</div></pre></td></tr></table></figure></p>
+<p>如果安装了webpack包之后在命令栏输入webpack -v显示不出版本的话,这个时候我们就需要再安装一个 webpack-cli:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install webpack-cli -g</div></pre></td></tr></table></figure></p>
+<p>接下来我们要初始化webpack这个包:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure></p>
+<p>然后自己手动配置一下json.<br>然后我们自己安装一下,-dev的作用就是把webpack保存到开发环境里面:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
+<p>如果我们要用最新的webpack版本,就要把原来的node_moudules给删除掉,然后再用下面这个命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
+<h3 id="建立基本的项目结构"><a href="#建立基本的项目结构" class="headerlink" title="建立基本的项目结构"></a>建立基本的项目结构</h3><p>首先在根目录下建立一个src和一个dist文件夹.</p>
+<p>src主要用于存放我们的源代码文件</p>
+<p>dist文件夹主要用于生产环境.//代码写好了,放在服务器上就用这个.</p>
+<p>然后在dist文件夹下面建立一个index.html,初次学习就建立在这里,以后建立在src里面.</p>
+<p>然后在src里面建立一个入口文件:entry.js</p>
+<p>写完之后对其直接进行打包,把src里面的入口文件打包到dist文件夹下面的bundle.js里面:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack src/entry.js -o dist/bundle.js</div></pre></td></tr></table></figure></p>
+<p>但是这次我们虽然能够生成bundle.js文件,但是这个包并没有成功,因为下面还是会出现黄色的警告(真香警告).</p>
+<p>黄色警告的意思是webpack4引入了模式,有开发者模式,生产模式,无这三个状态.<br>黄色警告的意思是我们没有设置模式,有开发模式和生产模式两种,接下来找到package.json,添加上”dev”和”build”这两个值以及他们的值.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</div><div class="line">  <span class="string">"dev"</span>: <span class="string">"webpack --mode deveplopment"</span>,</div><div class="line">  <span class="string">"build"</span>: <span class="string">"webpack --mode production"</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>我们先了解一些两个命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run dev(开发环境输出的main.js是没有压缩的).</div><div class="line">npm run build(生产模式输出的demo.js是压缩过的).</div></pre></td></tr></table></figure>
+<p>全局安装webpack-cli<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack-cli -g</div></pre></td></tr></table></figure></p>
+<p>安装完成之后,输入命令 npm run dev<br>这个时候肯定会出现一些bug,因为当你输入npm run dev命令时,会默认打包src文件夹下面index.js文件,打包完成之后是main.js文件(放在dist里面)这个文件我们需要手动创建.<br>重建完成之后,我们重新执行npm run dev命令,这个时候就会打包.<br>默认把我们创建的index.js打包成了main.js,然后放在dist文件夹里面.</p>
+<p>然后这个时候我们打包demo.js不是默认的文件应该怎么解决?<br>我们可以使用如下的命令进行打包:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npx webpack ./demo.js -o demo.bundle.js --mode development</div></pre></td></tr></table></figure></p>
+<p>然后这个时候就已经打包成功了.</p>
+<p>webpack的一些相关命令<br>如果我们更改我们写的代码的时候,就需要重新进行打包,那就是更改一次又手动进行打包一次,那是很麻烦的,所以我们可以使用如下命令监听这个时间,源文件一旦更新,就进行自动的打包,一开始watch是关闭的,我们需要将他进行打开:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npx webpack --mode development --watch</div></pre></td></tr></table></figure></p>
+<h2 id="live-server"><a href="#live-server" class="headerlink" title="live-server"></a>live-server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">live-server可以帮我们前端人员搭建一个临时的http服务器.他不需要任何插件,使用起来比较便捷.他可以自动打开项目;修改本地文件后,浏览器能够立即同步,自动加载,自动刷新.</div></pre></td></tr></table></figure>
+<p>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g live-server</div></pre></td></tr></table></figure></p>
+<p>使用1.打开项目输入live-server即可<br>使用2.在package.json中增加以下代码,然后执行npm run server<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>:&#123;</div><div class="line">    <span class="string">"server"</span>:<span class="string">"live-server ./ --port=8081"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="webpack的配置-入口和出口"><a href="#webpack的配置-入口和出口" class="headerlink" title="webpack的配置:入口和出口"></a>webpack的配置:入口和出口</h3><p>首先我们新建一个webpack.config.js文件.然后对其进行一波骚操作.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">module.exports=&#123;</div><div class="line">    entry:&#123;</div><div class="line">        entry:<span class="string">'./src/entry.js'</span>,</div><div class="line">        entry2:<span class="string">'./src/entry2.js'</span></div><div class="line">    &#125;,</div><div class="line">    output:&#123;</div><div class="line">        path:path.resolve(__dirname,<span class="string">"dist"</span>),</div><div class="line">        filename:<span class="string">'[name].js'</span></div><div class="line">    &#125;,</div><div class="line">    module:&#123;&#125;,</div><div class="line">    plugins:[],</div><div class="line">    devServer:&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="xjb总结一波"><a href="#xjb总结一波" class="headerlink" title="xjb总结一波"></a>xjb总结一波</h2><p>其实上我们学习webpack时遇见的问题,多半是版本的问题而并非我们自己的操作出了问题,因而我们要对自己自信.= =<br>手动滑稽,告辞.</p>
 
       
     </div>
@@ -454,7 +477,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ACM/" rel="tag"> <i class="fa fa-tag"></i> ACM</a>
+            <a href="/tags/前端/" rel="tag"> <i class="fa fa-tag"></i> 前端</a>
           
         </div>
       
@@ -467,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/11/20/dp/" rel="next" title="动态规划算法">
-                <i class="fa fa-chevron-left"></i> 动态规划算法
+              <a href="/2018/08/08/Latex数学公式的排版/" rel="next" title="Latex数学公式的排版">
+                <i class="fa fa-chevron-left"></i> Latex数学公式的排版
               </a>
             
           </div>
@@ -476,10 +499,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/07/java环境变量配置/" rel="prev" title="java环境变量配置">
-                java环境变量配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#做个记录，防止以后忘记。这玩意儿挺好用的。（逃"><span class="nav-number">1.</span> <span class="nav-text">做个记录，防止以后忘记。这玩意儿挺好用的。（逃</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack的安装和配置"><span class="nav-number">1.1.</span> <span class="nav-text">webpack的安装和配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立基本的项目结构"><span class="nav-number">1.2.</span> <span class="nav-text">建立基本的项目结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#live-server"><span class="nav-number">2.</span> <span class="nav-text">live-server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack的配置-入口和出口"><span class="nav-number">2.1.</span> <span class="nav-text">webpack的配置:入口和出口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xjb总结一波"><span class="nav-number">3.</span> <span class="nav-text">xjb总结一波</span></a></li></ol></div>
             
 
           </div>
