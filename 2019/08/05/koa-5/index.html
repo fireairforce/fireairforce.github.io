@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="实现一个最小统计的 API 服务器之前我们已经将整个网站的数据库写完了之后，现在我们需要构建一些API层面的东西，来写一些http请求的东西.  这一节我们来做一下关于网站路由的东西。 1npm install koa-router -S 先从一个最简单的做起，我们在上面引用了 koa-router,然后我们在server下面新建一个文件夹routes来专门存放我们的路由文件. 在routes里面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa学习-实现路由及对外的API服务-5">
+<meta property="og:url" content="http://zoomdong.site/2019/08/05/koa-5/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="实现一个最小统计的 API 服务器之前我们已经将整个网站的数据库写完了之后，现在我们需要构建一些API层面的东西，来写一些http请求的东西.  这一节我们来做一下关于网站路由的东西。 1npm install koa-router -S 先从一个最简单的做起，我们在上面引用了 koa-router,然后我们在server下面新建一个文件夹routes来专门存放我们的路由文件. 在routes里面">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wdlj.zoomdong.xin/koa2-1.jpg">
+<meta property="og:updated_time" content="2019-08-05T01:44:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="koa学习-实现路由及对外的API服务-5">
+<meta name="twitter:description" content="实现一个最小统计的 API 服务器之前我们已经将整个网站的数据库写完了之后，现在我们需要构建一些API层面的东西，来写一些http请求的东西.  这一节我们来做一下关于网站路由的东西。 1npm install koa-router -S 先从一个最简单的做起，我们在上面引用了 koa-router,然后我们在server下面新建一个文件夹routes来专门存放我们的路由文件. 在routes里面">
+<meta name="twitter:image" content="http://wdlj.zoomdong.xin/koa2-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2019/08/05/koa-5/">
+
+
+
+
+
+  <title>koa学习-实现路由及对外的API服务-5 | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/08/05/koa-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">koa学习-实现路由及对外的API服务-5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-05T01:40:54+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,935
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="实现一个最小统计的-API-服务器"><a href="#实现一个最小统计的-API-服务器" class="headerlink" title="实现一个最小统计的 API 服务器"></a>实现一个最小统计的 API 服务器</h2><p>之前我们已经将整个网站的数据库写完了之后，现在我们需要构建一些API层面的东<br>西，来写一些http请求的东西.</p>
+<p><img src="http://wdlj.zoomdong.xin/koa2-1.jpg" alt="koa-learnning"></p>
+<p>这一节我们来做一下关于网站路由的东西。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install koa-router -S</span><br></pre></td></tr></table></figure>
+<p>先从一个最简单的做起，我们在上面引用了 <code>koa-router</code>,然后我们在server下面新建一个文件夹<code>routes</code>来专门存放我们的路由文件.</p>
+<p>在routes里面新建一个<code>index.js</code>，然后在里面做一个很简单的操作;</p>
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个router来处理不同的http请求(例如get和post)</span></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/movies/all'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 先拿到 Movie 的数据库里面所有的数据,然后再按照创建时间来进行一个排序</span></span><br><span class="line">  <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">  <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(&#123;&#125;).sort(&#123;</span><br><span class="line">    <span class="string">'meta-createdAt'</span>: <span class="number">-1</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 然后只要访问对应的这个路径我们就返回对应的数据</span></span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    movies</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 通过一个具体的样例来进行测试</span></span><br><span class="line">router.get(<span class="string">'/movies/detail/:id'</span>, <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>); </span><br><span class="line">    <span class="keyword">const</span> id = ctx.params.id;</span><br><span class="line">    <span class="keyword">const</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;<span class="attr">_id</span>:id&#125;)</span><br><span class="line">    <span class="comment">// 这里只要我们访问到对应id的数据，就返回具体到某个细节的数据</span></span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      movie</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br></pre></td></tr></table></figure>
+<p>我们在<code>server</code>文件夹里面的入口文件里面引用一下这个<code>routes</code>文件里面的路由规则来将其激活.</p>
+<p>server/index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">some codes</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'./routes'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里还是使用调用中间价的方式来操作</span></span><br><span class="line"><span class="comment">// 在routes里面使用引用一下</span></span><br><span class="line"><span class="comment">// allowedMethods()里面表示允许使用router里面所有的方法</span></span><br><span class="line">app.use(router.routes()).use(router.allowedMethods());</span><br></pre></td></tr></table></figure></p>
+<p>然后使用<code>npm start</code> 启动一下我们的koa服务,打开对应的本地链接，使用<code>localhost:4440/movies/all</code> 去访问我们对应的路径，这个时候页面会返回之前我们已经抓取成功的所有的数据。</p>
+<p>我们在这些数据里面找一条对应的id值，然后拼接出一个对应的路由地址，就可以访问到对应的详细的数据了。</p>
+<p>这杨我们就完成了一个简单的路由服务了.</p>
+<h2 id="koa-router的使用"><a href="#koa-router的使用" class="headerlink" title="koa-router的使用"></a>koa-router的使用</h2><p>在上面的koa-router里面，我们可以通过添加多个中间件的形式来完成对数据的过滤操作，例如在上面的例子里面:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 我们可以在路由的get请求里面接一个中间件的回调方式</span></span><br><span class="line">router.get(<span class="string">'/movies'</span>, <span class="keyword">async</span> (ctx,next)=&gt;&#123;</span><br><span class="line">  <span class="keyword">const</span> Category = mongoose.model(<span class="string">'Catagory'</span>);</span><br><span class="line">  <span class="keyword">const</span> cats = <span class="keyword">await</span> Category.find(&#123;&#125;);</span><br><span class="line">  ctx.body = cats;</span><br><span class="line">  <span class="keyword">return</span> next();</span><br><span class="line">  <span class="comment">// 通过在这个中间件里面做一些数据过滤之后然后再进入下一步</span></span><br><span class="line">&#125;,<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 先拿到 Movie 的数据库里面所有的数据,然后再按照创建时间来进行一个排序</span></span><br><span class="line">  <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">  <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(&#123;&#125;).sort(&#123;</span><br><span class="line">    <span class="string">'meta-createdAt'</span>: <span class="number">-1</span></span><br><span class="line">  &#125;)</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    movies</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>我们可以在里面添加很多的中间价的来完完成这种过滤操作。</p>
+<p>如果我们想使用koa-router来完成添加一个路由前缀的操作的话，可以这样来写:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="comment">// const router = new Router();</span></span><br><span class="line"><span class="comment">// 通过在声明的时候接一些参数来完成</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  prefix:<span class="string">'/movies'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'trailer/:tid'</span>,<span class="keyword">async</span>(ctx,next)=&gt;&#123;</span><br><span class="line">  <span class="comment">// some codes...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这样真正get到的路由地址是(/movies/trailer/:tid)</p>
+<p>在router里面也是可以使用中间件的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.use(mid1()).use(mid2()).get(<span class="string">'/movies'</span>,<span class="keyword">async</span>(ctx,next)=&gt;&#123;</span><br><span class="line">  <span class="comment">// ... some codes...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>使用的顺序和<code>use()</code>的顺序是有关系的(先调用mid1，再调用mid2).</p>
+<p>关于 <code>koa-router</code> 还想学习更多的话，可以去参考一下github上面的仓库源代码去看一下文档说明 <a href="https://github.com/ZijianHe/koa-router" target="_blank" rel="noopener">koa-router地址</a></p>
+<h2 id="装饰器简介"><a href="#装饰器简介" class="headerlink" title="装饰器简介"></a>装饰器简介</h2><p>我们来使用装饰器来完成路由的拆分和改造。<br>我们可以构造一个装饰器类来对类里面的方法去进行装饰:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line">@controller(<span class="string">'/api/v0/movies'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">movieController</span></span>&#123;</span><br><span class="line">  @<span class="keyword">get</span>('/')</span><br><span class="line">  // 如果我们进入这个页面之后，需要检验一些权限(利于登录人的权限)</span><br><span class="line">  // 可以直接在这里加装饰器进行检测</span><br><span class="line">  // @login</span><br><span class="line">  // @admin(['developer'])</span><br><span class="line">  // @log</span><br><span class="line">  async getMovies(ctx,next)&#123;</span><br><span class="line">    <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">    <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(&#123;&#125;).sort(&#123;</span><br><span class="line">      <span class="string">'meta.createdAt'</span>:<span class="number">-1</span></span><br><span class="line">    &#125;)</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      movies</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  @<span class="keyword">get</span>('/:id')</span><br><span class="line">  async getMovieDetail(ctx,next)&#123;</span><br><span class="line">    <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">    <span class="keyword">const</span> id = ctx.params.id;</span><br><span class="line">    <span class="keyword">const</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;<span class="attr">_id</span>:id&#125;);</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      movie</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure></p>
+<p>用一个简单的例子解释一下装饰器，大概就是下面这些代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boy</span> </span>&#123;</span><br><span class="line">  @speak</span><br><span class="line">  run()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I can run'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params">target</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span>　wd = <span class="keyword">new</span> Boy();</span><br><span class="line"></span><br><span class="line">wd.run();</span><br></pre></td></tr></table></figure></p>
+<p>但是一般 <code>node</code> 里面并没有支持装饰器的操作，所以为了使上面的代码运行起来我们需要自己在<code>.babelrc</code>里面去自己配置一波。</p>
+<p>找一下babel的插件 <code>babel-plugin-transform-decorators-legacy</code> 这个插件在<code>.babelrc</code>里面的plugins里面有添加就可以使用了.</p>
+<p>然后还需要添加几个babel的插件:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-core babel-polyfill -D</span><br></pre></td></tr></table></figure>
+<p>然后在根目录下新建一个叫做 <code>start.js</code> 的文件来支持装饰器的运行.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 来注册一下</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'babel-core/register'</span>)();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'babel-polyfill'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./test/dec.js'</span>);</span><br></pre></td></tr></table></figure>
+<p>然后通过<code>node start.js</code> 去启动</p>
+<p>这个时候就会输出:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Boy &#123;&#125;</span><br><span class="line">I can run</span><br></pre></td></tr></table></figure>
+<p>相当于装饰器就是装饰了Boy这个类.<br>装饰器里面一共有三个参数是这样的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params">target,key,descriptor</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(target);</span><br><span class="line">  <span class="built_in">console</span>.log(key);</span><br><span class="line">  <span class="built_in">console</span>.log(descriptor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一个参数target我们已经知道是被装饰器装饰的对象的，通常就是@符号上面所在的第一个类，或者是speak下面紧跟的class,但是无论是在类的内部还是紧贴着类，这个装饰器的key就是装饰器所修饰的方法，在这个地方修饰的方法就是<code>run()</code>，descriptor就是这个方法的一些日志情况。</p>
+<p>我们也可以修改往装饰器里面传一些参数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boy</span></span>&#123;</span><br><span class="line">  @speack(<span class="string">'中文'</span>)</span><br><span class="line">  run ()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I can say'</span> + <span class="keyword">this</span>.language);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'I can run!'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">speack</span>(<span class="params">language</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">target,key,descriptor</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(target);</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">    <span class="built_in">console</span>.log(descriptor);</span><br><span class="line">    target.language = language;</span><br><span class="line">    <span class="keyword">return</span> descriptor;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> wd = <span class="keyword">new</span> Boy();</span><br><span class="line">wd.run();</span><br></pre></td></tr></table></figure>
+<p>上面通过传递参数，输出的结果就是:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Boy &#123;&#125;</span><br><span class="line">run</span><br><span class="line">&#123; value: [Function: run],</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  configurable: <span class="literal">true</span> &#125;</span><br><span class="line">I can say中文</span><br><span class="line">I can run!</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用装饰器来改造-koa-router"><a href="#使用装饰器来改造-koa-router" class="headerlink" title="使用装饰器来改造 koa-router"></a>使用装饰器来改造 koa-router</h2><p>我们前面已经基本知道的装饰器的作用(装饰器对类以及类的装饰作用)。</p>
+<p>现在我们使用装饰器来改造一下koa-router</p>
+<p>在server目录下新建一个<code>lib</code>文件件，里面放上一个叫做<code>decorator.js</code>的文件，在里面完成对koa-router的改造</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> _  = <span class="built_in">require</span>(<span class="string">'lodash'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Symbol一旦被创建就不能被修改，并且值也不能改变</span></span><br><span class="line"><span class="keyword">const</span> symbolPrefix = <span class="built_in">Symbol</span>(<span class="string">'prefix'</span>);</span><br><span class="line"><span class="keyword">const</span> routerMap = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isArray = <span class="function"><span class="params">c</span> =&gt;</span> _.isArray(c) ? c : [c];</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Route</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 先往里面传入两个属性</span></span><br><span class="line">    <span class="keyword">constructor</span>(app, apiPath) &#123;</span><br><span class="line">      <span class="keyword">this</span>.app = app;</span><br><span class="line">      <span class="keyword">this</span>.apiPath = apiPath;</span><br><span class="line">      <span class="comment">// 这个router是koa-router的实例</span></span><br><span class="line">      <span class="keyword">this</span>.router = <span class="keyword">new</span> Router();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 对路由进行一个初始化</span></span><br><span class="line">    init()&#123;</span><br><span class="line">      <span class="comment">// 使用glob对路由文件进行一个加载，这在之前对数据库的schema初始化也有介绍,把path里面任意的一个js文件全部require进来</span></span><br><span class="line">      glob.sync(resolve(<span class="keyword">this</span>.apiPath,<span class="string">'./**/*.js'</span>)).forEach(<span class="built_in">require</span>);</span><br><span class="line">      <span class="comment">// routerMap建立完之后，通过枚举拿到里面的conf和controller</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> [conf,controller] <span class="keyword">of</span> routerMap)&#123;</span><br><span class="line">        <span class="comment">// 首先拿到里面所有的 controllers,通过isArray将其搞成数组</span></span><br><span class="line">        <span class="keyword">const</span> controllers = isArray(controller);</span><br><span class="line">        <span class="keyword">const</span> prefixPath = conf.target[symbolPrefix];</span><br><span class="line">        <span class="comment">// 如果存在prefixPath就对路由进行一层拼接</span></span><br><span class="line">        <span class="keyword">if</span>(prefixPath)&#123;</span><br><span class="line">          <span class="comment">// prefixPath要在前面加上一个/</span></span><br><span class="line">          prefixPath = normalizePath(prefixPath);</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="comment">// routerPath就是使用前缀path拼接上当前的path</span></span><br><span class="line">        <span class="keyword">const</span> routerPath = prefixPath + conf.path;</span><br><span class="line">        <span class="comment">// 拼接上之后使用koa-router里面的方法去调用，可以参考上面的使用方法</span></span><br><span class="line">        <span class="keyword">this</span>.router[conf.method](routerPath,...controllers);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 使用完成之后封装一下所有请求的方法</span></span><br><span class="line">      <span class="keyword">this</span>.app.use(<span class="keyword">this</span>.router.routes());</span><br><span class="line">      <span class="comment">// 运用一下所使用的请求方法</span></span><br><span class="line">      <span class="keyword">this</span>.app.use(<span class="keyword">this</span>.router.allowedMethods());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// 声明一个controller用于对路由的头部prefix的装修</span></span><br><span class="line">    <span class="comment">// 这是是相当于是在装饰器函数里面返回一个函数</span></span><br><span class="line">    <span class="comment">// 在函数的原型上面添加一个prefix属性</span></span><br><span class="line">    <span class="comment">// 这个属性可以使用ES6里面的Symbol数据类型来表示</span></span><br><span class="line">    <span class="comment">// 这里的path参数就是请求那边传递过来的</span></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> controller = <span class="function"><span class="params">path</span> =&gt;</span> <span class="function"><span class="params">target</span> =&gt;</span> (target.prototype[symbolPrefix] = path)</span><br><span class="line">    <span class="comment">// normalizePath处理的路径是根路径开头直接返回path,如果不是用根路径拼接一下再返回(认为它是下一层路径)</span></span><br><span class="line">    <span class="keyword">const</span> normalizePath = <span class="function"><span class="params">path</span> =&gt;</span> path.startWith(<span class="string">'/'</span>) ? path : <span class="string">`/<span class="subst">$&#123;path&#125;</span>`</span> </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个router其实也是个装饰器</span></span><br><span class="line">    <span class="keyword">const</span> router = <span class="function"><span class="params">conf</span> =&gt;</span> <span class="function">(<span class="params">target,path,descriptor</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 对路径进行根路径化</span></span><br><span class="line">      conf.path = normalizePath(conf.path);</span><br><span class="line">      <span class="comment">// 使用map来进行键值的访问,键就是前面的对象，值就是target[key]</span></span><br><span class="line">      </span><br><span class="line">      routerMap.set(&#123;</span><br><span class="line">          target:target,</span><br><span class="line">          ...conf,</span><br><span class="line">      &#125;,target[key])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 有了上面的集合我们可以对请求方法全部装饰一遍</span></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> <span class="keyword">get</span> = path =&gt; router(&#123;</span><br><span class="line">      method:<span class="string">'get'</span>,</span><br><span class="line">      path: path</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> post = <span class="function"><span class="params">path</span> =&gt;</span> router(&#123;</span><br><span class="line">      method:<span class="string">'post'</span>,</span><br><span class="line">      path: path</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> put = <span class="function"><span class="params">path</span> =&gt;</span> router(&#123;</span><br><span class="line">      method:<span class="string">'put'</span>,</span><br><span class="line">      path:path</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> del = <span class="function"><span class="params">path</span> =&gt;</span> router(&#123;</span><br><span class="line">      method:<span class="string">'del'</span>,</span><br><span class="line">      path:path</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// router上面可以装饰use来使用中间件</span></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> use = <span class="function"><span class="params">path</span> =&gt;</span> router(&#123;</span><br><span class="line">      method:<span class="string">'use'</span>,</span><br><span class="line">      path:path</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">const</span> all = <span class="function"><span class="params">path</span> =&gt;</span> router(&#123;</span><br><span class="line">      method:<span class="string">'all'</span>,</span><br><span class="line">      path:path</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>router的使用在server下面新建一个叫做<code>midlleware</code>的文件夹，里面放上一个叫做<code>router.js</code>的文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; Route &#125; = <span class="built_in">require</span>(<span class="string">'../lib/decorator'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> router = <span class="function"><span class="params">app</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> apiPath = resolve(__dirname,<span class="string">'../routes'</span>);</span><br><span class="line">  <span class="keyword">const</span> router = <span class="keyword">new</span> Route(app,apiPath);</span><br><span class="line">  router.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们要使用这些装饰器的话，直接使用<code>require</code>的方法去引入即可。</p>
+<p>代码位于<code>routes</code>文件夹下面的<code>movie.js</code>文件里面:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// const Router = require('koa-router');</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="comment">// const router = new Router();</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="keyword">get</span>,post,put,controller &#125; = require('../lib/decorator');</span><br><span class="line">// 这个router来处理不同的http请求(例如<span class="keyword">get</span>和post)</span><br><span class="line">@controller('/api/v0/movies')</span><br><span class="line">export class movieController&#123;</span><br><span class="line">  @<span class="keyword">get</span>('/')</span><br><span class="line">  async getMovies(ctx,next) &#123;</span><br><span class="line">    <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">    <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(&#123;&#125;).sort(&#123;</span><br><span class="line">      <span class="string">'meta.createdAt'</span>: <span class="number">-1</span></span><br><span class="line">    &#125;)</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      movies</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  @<span class="keyword">get</span>('/:id')</span><br><span class="line">  async getMovieDetail(ctx,next)&#123;</span><br><span class="line">     <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">     <span class="keyword">const</span> id = ctx.params.id;</span><br><span class="line">     <span class="keyword">const</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;<span class="attr">_id</span>:id&#125;);</span><br><span class="line">     ctx.body = &#123;</span><br><span class="line">       movie</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// module.exports = router</span></span><br></pre></td></tr></table></figure>
+<p>这里我们就不再需要之前写使用的koa-router了，直接去外部引用方法即可。</p>
+<h2 id="拆分路由组件以及对外暴露API"><a href="#拆分路由组件以及对外暴露API" class="headerlink" title="拆分路由组件以及对外暴露API"></a>拆分路由组件以及对外暴露API</h2><p>我们现在来拆分一下服务层，在server目录下面新建一个<code>service</code>的目录,在里面新建一个<code>movie.js</code>的目录:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line"><span class="comment">// 用这个文件来完成和数据库的交互</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getAllMovies = <span class="keyword">async</span> (type, year) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> query = &#123;&#125;;</span><br><span class="line">  <span class="keyword">if</span> (type) &#123;</span><br><span class="line">    query.movieTypes = &#123;</span><br><span class="line">      $<span class="keyword">in</span>: [type]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (year) &#123;</span><br><span class="line">    query.year = year;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(query);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> movies;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getMovieDetail = <span class="keyword">async</span> (id) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;</span><br><span class="line">    _id: id</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> movie;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getRelativeMovies = <span class="keyword">async</span> (movie) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find(&#123;</span><br><span class="line">    <span class="comment">// 通过in 去数据库里面找一个数组值，这个数组的值就是传递过来的movie.movieTypes</span></span><br><span class="line">    movieTypes: &#123;</span><br><span class="line">      $<span class="keyword">in</span>: movie.movieTypes</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> movies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些方法写完并导出之后我们直接在 <code>routes/movie.js</code> 里面去调用即可了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="keyword">get</span>,</span><br><span class="line">  post,</span><br><span class="line">  put,</span><br><span class="line">  controller</span><br><span class="line">&#125; = require('../lib/decorator');</span><br><span class="line">const &#123;</span><br><span class="line">  getAllMovies,</span><br><span class="line">  getMovieDetail,</span><br><span class="line">  getRelativeMovies</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'../service/movie'</span>);</span><br><span class="line"><span class="comment">// 这个router来处理不同的http请求(例如get和post)</span></span><br><span class="line">@controller(<span class="string">'/api/v0/movies'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">movieController</span> </span>&#123;</span><br><span class="line">  @<span class="keyword">get</span>('/')</span><br><span class="line">  async getMovies(ctx, next) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      type,</span><br><span class="line">      year</span><br><span class="line">    &#125; = ctx.query;</span><br><span class="line">    <span class="comment">// 查询所有电影的方法</span></span><br><span class="line">    <span class="keyword">const</span> movies = <span class="keyword">await</span> getAllMovies(type, year)</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      movies</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  @<span class="keyword">get</span>('/:id')</span><br><span class="line">  async getMovieDetail(ctx, next) &#123;</span><br><span class="line">    <span class="keyword">const</span> id = ctx.params.id;</span><br><span class="line">    <span class="keyword">const</span> movie = <span class="keyword">await</span> getMovieDetail(id);</span><br><span class="line">    <span class="keyword">const</span> relativeMovies = <span class="keyword">await</span> getRelativeMovies(movie);</span><br><span class="line"></span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      data: &#123;</span><br><span class="line">        movie,</span><br><span class="line">        relativeMovies</span><br><span class="line">      &#125;,</span><br><span class="line">      success: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们在<code>service</code>下新建一个<code>user.js</code>来处理和登录相关的操作:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理登录和后台相关的操作</span></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> User = mongoose.model(<span class="string">'User'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用来校验登录的用户名和密码是否正确</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> checkPassword = <span class="keyword">async</span> (email, password) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> match = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="keyword">await</span> User.findOne(&#123;</span><br><span class="line">    email</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 首先去数据库里面查找登录用户的邮箱，如果邮箱是存在的，那么就去比对用户的密码</span></span><br><span class="line">  <span class="keyword">if</span> (user) &#123;</span><br><span class="line">    <span class="comment">// 这里直接用user实体里面的方法去进行密码的比对</span></span><br><span class="line">    match = <span class="keyword">await</span> user.comparePassword(password,user.password);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    match,</span><br><span class="line">    user</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个拿去出之后在routes里面新增一个路由文件(user.js):<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">  controller,</span><br><span class="line">  post,</span><br><span class="line">  <span class="keyword">get</span>,</span><br><span class="line">  put</span><br><span class="line">&#125; = require('../lib/decorator');</span><br><span class="line">const &#123;</span><br><span class="line">  checkPassword</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'../service/user'</span>);</span><br><span class="line"></span><br><span class="line">@controller(<span class="string">'/api/v0/user'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">userController</span> </span>&#123;</span><br><span class="line">  @post(<span class="string">'/'</span>)</span><br><span class="line">  <span class="keyword">async</span> login(ctx, next) &#123;</span><br><span class="line">    <span class="comment">// 通过 request 里面的 body 拿到 email 和 password</span></span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      email,</span><br><span class="line">      password</span><br><span class="line">    &#125; = ctx.request.body;</span><br><span class="line">    <span class="keyword">const</span> matchData = <span class="keyword">await</span> checkPassword(email, password);</span><br><span class="line">    <span class="comment">// 如果用户信息压根不存在</span></span><br><span class="line">    <span class="keyword">if</span> (!matchData.user) &#123;</span><br><span class="line">      <span class="keyword">return</span> (ctx.body = &#123;</span><br><span class="line">        success: <span class="literal">false</span>,</span><br><span class="line">        err: <span class="string">'用户不存在'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果返回了true</span></span><br><span class="line">    <span class="keyword">if</span> (matchData.match) &#123;</span><br><span class="line">      <span class="keyword">return</span> (ctx.body = &#123;</span><br><span class="line">        success: <span class="literal">true</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (ctx.body = &#123;</span><br><span class="line">      success: <span class="literal">true</span>,</span><br><span class="line">      err:<span class="string">'密码不正确'</span></span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样我们的routes下面的路由文件就已经全部都写好了，我们在入口文件里面可以使用<code>app.use()</code>将他们一个个的都导入进去，也可以使用一种简单的遍历方法去进行导入。</p>
+<p>这里我们使用一种函数式编程的写法来逐步引入<code>routes</code>,</p>
+<p>首先安装一个库:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ramda -S</span><br></pre></td></tr></table></figure></p>
+<p>然后在 <code>server/index.js</code> 根入口文件里面使用即可:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    resolve</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    connect,</span><br><span class="line">    initSchemas,</span><br><span class="line">    initAdmin</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'./database/init'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="comment">// 使用ramda的一个库</span></span><br><span class="line"><span class="keyword">const</span> R = <span class="built_in">require</span>(<span class="string">'ramda'</span>);</span><br><span class="line"><span class="comment">// 声明一个中间件的数组</span></span><br><span class="line"><span class="keyword">const</span> MIDDLEWARES = [<span class="string">'router'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useMiddlewares = <span class="function">(<span class="params">app</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 使用 R.map来遍历所有中间件</span></span><br><span class="line">    R.map(R.compose(</span><br><span class="line">        <span class="comment">// 使用R.compose来</span></span><br><span class="line">        R.forEachObjIndexed(</span><br><span class="line"></span><br><span class="line">            initWith =&gt; initWith(app)</span><br><span class="line">        ),</span><br><span class="line">        <span class="comment">// require上面通过R.forEachObjIndexed</span></span><br><span class="line">        <span class="built_in">require</span>,</span><br><span class="line">        <span class="comment">// name 在拿到middlewares下面的中间件之后会向上传给require</span></span><br><span class="line">        name =&gt; resolve(__dirname, <span class="string">`./middlewares/<span class="subst">$&#123;name&#125;</span>`</span>)</span><br><span class="line">    ))(MIDDLEWARES)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">;<span class="function">(<span class="params"><span class="keyword">async</span> (</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> connect();</span><br><span class="line"></span><br><span class="line">    initSchemas();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> initAdmin();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> useMiddlewares(app);</span><br><span class="line">    app.listen(<span class="number">4550</span>);</span><br><span class="line">    <span class="comment">//   把它 require 进来，他就会启动子进程去爬取数据，然后把爬取到的数据存在数据库里面  </span></span><br><span class="line">    <span class="comment">//  require('./tasks/movie');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/api');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/trailer');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/qiniu');</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>这样修改一下我们的<code>start.js</code> 里面的代码，让脚本在启动的时候直接去访问<code>server/index.js</code>即可了。</p>
+<p>start.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 来注册一下</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'babel-core/register'</span>)();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'babel-polyfill'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./server/index'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>然后使用<code>nodemon start.js</code> 即可启动我们的脚本了.去访问localhost:port/api/v0/movies能够得到数据则证明我们的成功了。</p>
+<p>这样就完成了我们的对外的API服务操作.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/31/koa-4-2/" rel="next" title="koa学习-建立数据库模型-4(下)">
+                <i class="fa fa-chevron-left"></i> koa学习-建立数据库模型-4(下)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/07/koa-6/" rel="prev" title="koa-前后端交互-6">
+                koa-前后端交互-6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现一个最小统计的-API-服务器"><span class="nav-number">1.</span> <span class="nav-text">实现一个最小统计的 API 服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#koa-router的使用"><span class="nav-number">2.</span> <span class="nav-text">koa-router的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰器简介"><span class="nav-number">3.</span> <span class="nav-text">装饰器简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用装饰器来改造-koa-router"><span class="nav-number">4.</span> <span class="nav-text">使用装饰器来改造 koa-router</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆分路由组件以及对外暴露API"><span class="nav-number">5.</span> <span class="nav-text">拆分路由组件以及对外暴露API</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

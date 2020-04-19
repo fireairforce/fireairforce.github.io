@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="脚手架搭建在github上新建一个仓库，然后选择一个node版本的.gitignore文件，然后将项目从github上面拉取下来. 对项目进行node模块初始化1npm init 有兴趣可以自行配置一下eslint和editconfig(主要用于代码规范的设置)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodeJS搭建一个静态资源服务器">
+<meta property="og:url" content="http://zoomdong.site/2019/04/28/nodejs-Server/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="脚手架搭建在github上新建一个仓库，然后选择一个node版本的.gitignore文件，然后将项目从github上面拉取下来. 对项目进行node模块初始化1npm init 有兴趣可以自行配置一下eslint和editconfig(主要用于代码规范的设置)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-28T04:41:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodeJS搭建一个静态资源服务器">
+<meta name="twitter:description" content="脚手架搭建在github上新建一个仓库，然后选择一个node版本的.gitignore文件，然后将项目从github上面拉取下来. 对项目进行node模块初始化1npm init 有兴趣可以自行配置一下eslint和editconfig(主要用于代码规范的设置)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2019/04/28/nodejs-Server/">
+
+
+
+
+
+  <title>nodeJS搭建一个静态资源服务器 | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/04/28/nodejs-Server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">nodeJS搭建一个静态资源服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T12:38:11+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,317
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="脚手架搭建"><a href="#脚手架搭建" class="headerlink" title="脚手架搭建"></a>脚手架搭建</h2><p>在github上新建一个仓库，然后选择一个node版本的.gitignore文件，然后将项目从github上面拉取下来.</p>
+<p>对项目进行node模块初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></p>
+<p>有兴趣可以自行配置一下eslint和editconfig(主要用于代码规范的设置)</p>
+<a id="more"></a>
+<h2 id="模块安装"><a href="#模块安装" class="headerlink" title="模块安装"></a>模块安装</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install chalk   #美化终端而已</span><br><span class="line">npm install -g nodemon   #主要用于每次服务器的重启</span><br><span class="line">npm install -g supervisor #也可以用这个(和nodemon效果差不多)</span><br><span class="line">npm install handlebars # 用于模板引擎的功能</span><br><span class="line">npm install yargs # 使用这个包来进行cli工具的制作</span><br></pre></td></tr></table></figure>
+<p>supervisor可以用来监听文件的状态</p>
+<h2 id="简单的http模块的使用"><a href="#简单的http模块的使用" class="headerlink" title="简单的http模块的使用"></a>简单的http模块的使用</h2><p>然后新建一个src目录用于存储本次nodeJS服务的全部代码,在src目录下面新建一个config的文件夹(用于保存一些配置文件)，里面写一个<code>defaultConfig.js</code>的文件</p>
+<p>src/app.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">'./config/defaultConfig'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123; </span><br><span class="line">  res.statusCode = <span class="number">200</span>;</span><br><span class="line">  res.setHeader(<span class="string">'Content-type'</span>,<span class="string">'text/html'</span>);</span><br><span class="line">  res.write(<span class="string">'&lt;html&gt;&lt;body&gt;&lt;h2&gt;chynb&lt;/h2&gt;&lt;/body&gt;&lt;/html&gt;'</span>)</span><br><span class="line">  res.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(conf.port,conf.hostname,()=&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> addr = <span class="string">`http://<span class="subst">$&#123;conf.hostname&#125;</span>:<span class="subst">$&#123;conf.port&#125;</span>`</span>;</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">`Server stared at <span class="subst">$&#123;chalk.green(addr)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>src/config/defaultConfig.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">   hostname: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">   port:<span class="string">'8887'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>通过上面一些代码我们通过运行<strong>nodemon src/app.js</strong>就可以在对应的url里面访问到我们想要的地址了.</p>
+<h2 id="对文件进行操作"><a href="#对文件进行操作" class="headerlink" title="对文件进行操作"></a>对文件进行操作</h2><p>上面我们成功启动了一个简单的静态nodejs服务器，接下来我们对做一些路径的书写<br>我们进一步对代码进行一个拆分:</p>
+<ol>
+<li>当我们访问某一个文件时(例如localhost:8888/a.js)，输出这个文件的目录下面的名称</li>
+<li>当我们访问某一个文件夹的时候(例如localhost:8888/src)，直接输出这个目录下面所有的文件名称</li>
+</ol>
+<p>src/app.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">'./config/defaultConfig'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> route = <span class="built_in">require</span>(<span class="string">'./helper/route'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> filePath = path.join(conf.root,req.url);</span><br><span class="line">  route(req,res,filePath) <span class="comment">// route函数来执行一个异步的操作，通过async和await函数来降低一层异步的调用 </span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(conf.port,conf.hostname,()=&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> addr = <span class="string">`http://<span class="subst">$&#123;conf.hostname&#125;</span>:<span class="subst">$&#123;conf.port&#125;</span>`</span>;</span><br><span class="line">    <span class="built_in">console</span>.info(<span class="string">`Server stared at <span class="subst">$&#123;chalk.green(addr)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>src/helper/route.js<br>主要用于封装判断文件和文件夹函数.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>) <span class="comment">// 用于判断模块是文还是文件夹</span></span><br><span class="line"><span class="keyword">const</span> promisify = <span class="built_in">require</span>(<span class="string">'util'</span>).promisify;</span><br><span class="line"><span class="keyword">const</span> stat = promisify(fs.stat);</span><br><span class="line"><span class="keyword">const</span> readdir = promisify(fs.readdir); <span class="comment">// 让一些异步操作能够写成同步的形式</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req,res,filePath</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> stats = <span class="keyword">await</span> stat(filePath) </span><br><span class="line">          <span class="keyword">if</span>(stats.isFile())&#123; <span class="comment">// 判断是否为文件</span></span><br><span class="line">            res.statusCode = <span class="number">200</span>;</span><br><span class="line">            res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>)</span><br><span class="line">            fs.createReadStream(filePath).pipe(res)</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span>(stats.isDirectory()) &#123; <span class="comment">// 判断是否为文件夹</span></span><br><span class="line">              <span class="keyword">const</span> files = <span class="keyword">await</span> readdir(filePath); <span class="comment">// 这里一定要加上await的关键字</span></span><br><span class="line">              res.statusCode = <span class="number">200</span>;</span><br><span class="line">              res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>);</span><br><span class="line">              res.end(files.join(<span class="string">','</span>))</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">catch</span>(ex) &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(ex)</span><br><span class="line">          res.statusCode = <span class="number">404</span>;</span><br><span class="line">          res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>);</span><br><span class="line">          res.end(<span class="string">"some bugs may happen on demo "</span>)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="模板引擎优化"><a href="#模板引擎优化" class="headerlink" title="模板引擎优化"></a>模板引擎优化</h2><p>完成了文件和文件夹的基本读取功能之后，我们做一个能够将文件夹显示在网页上面的操作，这里使用模板引擎的方式。(相当于让每个文件夹用类似live-server的形式显示出来)，使用一个模板引擎里面带一个a标签.</p>
+<p>模板引擎使用的是<a href="https://handlebarsjs.com/" target="_blank" rel="noopener">handleBars</a></p>
+<p>根据官方文档的写法，写一个模板(类似于webpack里面的打包模板)</p>
+<p>src/template/dir.tpl.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">       body&#123;</span><br><span class="line">           margin: 30px;</span><br><span class="line">       &#125;</span><br><span class="line">       a&#123;</span><br><span class="line">           display: block;</span><br><span class="line">           font-size: 30px;</span><br><span class="line">       &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    &#123;&#123;#each files&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123;../dir&#125;&#125;/&#123;&#123;this&#125;&#125;"</span>&gt;</span>&#123;&#123;this&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 文件夹的地方加上文件名 --&gt;</span></span><br><span class="line">    &#123;&#123;/each&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后修改一波route.js里面的代码(让文件夹能够完整的显示出来，并且能够访问)<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">...some code</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> tplPath = path.join(__dirname,<span class="string">'../template/dir.tpl.html'</span>)</span><br><span class="line"><span class="keyword">const</span> source = fs.readFileSync(tplPath); </span><br><span class="line"><span class="comment">// fs会读出来一个buffer文件流，这里在传入模板引擎去进行编译的时候修改为字符串类型</span></span><br><span class="line"><span class="keyword">const</span> template = HandleBars.compile(source.toString()) </span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(stats.isDirectory()) &#123;</span><br><span class="line">              <span class="keyword">const</span> files = <span class="keyword">await</span> readdir(filePath); <span class="comment">// 这里一定要加上await的关键字</span></span><br><span class="line">              res.statusCode = <span class="number">200</span>;</span><br><span class="line">              res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>);</span><br><span class="line">              <span class="keyword">const</span> dir = path.relative(config.root,filePath)</span><br><span class="line">              <span class="built_in">console</span>.log(chalk.green(dir))</span><br><span class="line">              <span class="keyword">const</span> data = &#123;</span><br><span class="line">                  titles:path.basename(filePath),</span><br><span class="line">                  dir: dir? <span class="string">`/<span class="subst">$&#123;dir&#125;</span>`</span> : <span class="string">''</span>,</span><br><span class="line">                  files</span><br><span class="line">              &#125;;</span><br><span class="line">              res.end(template(data))  </span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样我们就可以在启动的服务器中访问到我们的文件夹列表了.</p>
+<h2 id="文件返回类型判断"><a href="#文件返回类型判断" class="headerlink" title="文件返回类型判断"></a>文件返回类型判断</h2><p>一般在http请求中我们需要对文件的返回类型做一个判断，在服务器端(一般要对自己返回的文件类型的返回类型做一个类型判断).</p>
+<p>这里需要用到mime类型。</p>
+<p>于是新建一个辅助函数<br>helper/mime.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> mimeTypes = &#123;</span><br><span class="line">  <span class="comment">//...这里的代码详请点击https://github.com/fireairforce/nodejs-server/tree/master/src/helper/mime.js</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">filePath</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> ext = path.extname(filePath).split(<span class="string">'.'</span>).pop().toLowerCase();  </span><br><span class="line">    <span class="comment">//读取拓展名，然后根据wd.qaq.js进行分割，取出最后的一部分</span></span><br><span class="line">    <span class="keyword">if</span>(!ext)&#123; </span><br><span class="line">        ext = filePath;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mimeTypes[ext] || mimeTypes[<span class="string">'txt'</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>然后对route.js中的文件类型的返回值做一个修改<br>src/helper/route.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> mime = <span class="built_in">require</span>(<span class="string">'../helper/mime'</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"> <span class="keyword">if</span>(stats.isFile())&#123;</span><br><span class="line">            <span class="keyword">const</span> contentType = mime(filePath);</span><br><span class="line">            res.statusCode = <span class="number">200</span>;</span><br><span class="line">            res.setHeader(<span class="string">'Content-Type'</span>,contentType)</span><br><span class="line">            fs.createReadStream(filePath).pipe(res)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="文件类型标注"><a href="#文件类型标注" class="headerlink" title="文件类型标注"></a>文件类型标注</h2><p>src/helper/route.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-        files</span><br><span class="line">+        files:files.map(<span class="function"><span class="params">file</span>=&gt;</span>&#123;</span><br><span class="line">+              <span class="keyword">return</span> &#123;</span><br><span class="line">+                     file,</span><br><span class="line">+                          icon: mime(file)</span><br><span class="line">+                      &#125;</span><br><span class="line">+                  &#125;)</span><br><span class="line">               &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这个时候模板的地方也要修改一样<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123;../dir&#125;&#125;/&#123;&#123;this&#125;&#125;"</span>&gt;</span>&#123;&#123;this&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">+    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123;../dir&#125;&#125;/&#123;&#123;file&#125;&#125;"</span>&gt;</span>[&#123;&#123;icon&#125;&#125;]&#123;&#123;file&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="文件压缩"><a href="#文件压缩" class="headerlink" title="文件压缩"></a>文件压缩</h2><p>我们可以通过在服务端设置返回文件的类型来对一些文件进行压缩.</p>
+<p>现在配置里面添加一个正则表达式用于匹配压缩文件:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">   root: process.cwd(), <span class="comment">// 返回当前的工作目录</span></span><br><span class="line">   hostname: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">   port:<span class="number">8888</span>,</span><br><span class="line">   compress:<span class="regexp">/\.(html|css|js|md)/</span> <span class="comment">//设置需要压缩的文件的后缀名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>由于主要是对文件进行操作，所以我们只需要在文件这边进行操作就可以了.<br>helper/compress.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; createGzip,createDeflate &#125; = <span class="built_in">require</span>(<span class="string">'zlib'</span>)</span><br><span class="line"><span class="comment">// 通过nodejs里面的一个包来对文件进行压缩</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">rs, req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> acceptEncoding = req.headers[<span class="string">'accept-encoding'</span>];</span><br><span class="line">    <span class="keyword">if</span>(!acceptEncoding || !acceptEncoding.match(<span class="regexp">/\b(gzip|deflate)\b/</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> rs</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(acceptEncoding.match(<span class="regexp">/\bgzip\b/</span>))&#123;</span><br><span class="line">        res.setHeader(<span class="string">'Content-Encoding'</span>,<span class="string">'gzip'</span>)</span><br><span class="line">        <span class="keyword">return</span> rs.pipe(createGzip());</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(acceptEncoding.match(<span class="regexp">/\bdeflate\b/</span>))&#123;</span><br><span class="line">        res.setHeader(<span class="string">'Content-Encoding'</span>,<span class="string">'deflate'</span>);</span><br><span class="line">        <span class="keyword">return</span> rs.pipe(createDeflate());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>然后在src/helper/route.js里面设置一波文件的压缩类型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> compress = <span class="built_in">require</span>(<span class="string">'./compress'</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">if</span>(stats.isFile())&#123;</span><br><span class="line">   <span class="keyword">const</span> contentType = mime(filePath);</span><br><span class="line">   res.statusCode = <span class="number">200</span>;</span><br><span class="line">   res.setHeader(<span class="string">'Content-Type'</span>,contentType)</span><br><span class="line">   <span class="keyword">let</span> rs = fs.createReadStream(filePath);</span><br><span class="line">   <span class="keyword">if</span>(filePath.match(config.compress))&#123; <span class="comment">// 如果文件符合被压缩的类型</span></span><br><span class="line">       rs = compress(rs,req,res);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// fs.createReadStream(filePath).pipe(res)</span></span><br><span class="line">   rs.pipe(res)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="range请求范围的设定"><a href="#range请求范围的设定" class="headerlink" title="range请求范围的设定"></a>range请求范围的设定</h2><p>range(设置文件大小的类型) </p>
+<ul>
+<li>range:bytes = [start]-[end]</li>
+<li>Accept-Ranges:bytes</li>
+<li>Content-Range:bytes start-end/total</li>
+</ul>
+<p>src/helper/range.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">totalSize,req,res</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> range = req.headers[<span class="string">'range'</span>] <span class="comment">// 在请求头中拿到range</span></span><br><span class="line">    <span class="keyword">if</span>(!range) &#123;</span><br><span class="line">        <span class="comment">// 处理不了的情况就直接返回回去</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="attr">code</span>:<span class="number">200</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> sizes = range.match(<span class="regexp">/bytes=(\d*)-(\d*)/</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(size);</span><br><span class="line">    <span class="keyword">const</span> end = sizes[<span class="number">2</span>] || totalSize - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> start = sizes[<span class="number">1</span>] || totalSize - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(start &gt; end || start&lt;<span class="number">0</span> || end &gt; totalSize)&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">code</span> :<span class="number">200</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.setHeader(<span class="string">'Accept-Ranges'</span>,<span class="string">'bytes'</span>);</span><br><span class="line">    res.setHeader(<span class="string">'Content-Range'</span>,<span class="string">`bytes <span class="subst">$&#123;start&#125;</span>-<span class="subst">$&#123;end&#125;</span>/<span class="subst">$&#123;totalSize&#125;</span>`</span>);</span><br><span class="line">    res.setHeader(<span class="string">'Content-Length'</span>,end-start);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        code :<span class="number">206</span>,</span><br><span class="line">        start:<span class="built_in">parseInt</span>(start),</span><br><span class="line">        end:<span class="built_in">parseInt</span>(end)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在route中使用,对于不同的文件相应返回的时候通过设定其返回的range值进行切割,从而来优化http的性能.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// some codes </span></span><br><span class="line"><span class="keyword">const</span> range = <span class="built_in">require</span>(<span class="string">'./range'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">const</span> contentType = mime(filePath);</span><br><span class="line">   res.setHeader(<span class="string">'Content-Type'</span>,contentType)</span><br><span class="line">   <span class="keyword">let</span> rs;</span><br><span class="line">   <span class="keyword">const</span> &#123; code , start , end &#125; = range(stats.size,req,res)</span><br><span class="line">   <span class="keyword">if</span>(code === <span class="number">200</span>) &#123;</span><br><span class="line">       res.statusCode = <span class="number">200</span>;</span><br><span class="line">       rs = fs.createReadStream(filePath);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       res.statusCode = <span class="number">206</span>;</span><br><span class="line">       rs = fs.createReadStream(filePath, &#123; start , end &#125;)</span><br><span class="line">   &#125;</span><br><span class="line">   rs = fs.createReadStream(filePath);</span><br><span class="line">   <span class="keyword">if</span>(filePath.match(config.compress))&#123;</span><br><span class="line">       rs =compress(rs,req,res);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// fs.createReadStream(filePath).pipe(res)</span></span><br><span class="line">   rs.pipe(res)</span><br></pre></td></tr></table></figure></p>
+<h2 id="缓存优化"><a href="#缓存优化" class="headerlink" title="缓存优化"></a>缓存优化</h2><p>通过设置本地缓存来优化性能，在响应头里面设置一波cache-control等.</p>
+<p>主体还是http那一块的知识，这里不详细介绍，主要就是基于以下的几个http请求头去进行设置.</p>
+<ul>
+<li>Expires,Cache-Control</li>
+<li>If-Modified-Since/Last-Modified</li>
+<li>If-None-Match/Etag</li>
+</ul>
+<p>缓存这里就不想过多介绍了，关于性能优化的一个比较多的环节<br>src/helper/cache.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; cache &#125; = <span class="built_in">require</span>(<span class="string">'../config/defaultConfig'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">refreshRes</span>(<span class="params">stats,res</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">const</span> &#123; maxAge,expires,cacheControl,lastModified,etag &#125; = cache</span><br><span class="line">   <span class="keyword">if</span>(expires)&#123;</span><br><span class="line">       res.setHeader(<span class="string">'Expires'</span>,(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now() + maxAge*<span class="number">1000</span>)).toUTCString())</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span>(cacheControl)&#123;</span><br><span class="line">       res.setHeader(<span class="string">'Cache-Control'</span>,<span class="string">`public,max-age = <span class="subst">$&#123;maxAge&#125;</span>`</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">if</span>(lastModified)&#123;</span><br><span class="line">       res.setHeader(<span class="string">'Last-Modified'</span>,stats.mtime.toUTCString())</span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">if</span>(etag) &#123;</span><br><span class="line">       res.setHeader(<span class="string">'ETag'</span>,<span class="string">`<span class="subst">$&#123;stats.size&#125;</span>-<span class="subst">$&#123;stats.mtime&#125;</span>`</span>);</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用于判断是否需要启用缓存</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">isFresh</span>(<span class="params">stats,req,res</span>)</span>&#123;</span><br><span class="line">    refreshRes(stats,res);</span><br><span class="line">    <span class="keyword">const</span> lastModified = req.headers[<span class="string">'if-modified-since'</span>];</span><br><span class="line">    <span class="keyword">const</span> etag = req.headers[<span class="string">'if-none-match'</span>];</span><br><span class="line">    <span class="comment">// 如果客户端以上两个信息都没有返回，那就是第一次请求</span></span><br><span class="line">    <span class="keyword">if</span>(!lastModified &amp;&amp; !etag)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(lastModified&amp;&amp;lastModified!==res.getHeader(<span class="string">'Last-Modified'</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果客户端的etag和服务端的etag是不同的.</span></span><br><span class="line">    <span class="keyword">if</span>(etag&amp;&amp;etag!==res.getHeader(<span class="string">'ETag'</span>))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在route.js里面使用一波<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...some code </span></span><br><span class="line"><span class="keyword">const</span> isFresh = <span class="built_in">require</span>(<span class="string">'./cache'</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"> <span class="keyword">if</span>(stats.isFile())&#123;</span><br><span class="line">   <span class="keyword">const</span> contentType = mime(filePath);</span><br><span class="line">   res.setHeader(<span class="string">'Content-Type'</span>,contentType)</span><br><span class="line">    <span class="comment">// 如果缓存还存在</span></span><br><span class="line">   <span class="keyword">if</span>(isFresh(stats,req,res))&#123; </span><br><span class="line">       res.statusCode = <span class="number">304</span>;</span><br><span class="line">       res.end()</span><br><span class="line">       <span class="keyword">return</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">let</span> rs;</span><br><span class="line">   <span class="keyword">const</span> &#123; code , start , end &#125; = range(stats.size,req,res)</span><br><span class="line">   <span class="keyword">if</span>(code === <span class="number">200</span>) &#123;</span><br><span class="line">       res.statusCode = <span class="number">200</span>;</span><br><span class="line">       rs = fs.createReadStream(filePath);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       res.statusCode = <span class="number">206</span>;</span><br><span class="line">       rs = fs.createReadStream(filePath, &#123; start , end &#125;)</span><br><span class="line">   &#125;</span><br><span class="line">   rs = fs.createReadStream(filePath);</span><br><span class="line">   <span class="keyword">if</span>(filePath.match(config.compress))&#123;</span><br><span class="line">       rs =compress(rs,req,res);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// fs.createReadStream(filePath).pipe(res)</span></span><br><span class="line">   rs.pipe(res)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="将包发布成cli工具"><a href="#将包发布成cli工具" class="headerlink" title="将包发布成cli工具"></a>将包发布成cli工具</h2><p>接下来我们要做的就是使用npm包将我们的项目写为一个命令行工具然后发布到npm的包上面</p>
+<p>首先我们需要设置一个入口文件，这个入口文件就是每次我们去使用我们的工具的时候，调用的入口文件，里面会包含包括工具的版本信息，使用方式等等<br>我们的cli工具得满足下面的一些要求:<br><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">download:</span><br><span class="line"></span><br><span class="line">npm install -g anydoor</span><br><span class="line"></span><br><span class="line">usage:</span><br><span class="line">anydoor        # start the server</span><br><span class="line"></span><br><span class="line">anydoor -p 8080 # set the port as 8080</span><br><span class="line"></span><br><span class="line">anydoor -h localhost #set the port as localhost</span><br></pre></td></tr></table></figure></p>
+<p>src/index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> yargs = <span class="built_in">require</span>(<span class="string">'yargs'</span>);</span><br><span class="line"><span class="keyword">const</span> Server = <span class="built_in">require</span>(<span class="string">'./app'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> argv = yargs.usage(<span class="string">'anywhere [options]'</span>).option(<span class="string">'p'</span>,&#123;</span><br><span class="line">    alias: <span class="string">'port'</span>,</span><br><span class="line">    describe:<span class="string">'端口号'</span>,</span><br><span class="line">    <span class="keyword">default</span>: <span class="number">8888</span></span><br><span class="line">&#125;).option(<span class="string">'h'</span>,&#123;</span><br><span class="line">    alias:<span class="string">'hostname'</span>,</span><br><span class="line">    describe:<span class="string">'host'</span>,</span><br><span class="line">    <span class="keyword">default</span>:<span class="string">'127.0.0.1'</span></span><br><span class="line">&#125;).option(<span class="string">'d'</span>,&#123;</span><br><span class="line">    alias:<span class="string">'root'</span>,</span><br><span class="line">    describe: <span class="string">'root path'</span>,</span><br><span class="line">    <span class="keyword">default</span>:process.cwd()</span><br><span class="line">&#125;).version().alias(<span class="string">'v'</span>,<span class="string">'version'</span>).help().argv;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> Server(argv);</span><br><span class="line">server.start();</span><br></pre></td></tr></table></figure>
+<p>这个时候由于一些参数并不是和之前一样直接调用defaultConfig.js中的了，所以我们需要重写一个app.js</p>
+<p>src/app.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> conf = <span class="built_in">require</span>(<span class="string">'./config/defaultConfig'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> route = <span class="built_in">require</span>(<span class="string">'./helper/route'</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(config)&#123;</span><br><span class="line">    <span class="comment">// 配置文件并不是和之前一样使用固定的端口号</span></span><br><span class="line">    <span class="comment">// 有可能为用户设置，因而我们需要对其来一波设置</span></span><br><span class="line">    <span class="keyword">this</span>.conf = <span class="built_in">Object</span>.assign(&#123;&#125;,conf,config) <span class="comment">// 对配置文件进行merge</span></span><br><span class="line">  &#125;</span><br><span class="line">  start() &#123;</span><br><span class="line">    <span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">const</span> filePath = path.join(<span class="keyword">this</span>.conf.root,req.url);</span><br><span class="line">      route(req,res,filePath,<span class="keyword">this</span>.conf)  </span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    server.listen(<span class="keyword">this</span>.conf.port,<span class="keyword">this</span>.conf.hostname,()=&gt;&#123;</span><br><span class="line">        <span class="keyword">const</span> addr = <span class="string">`http://<span class="subst">$&#123;<span class="keyword">this</span>.conf.hostname&#125;</span>:<span class="subst">$&#123;<span class="keyword">this</span>.conf.port&#125;</span>`</span>;</span><br><span class="line">        <span class="built_in">console</span>.info(<span class="string">`Server stared at <span class="subst">$&#123;chalk.green(addr)&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = Server;</span><br></pre></td></tr></table></figure></p>
+<p>这个时候this.conf就通过参数传递到了route.js之中，然后route.js里面的函数只需要多使用加一个config参数就可以了.</p>
+<p>packge.json同时也要做一些修改:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"nodejs-server"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"using for leanring Node JS"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"./src/app.js"</span>,</span><br><span class="line">  <span class="attr">"bin"</span>:&#123;</span><br><span class="line">    <span class="attr">"anydoor"</span>:<span class="string">"bin/anydoor"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">"repository"</span>: &#123;</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"git"</span>,</span><br><span class="line">    <span class="attr">"url"</span>: <span class="string">"git+https://github.com/fireairforce/nodejs-server.git"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"keywords"</span>: [],</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"fireairforce"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</span><br><span class="line">  <span class="attr">"bugs"</span>: &#123;</span><br><span class="line">    <span class="attr">"url"</span>: <span class="string">"https://github.com/fireairforce/nodejs-server/issues"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"homepage"</span>: <span class="string">"https://github.com/fireairforce/nodejs-server#readme"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"chalk"</span>: <span class="string">"^2.4.2"</span>,</span><br><span class="line">    <span class="attr">"handlebars"</span>: <span class="string">"^4.1.2"</span>,</span><br><span class="line">    <span class="attr">"yargs"</span>: <span class="string">"^13.2.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于一般使用的是bin的脚本命令,所以写一个:<br>./bin/anydoor(没有后缀名的文件)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#! /usr/bin/env node</span><br><span class="line"></span><br><span class="line">require(&apos;../src/index&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>这个时候的执行方式为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod -x bin/anydoor  # 给文件加一个执行权限</span><br><span class="line">bin/anydoor -p 9999</span><br></pre></td></tr></table></figure></p>
+<p>这里稍微介绍一下版本号的语义化<br>x.y.z(例如0.0.1)</p>
+<ul>
+<li>一般修复了bug就新增z位</li>
+<li>新增了功能就升级一个y位</li>
+<li>大版本升级就升级x位(比如说不和之前兼容，API和之前不同了)</li>
+</ul>
+<p>一般linux中x为偶数位为稳定版本，奇数位为不稳定版本(并不指代所有)</p>
+<h2 id="发布npm包"><a href="#发布npm包" class="headerlink" title="发布npm包"></a>发布npm包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm login #登录你自己的npm账号</span><br><span class="line">npm publish #发布包到npm官网上面去</span><br></pre></td></tr></table></figure>
+<h2 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h2><p><a href="https://github.com/fireairforce/nodejs-server" target="_blank" rel="noopener">https://github.com/fireairforce/nodejs-server</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/webpack-16/" rel="next" title="webpack16--webpack底层解析">
+                <i class="fa fa-chevron-left"></i> webpack16--webpack底层解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/17/koa-1/" rel="prev" title="koa学习-项目搭建-1">
+                koa学习-项目搭建-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#脚手架搭建"><span class="nav-number">1.</span> <span class="nav-text">脚手架搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块安装"><span class="nav-number">2.</span> <span class="nav-text">模块安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的http模块的使用"><span class="nav-number">3.</span> <span class="nav-text">简单的http模块的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对文件进行操作"><span class="nav-number">4.</span> <span class="nav-text">对文件进行操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板引擎优化"><span class="nav-number">5.</span> <span class="nav-text">模板引擎优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件返回类型判断"><span class="nav-number">6.</span> <span class="nav-text">文件返回类型判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件类型标注"><span class="nav-number">7.</span> <span class="nav-text">文件类型标注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件压缩"><span class="nav-number">8.</span> <span class="nav-text">文件压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#range请求范围的设定"><span class="nav-number">9.</span> <span class="nav-text">range请求范围的设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存优化"><span class="nav-number">10.</span> <span class="nav-text">缓存优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将包发布成cli工具"><span class="nav-number">11.</span> <span class="nav-text">将包发布成cli工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布npm包"><span class="nav-number">12.</span> <span class="nav-text">发布npm包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目源码"><span class="nav-number">13.</span> <span class="nav-text">项目源码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

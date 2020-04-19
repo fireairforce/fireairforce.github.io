@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Redux简述由于react只是一个轻量的视图层框架，所有传值是十分的麻烦的。Redux = Reducer + FluxRedux工作流程就大概是这样的:它把数据存储在Store里面，如果一个组件修改了Store里面的值，其他的组件也是能够感知到的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实例讲解Redux--基于todolistdemo">
+<meta property="og:url" content="http://zoomdong.site/2018/12/03/实例讲解Redux-基于todolistdemo/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="Redux简述由于react只是一个轻量的视图层框架，所有传值是十分的麻烦的。Redux = Reducer + FluxRedux工作流程就大概是这样的:它把数据存储在Store里面，如果一个组件修改了Store里面的值，其他的组件也是能够感知到的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wdlj.zoomdong.xin/redux%E6%B5%81%E7%A8%8B.png">
+<meta property="og:updated_time" content="2018-12-03T00:23:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实例讲解Redux--基于todolistdemo">
+<meta name="twitter:description" content="Redux简述由于react只是一个轻量的视图层框架，所有传值是十分的麻烦的。Redux = Reducer + FluxRedux工作流程就大概是这样的:它把数据存储在Store里面，如果一个组件修改了Store里面的值，其他的组件也是能够感知到的。">
+<meta name="twitter:image" content="http://wdlj.zoomdong.xin/redux%E6%B5%81%E7%A8%8B.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2018/12/03/实例讲解Redux-基于todolistdemo/">
+
+
+
+
+
+  <title>实例讲解Redux--基于todolistdemo | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/12/03/实例讲解Redux-基于todolistdemo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">实例讲解Redux--基于todolistdemo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-03T06:05:15+08:00">
+                2018-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,852
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Redux简述"><a href="#Redux简述" class="headerlink" title="Redux简述"></a>Redux简述</h2><p>由于react只是一个轻量的视图层框架，所有传值是十分的麻烦的。<br>Redux = Reducer + Flux<br>Redux工作流程就大概是这样的:<br>它把数据存储在Store里面，如果一个组件修改了Store里面的值，其他的组件也是能够感知到的。</p>
+<a id="more"></a>
+<h2 id="Redux的工作流程"><a href="#Redux的工作流程" class="headerlink" title="Redux的工作流程"></a>Redux的工作流程</h2><p>流程图大概是这个样子的:</p>
+<p><img src="http://wdlj.zoomdong.xin/redux%E6%B5%81%E7%A8%8B.png" alt="image"><br>这个地方我就懒得解释了QAQ</p>
+<h2 id="用一个todolist为例子"><a href="#用一个todolist为例子" class="headerlink" title="用一个todolist为例子"></a>用一个todolist为例子</h2><p>先安装一个antd的依赖库<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install antd --save</span><br></pre></td></tr></table></figure></p>
+<p>在src/目录下面新建一个todolist.js的文件<br>src/todolist.js<br>我们先把页面的结构搞出来:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data=[</span><br><span class="line">    <span class="string">'wd'</span>,</span><br><span class="line">    <span class="string">'crd'</span>,</span><br><span class="line">    <span class="string">'chy'</span></span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input placerholder=<span class="string">'todoinfo'</span> style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;/&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;data&#125;</span><br><span class="line">                renderItem=&#123;item=&gt;(<span class="xml"><span class="tag">&lt;<span class="name">Item</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span>)&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Store的创建"><a href="#Store的创建" class="headerlink" title="Store的创建"></a>Store的创建</h2><p>src目录下创建文件夹store,然后再创建一个index.js:<br>src/store/index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer.js'</span>; <span class="comment">//从当前目录下面将数据传递给reducer</span></span><br><span class="line"><span class="keyword">const</span> store = createStore(reducer);<span class="comment">//这里我们创建了一个store,目前store里面就有两组数据了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+<p>然后在store的目录下面创建一个reducer<br>src/store/reducer.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultState = &#123;</span><br><span class="line">    inputValue:<span class="string">'123'</span>,</span><br><span class="line">    list:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = defaultState,action) = &#123; <span class="comment">//state里面存放的整个store里面的数据</span></span><br><span class="line">    <span class="keyword">return</span> state; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="从Store里面取数据"><a href="#从Store里面取数据" class="headerlink" title="从Store里面取数据"></a>从Store里面取数据</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store/index.js'</span><span class="comment">//将store引入进来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state=store.getState();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.state);     </span><br><span class="line">   <span class="comment">//我们可以利用store里面自带的一个函数getState()来获取到store里面的数据,里面会出现上面我们创建的一些个东西,输出&#123; inputValue:'',list:[] &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input  value=&#123;<span class="keyword">this</span>.state.inputValue&#125; placerholder=<span class="string">'todoinfo'</span> style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;/&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;<span class="keyword">this</span>.state.list&#125;</span><br><span class="line">                renderItem=&#123;item=&gt;(<span class="xml"><span class="tag">&lt;<span class="name">Item</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span>)&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure>
+<h2 id="Action-和-Reducer-的编写"><a href="#Action-和-Reducer-的编写" class="headerlink" title="Action 和 Reducer 的编写"></a>Action 和 Reducer 的编写</h2><p>我们先把redux-devtools的插件配置写好<br>/src/store/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">    reduer,</span><br><span class="line">    <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ &amp;&amp; <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__()</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>然后我们打开插件点击State就可以看见我们之前创建的数据了。</p>
+<p>这个时候我们在src/Todolist.js里面开始对我们的todolist进行编写<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store/index.js'</span><span class="comment">//将store引入进来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state=store.getState();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.state);     </span><br><span class="line">   <span class="comment">//我们可以利用store里面自带的一个函数getState()来获取到store里面的数据,里面会出现上面我们创建的一些个东西,输出&#123; inputValue:'',list:[] &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">    handleInputChange = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'change_input_value'</span>,</span><br><span class="line">            value:e.target.value</span><br><span class="line">        &#125;<span class="comment">//这里表示创建了一个动作,名称叫做'change_input_value'，然后它的内容是将value改变成了e.target.value</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">console</span>.log(e.target.value); <span class="comment">// 表示输出里面的内容</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input  </span><br><span class="line">                value=&#123;<span class="keyword">this</span>.state.inputValue&#125; </span><br><span class="line">                placerholder=<span class="string">'todoinfo'</span> </span><br><span class="line">                style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;</span><br><span class="line">                onChange=&#123;<span class="keyword">this</span>.handleInputChange&#125; <span class="comment">//监听onChange时间的变化然后对它进行一系列的操作</span></span><br><span class="line">                /&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;<span class="keyword">this</span>.state.list&#125;</span><br><span class="line">                renderItem=&#123;item=&gt;(<span class="xml"><span class="tag">&lt;<span class="name">Item</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span>)&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure></p>
+<p>这个时候我们回到store/reducer.js里面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultValue = &#123;</span><br><span class="line">    inputValue:<span class="string">'123'</span>,</span><br><span class="line">    list:[<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reducer 可以接受state但是绝对不能改变state(所以我们这里要对数据进行一次深拷贝)</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = defaultState,action) =&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type===<span class="string">'change_input_value'</span>)&#123;<span class="comment">//这里表示前面传话过来的内容即type</span></span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));<span class="comment">//首先我们先对原来的state进行一次深拷贝,使用的是最暴力的方法</span></span><br><span class="line">        newState.inputValue = action.value; <span class="comment">//通过这个步骤我们就完成了对原有数据的修改</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(state,action); <span class="comment">//这里会监听到input的onChange时间的变化。</span></span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>进行到这一步了，我们可以注意到的是，在Redux_devtools里面查看state里面的数据我们可以观察到inputValue的值已经随着我们的输入开始发生了变化了。但是页面上的变化并没有发生，于是我们需要在主界面对我们的事件进行一次订阅.</p>
+<p>1.首先用一个subscribe事件对store的事件改变进行一次订阅。<br>2.订阅函数一旦收到之后立马执行另外一个函数。<br>3.通过那个函数直接对store的函数里面最近更新出来的数据进行获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store/index.js'</span><span class="comment">//将store引入进来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state=store.getState();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.state);     </span><br><span class="line">   <span class="comment">//我们可以利用store里面自带的一个函数getState()来获取到store里面的数据,里面会出现上面我们创建的一些个东西,输出&#123; inputValue:'',list:[] &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    store.subscribe(<span class="keyword">this</span>.handleStoreChange)<span class="comment">//表示我这个组件开始订阅组件store里面的数据变化</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">//当然这个函数的意思就是说在store里面的状态开始发生改变的时候，我们的这个handleStoreChange函数就执行.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleStoreChange = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(store.getState());<span class="comment">//对store里面的数据进行获取。</span></span><br><span class="line">        <span class="comment">// console.log('testStoreChange');</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleInputChange = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'change_input_value'</span>,</span><br><span class="line">            value:e.target.value</span><br><span class="line">        &#125;<span class="comment">//这里表示创建了一个动作,名称叫做'change_input_value'，然后它的内容是将value改变成了e.target.value</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">console</span>.log(e.target.value); <span class="comment">// 表示输出里面的内容</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input  </span><br><span class="line">                value=&#123;<span class="keyword">this</span>.state.inputValue&#125; </span><br><span class="line">                placerholder=<span class="string">'todoinfo'</span> </span><br><span class="line">                style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;</span><br><span class="line">                onChange=&#123;<span class="keyword">this</span>.handleInputChange&#125; <span class="comment">//监听onChange时间的变化然后对它进行一系列的操作</span></span><br><span class="line">                /&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;<span class="keyword">this</span>.state.list&#125;</span><br><span class="line">                renderItem=&#123;item=&gt;(<span class="xml"><span class="tag">&lt;<span class="name">Item</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span>)&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure>
+<h2 id="对列表框进行操作"><a href="#对列表框进行操作" class="headerlink" title="对列表框进行操作"></a>对列表框进行操作</h2><p>根据以上步骤我们已经可以暂时对input框的数据进行修改了，这一步我们对提交按钮进行操作，当然界面还是在主界面，同样的是对Button绑定一个onClick事件，然后来改变store里面的数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store/index.js'</span><span class="comment">//将store引入进来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state=store.getState();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.state);     </span><br><span class="line">   <span class="comment">//我们可以利用store里面自带的一个函数getState()来获取到store里面的数据,里面会出现上面我们创建的一些个东西,输出&#123; inputValue:'',list:[] &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    store.subscribe(<span class="keyword">this</span>.handleStoreChange)<span class="comment">//表示我这个组件开始订阅组件store里面的数据变化</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">//当然这个函数的意思就是说在store里面的状态开始发生改变的时候，我们的这个handleStoreChange函数就执行.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleStoreChange = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(store.getState());<span class="comment">//对store里面的数据进行获取。</span></span><br><span class="line">        <span class="comment">// console.log('testStoreChange');</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleInputChange = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'change_input_value'</span>,</span><br><span class="line">            value:e.target.value</span><br><span class="line">        &#125;<span class="comment">//这里表示创建了一个动作,名称叫做'change_input_value'，然后它的内容是将value改变成了e.target.value</span></span><br><span class="line">        store.dispatch(action); <span class="comment">//这里将这个动作发到store里面去</span></span><br><span class="line">        <span class="built_in">console</span>.log(e.target.value); <span class="comment">// 表示输出里面的内容</span></span><br><span class="line">    &#125;</span><br><span class="line">    handleBtnClick = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//首先当按钮被点击之后，我们来改变store里面的数据，先创建一个action</span></span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'add_todo_item'</span>,           </span><br><span class="line">        &#125;;</span><br><span class="line">        store.dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input  </span><br><span class="line">                value=&#123;<span class="keyword">this</span>.state.inputValue&#125; </span><br><span class="line">                placerholder=<span class="string">'todoinfo'</span> </span><br><span class="line">                style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;</span><br><span class="line">                onChange=&#123;<span class="keyword">this</span>.handleInputChange&#125; <span class="comment">//监听onChange时间的变化然后对它进行一系列的操作</span></span><br><span class="line">                /&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> </span><br><span class="line">                    onClick=&#123;<span class="keyword">this</span>.handleBtnClick&#125;</span><br><span class="line">                &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;<span class="keyword">this</span>.state.list&#125;</span><br><span class="line">                renderItem=&#123;item=&gt;(<span class="xml"><span class="tag">&lt;<span class="name">Item</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span>)&#125;</span><br><span class="line">              /&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure></p>
+<p>这个时候Store收到数据，但是它不会处理怎么做，它会直接将做法传递给reducer,所以这里我们直接来写reducer的流程<br>store/reducer.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultValue = &#123;</span><br><span class="line">    inputValue:<span class="string">'123'</span>,</span><br><span class="line">    list:[<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reducer 可以接受state但是绝对不能改变state(所以我们这里要对数据进行一次深拷贝)</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = defaultState,action) =&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type===<span class="string">'change_input_value'</span>)&#123;<span class="comment">//这里表示前面传话过来的内容即type</span></span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));<span class="comment">//首先我们先对原来的state进行一次深拷贝,使用的是最暴力的方法</span></span><br><span class="line">        newState.inputValue = action.value; <span class="comment">//通过这个步骤我们就完成了对原有数据的修改</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type===<span class="string">'add_todo_item'</span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">        newState.list.push(newState.inputValue);<span class="comment">//这里我们就直接把之前我们修改完成的inpueVallue之间添加到那个list数组里面去，然后列表数组就会多添加一组数据出来</span></span><br><span class="line">        newState.inputValue:<span class="string">''</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(state,action); //这里会监听到input的onChange时间的变化。</span></span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="todolist的删除"><a href="#todolist的删除" class="headerlink" title="todolist的删除"></a>todolist的删除</h2><p>到了这个时候，我们基本的redux的todolist功能就差不多实现完成了，接下来我们可以尝试去做一些删除功能，比如我们点击哪一项对应的那一项就直接被删除走。<br>这个操作就比较容易了，我们直接在Item绑定一个onClick事件同样的是用Redux来进行处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'antd/dist/antd.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Input,Button,List&#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store/index.js'</span><span class="comment">//将store引入进来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Item = List.Item;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state=store.getState();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.state);     </span><br><span class="line">   <span class="comment">//我们可以利用store里面自带的一个函数getState()来获取到store里面的数据,里面会出现上面我们创建的一些个东西,输出&#123; inputValue:'',list:[] &#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    store.subscribe(<span class="keyword">this</span>.handleStoreChange)<span class="comment">//表示我这个组件开始订阅组件store里面的数据变化</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">//当然这个函数的意思就是说在store里面的状态开始发生改变的时候，我们的这个handleStoreChange函数就执行.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleStoreChange = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(store.getState());<span class="comment">//对store里面的数据进行获取。</span></span><br><span class="line">        <span class="comment">// console.log('testStoreChange');</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleInputChange = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'change_input_value'</span>,</span><br><span class="line">            value:e.target.value</span><br><span class="line">        &#125;<span class="comment">//这里表示创建了一个动作,名称叫做'change_input_value'，然后它的内容是将value改变成了e.target.value</span></span><br><span class="line">        store.dispatch(action); <span class="comment">//这里将这个动作发到store里面去</span></span><br><span class="line">        <span class="built_in">console</span>.log(e.target.value); <span class="comment">// 表示输出里面的内容</span></span><br><span class="line">    &#125;</span><br><span class="line">    handleBtnClick = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//首先当按钮被点击之后，我们来改变store里面的数据，先创建一个action</span></span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:<span class="string">'add_todo_item'</span>,           </span><br><span class="line">        &#125;;</span><br><span class="line">        store.dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    handleItemDelete = <span class="function">(<span class="params">index</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//    console.log(index);</span></span><br><span class="line">     <span class="keyword">const</span> action = &#123;</span><br><span class="line">         type:<span class="string">'delete_todo_item'</span>,</span><br><span class="line">         index <span class="comment">//同时还要将下标的值传递给store</span></span><br><span class="line">     &#125;;</span><br><span class="line">     store.dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;div style=&#123;&#123;<span class="attr">marginTop</span>:<span class="string">'10px'</span>,<span class="attr">marginLeft</span>:<span class="string">'10px'</span>&#125;&#125;&gt;</span><br><span class="line">              &lt;div&gt;</span><br><span class="line">                &lt;Input  </span><br><span class="line">                value=&#123;<span class="keyword">this</span>.state.inputValue&#125; </span><br><span class="line">                placerholder=<span class="string">'todoinfo'</span> </span><br><span class="line">                style=&#123;&#123;<span class="attr">width</span>:<span class="string">'300px'</span>,<span class="attr">marginRight</span>:<span class="string">'10px'</span>&#125;&#125;</span><br><span class="line">                onChange=&#123;<span class="keyword">this</span>.handleInputChange&#125; <span class="comment">//监听onChange时间的变化然后对它进行一系列的操作</span></span><br><span class="line">                /&gt;</span><br><span class="line">                &lt;Button type=<span class="string">"primary"</span> </span><br><span class="line">                    onClick=&#123;<span class="keyword">this</span>.handleBtnClick&#125;</span><br><span class="line">                &gt;提交&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>div&gt;</span><br><span class="line">              &lt;List </span><br><span class="line">                bordered</span><br><span class="line">                dataSource=&#123;<span class="keyword">this</span>.state.list&#125;</span><br><span class="line">                renderItem=&#123;(item,index)=&gt;<span class="function">(<span class="params">&lt;Item onClick=&#123;(</span>)=&gt;</span>&#123;<span class="keyword">this</span>.handleItemDelete(index)&#125;&#125;&gt;&#123;item&#125;&lt;<span class="regexp">/Item&gt;)&#125;</span></span><br><span class="line"><span class="regexp">              /</span>&gt;</span><br><span class="line">            &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default TodoList</span></span><br></pre></td></tr></table></figure>
+<p>将动作派发给store之后，store是不会对处理数据的，它会将数据继续扔给reducer去进行处理，于是就有了这样的神仙操作:<br>store/reducer.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultValue = &#123;</span><br><span class="line">    inputValue:<span class="string">'123'</span>,</span><br><span class="line">    list:[<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reducer 可以接受state但是绝对不能改变state(所以我们这里要对数据进行一次深拷贝)</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = defaultState,action) =&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type===<span class="string">'change_input_value'</span>)&#123;<span class="comment">//这里表示前面传话过来的内容即type</span></span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));<span class="comment">//首先我们先对原来的state进行一次深拷贝,使用的是最暴力的方法</span></span><br><span class="line">        newState.inputValue = action.value; <span class="comment">//通过这个步骤我们就完成了对原有数据的修改</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type===<span class="string">'add_todo_item'</span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">        newState.list.push(newState.inputValue);<span class="comment">//这里我们就直接把之前我们修改完成的inpueVallue之间添加到那个list数组里面去，然后列表数组就会多添加一组数据出来</span></span><br><span class="line">        newState.inputValue:<span class="string">''</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type===<span class="string">'delete_todo_item'</span>)&#123;</span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">        newState.list.splice(action.index,<span class="number">1</span>);<span class="comment">//找到对应的数组下标然后删除掉那一项就可以了</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(state,action); //这里会监听到input的onChange时间的变化。</span></span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="更好的优化"><a href="#更好的优化" class="headerlink" title="更好的优化"></a>更好的优化</h2><p>上面我们在将数据传递给store的时候我们已经可以看出来了,对action进行dispatch派发的时候，铁定是会出现一波有时候打错value的操作的，这个时候我们就可以把value提取出来来减少我们的误差(zz)操作.<br>在src/store目录下面创建文件actionTypes.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CHANGE_INPUT_VALUE=<span class="string">'change-input_value'</span>;</span><br><span class="line"><span class="keyword">const</span> ADD_TODO_ITEM =<span class="string">'add_todo_item'</span>;</span><br><span class="line"><span class="keyword">const</span> DELETE_TODO_ITEM=<span class="string">'delete_todo_item'</span>;</span><br></pre></td></tr></table></figure>
+<p>然后在我们的todolist.js文件里面引入这个玩意儿:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_TODO_ITEM&#125; <span class="keyword">from</span> <span class="string">'./store/actionTypes.js'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">    handleInputChange = <span class="function">(<span class="params">e</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type: CHANGE_INPUT_VALUE,</span><br><span class="line">            value:e.target.value</span><br><span class="line">        &#125;<span class="comment">//这里表示创建了一个动作,名称叫做'change_input_value'，然后它的内容是将value改变成了e.target.value</span></span><br><span class="line">        store.dispatch(action); <span class="comment">//这里将这个动作发到store里面去</span></span><br><span class="line">        <span class="built_in">console</span>.log(e.target.value); <span class="comment">// 表示输出里面的内容</span></span><br><span class="line">    &#125;</span><br><span class="line">    handleBtnClick = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//首先当按钮被点击之后，我们来改变store里面的数据，先创建一个action</span></span><br><span class="line">        <span class="keyword">const</span> action = &#123;</span><br><span class="line">            type:ADD_TODO_ITEM,           </span><br><span class="line">        &#125;;</span><br><span class="line">        store.dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line">    handleItemDelete = <span class="function">(<span class="params">index</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//    console.log(index);</span></span><br><span class="line">     <span class="keyword">const</span> action = &#123;</span><br><span class="line">         type: DELETE_TODO_ITEM,</span><br><span class="line">         index <span class="comment">//同时还要将下标的值传递给store</span></span><br><span class="line">     &#125;;</span><br><span class="line">     store.dispatch(action);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//...</span></span><br></pre></td></tr></table></figure></p>
+<p>同时,Reducer.js里面的type值也变换一下:<br>src/store/reducer.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELETE_TODO_ITEM&#125; <span class="keyword">from</span> <span class="string">'./actionTypes.js'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> defaultValue = &#123;</span><br><span class="line">    inputValue:<span class="string">'123'</span>,</span><br><span class="line">    list:[<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// reducer 可以接受state但是绝对不能改变state(所以我们这里要对数据进行一次深拷贝)</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (state = defaultState,action) =&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(action.type===CHANGE_INPUT_VALUE)&#123;<span class="comment">//这里表示前面传话过来的内容即type</span></span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));<span class="comment">//首先我们先对原来的state进行一次深拷贝,使用的是最暴力的方法</span></span><br><span class="line">        newState.inputValue = action.value; <span class="comment">//通过这个步骤我们就完成了对原有数据的修改</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type===ADD_TODO_ITEM)&#123;</span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">        newState.list.push(newState.inputValue);<span class="comment">//这里我们就直接把之前我们修改完成的inpueVallue之间添加到那个list数组里面去，然后列表数组就会多添加一组数据出来</span></span><br><span class="line">        newState.inputValue:<span class="string">''</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(action.type===DELETE_TODO_ITEM)&#123;</span><br><span class="line">        <span class="keyword">const</span> newState=<span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(state));</span><br><span class="line">        newState.list.splice(action.index,<span class="number">1</span>);<span class="comment">//找到对应的数组下标然后删除掉那一项就可以了</span></span><br><span class="line">        <span class="keyword">return</span> newState;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// console.log(state,action); //这里会监听到input的onChange时间的变化。</span></span><br><span class="line">    <span class="keyword">return</span> state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/29/react小操作/" rel="next" title="dva里面的路由设置以及路由跳转">
+                <i class="fa fa-chevron-left"></i> dva里面的路由设置以及路由跳转
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/03/react-route-dom-介绍/" rel="prev" title="react-route-dom 介绍">
+                react-route-dom 介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux简述"><span class="nav-number">1.</span> <span class="nav-text">Redux简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux的工作流程"><span class="nav-number">2.</span> <span class="nav-text">Redux的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用一个todolist为例子"><span class="nav-number">3.</span> <span class="nav-text">用一个todolist为例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Store的创建"><span class="nav-number">4.</span> <span class="nav-text">Store的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从Store里面取数据"><span class="nav-number">5.</span> <span class="nav-text">从Store里面取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Action-和-Reducer-的编写"><span class="nav-number">6.</span> <span class="nav-text">Action 和 Reducer 的编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对列表框进行操作"><span class="nav-number">7.</span> <span class="nav-text">对列表框进行操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#todolist的删除"><span class="nav-number">8.</span> <span class="nav-text">todolist的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更好的优化"><span class="nav-number">9.</span> <span class="nav-text">更好的优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

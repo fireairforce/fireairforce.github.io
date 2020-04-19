@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="安装mongodb之前其实我已经有写过关于怎么在ubuntu上安装mongodb了，这个可以去看一下之前的博客文章，然后这一次的话，主要是想试试在服务器上面安装MongoDB。 首先登录一下服务器，我的是:1ssh zoomdong@zoomdong.xin 当然如果想免密码登录服务器的话，可以参考一下 这篇文章 进入服务器里面之后的话，可以使用 lsb_release -a 来查看关于服务器的一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa学习-建立数据库模型-4(上)">
+<meta property="og:url" content="http://zoomdong.site/2019/07/31/koa-4-1/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="安装mongodb之前其实我已经有写过关于怎么在ubuntu上安装mongodb了，这个可以去看一下之前的博客文章，然后这一次的话，主要是想试试在服务器上面安装MongoDB。 首先登录一下服务器，我的是:1ssh zoomdong@zoomdong.xin 当然如果想免密码登录服务器的话，可以参考一下 这篇文章 进入服务器里面之后的话，可以使用 lsb_release -a 来查看关于服务器的一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-30T23:38:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="koa学习-建立数据库模型-4(上)">
+<meta name="twitter:description" content="安装mongodb之前其实我已经有写过关于怎么在ubuntu上安装mongodb了，这个可以去看一下之前的博客文章，然后这一次的话，主要是想试试在服务器上面安装MongoDB。 首先登录一下服务器，我的是:1ssh zoomdong@zoomdong.xin 当然如果想免密码登录服务器的话，可以参考一下 这篇文章 进入服务器里面之后的话，可以使用 lsb_release -a 来查看关于服务器的一">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2019/07/31/koa-4-1/">
+
+
+
+
+
+  <title>koa学习-建立数据库模型-4(上) | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/31/koa-4-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">koa学习-建立数据库模型-4(上)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T07:25:54+08:00">
+                2019-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,306
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装mongodb"><a href="#安装mongodb" class="headerlink" title="安装mongodb"></a>安装mongodb</h2><p>之前其实我已经有写过关于怎么在ubuntu上安装mongodb了，这个可以去看一下之前的博客文章，然后这一次的话，主要是想试试在服务器上面安装MongoDB。</p>
+<p>首先登录一下服务器，我的是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh zoomdong@zoomdong.xin</span><br></pre></td></tr></table></figure></p>
+<p>当然如果想免密码登录服务器的话，可以参考一下 <a href="https://blog.csdn.net/zhuying_linux/article/details/7049078" target="_blank" rel="noopener">这篇文章</a></p>
+<p>进入服务器里面之后的话，可以使用 <code>lsb_release -a</code> 来查看关于服务器的一系列有用的信息。</p>
+<p>关于centOS的安装过程直接参考mongodb官网上面关于 <code>Red Hat</code> 的介绍来进行安装。</p>
+<p>在第一段进行repo的复制的时候我们可以将 <code>mongodb</code> 的官方下载源切换成阿里的下载源。即修改一下baseURL即可，baseURL的地址如下:</p>
+<p><a href="https://mirrors.aliyun.com/mongodb/yum/redhat/7/mongodb-org/3.6/x86_64/" target="_blank" rel="noopener"> 阿里源mongodb 下载地址</a></p>
+<p>由于我安装的是3.6版本的mongodb，所以这里就选择了3.6。</p>
+<a id="more"></a>
+<p>切换源之后，安装就一行命令的事情:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y mongodb-org</span><br></pre></td></tr></table></figure>
+<p>安装完成之后，直接启动mongodb服务器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mongod start</span><br></pre></td></tr></table></figure></p>
+<p>启动之后然后来连接一波数据库:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo --host 127.0.0.1:27017</span><br></pre></td></tr></table></figure></p>
+<p>然后在里面可以查看一下数据库:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; show dbs;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用-MondoDB-来对数据进行导入"><a href="#使用-MondoDB-来对数据进行导入" class="headerlink" title="使用 MondoDB 来对数据进行导入"></a>使用 MondoDB 来对数据进行导入</h2><p>这里我们使用一个叫做<code>mongoose</code>的库来建议mongodb和代码的连接。这个库我之前的博客里面也有介绍过,(在使用express进行接口开发的时候有使用过)。</p>
+<p>然后现在我们利用这个<code>mongoose</code>库来对数据库进行一波连接。它是一个封装好的数据建模库。然后在 <code>server</code> 下面新建一个 <code>database</code> 的文件夹，里面来放一些数据库的相关文件，首先新建一个<code>init.js</code>的初始化文件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> db = <span class="string">'mongodb://localhost/douban-trailer'</span>;</span><br><span class="line"></span><br><span class="line">exports.connect = <span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// 使用一个变量来计数数据库出现错误的次数,达到一定的限度之后将直接抛出错误，而不在对数据库进行重新连接</span></span><br><span class="line">    <span class="keyword">let</span> maxConnectTimes = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(process.env.NODE_ENV ! == <span class="string">'production'</span>)&#123;</span><br><span class="line">            mongoose.set(<span class="string">'debug'</span>,<span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 使用mongoose来连接本地 mongoDB 的地址</span></span><br><span class="line">        mongoose.connect(db);</span><br><span class="line">        <span class="comment">// 如果数据库连接失败的话</span></span><br><span class="line">        mongoose.connection.on(<span class="string">'disconnected'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            maxConnectTimes ++;</span><br><span class="line">            <span class="keyword">if</span>(maxConnectTimes &lt; <span class="number">5</span>)&#123;</span><br><span class="line">                mongoose.connect(db);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'数据库挂了，赶快去修吧'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        mongoose.connection.on(<span class="string">'error'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            maxConnectTimes ++;</span><br><span class="line">            <span class="keyword">if</span>(maxConnectTimes &lt; <span class="number">5</span>)&#123;</span><br><span class="line">                mongoose.connect(db);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'数据库挂了，赶快去修吧'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        mongoose.connection.on(<span class="string">'open'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">// 数据库连接成功的话将promise的状态改为成功了</span></span><br><span class="line">            resolve();</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'mongodb 数据库连接成功'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在<code>server/index.js</code>文件里面调用一下数据库初始连接的函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; connect &#125; = <span class="built_in">require</span>(<span class="string">'./database/init'</span>);</span><br><span class="line">(<span class="keyword">async</span>()=&gt;&#123;</span><br><span class="line">    <span class="keyword">await</span> connect();</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>我们可以模拟一波往数据库里面存储数据的操作：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改一下，用一个测试的数据库</span></span><br><span class="line"><span class="keyword">const</span> db = <span class="string">'mongodb://localhost/douban-test'</span>;</span><br><span class="line">mongoose.connection.once(<span class="string">'open'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 先建立一个数据模型</span></span><br><span class="line">    <span class="keyword">const</span> Dog = mongoose.model(<span class="string">'Dog'</span>,&#123;</span><br><span class="line">        name: <span class="built_in">String</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> dogA = <span class="keyword">new</span> Dog(&#123; <span class="attr">name</span>:<span class="string">'阿尔法'</span> &#125;);</span><br><span class="line">    dogA.save().then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'存储成功'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 连接成功之后使用 resolve 来改变一下状态</span></span><br><span class="line">    resolve();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'mongoDB connected successfully'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这个时候我们运行<code>node server/index.js</code> 来启动mongodb的使用脚本，然后就可以得到数据成功被存储的消息了，输出的信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mongoose: dogs.insertOne(&#123; _id: ObjectId(&quot;5d31c0490639dc474694a208&quot;), name: &apos;阿尔法&apos;, __v: 0 &#125;, &#123; session: null &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>然后我们可以去本地的数据库里面看一波，首先使用下面的这些命令来操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo service mongod start  # 启动mongodb</span><br><span class="line">mongo # 进入数据库</span><br><span class="line">show dbs # 显示已有的数据库</span><br><span class="line">use douban-test  # 切换到这个我们测试用的数据库中</span><br><span class="line">show tables  # 看里面有多少个表格,这里会显示我们之前创建的dogs</span><br><span class="line">db.dogs.find(&#123;&#125;) # 查看里面的数据,里面会有一条数据</span><br></pre></td></tr></table></figure></p>
+<p>这里就证明了我们的数据库是没有问题的.</p>
+<h2 id="MongoDB-和-mongoose-里面的一些概念"><a href="#MongoDB-和-mongoose-里面的一些概念" class="headerlink" title="MongoDB 和 mongoose 里面的一些概念"></a>MongoDB 和 mongoose 里面的一些概念</h2><p>数据库是一个使用磁盘空间的程序，通过它可以来规划如何向磁盘里面读写数据，而我们的网站应用程序是不关心的，我们关心的是一个机制让我们可以在不跟磁盘直接打交道的前提下能够灵活方便的操作数据，这个时候就需要数据库的操作机制了，比如mysql和oracle这些关系型数据库，针对不同的上层语言例如java和ruby都有对应的驱动实现，在mongodb里面我们有mondoose,上面的代码我们已经跑通了mongoose的存储和链接。但里面还有一些概念是需要我们自己去理解一波的:</p>
+<ol>
+<li>document</li>
+<li>collection</li>
+<li>database</li>
+</ol>
+<p>它和mysql本质上仍然是相同的，对于mongoDB来说,document里面的数据是由键值对来组成的，它是mongodb的核心单元，简单来说是关系型数据库里面的一行记录，而collection是多个文档，相当于是多个记录，多个用户可以组合成一个集合，相当于是关系型数据户的一个表。</p>
+<p>mongoose是在MongoDB的事件驱动上面封装的一层模型驱动，通过mongoose可让我们在代码层面很直接的使用数据库，门槛比较低，关于mongoose也有三个概念是需要理解的：</p>
+<ol>
+<li>schema</li>
+<li>model</li>
+<li>entity</li>
+</ol>
+<p>schema可以看成是mongoose里面的一种数据模式，可以参考mysql里面的每一个字段是什么类型，具体的表是什么解构，每一个schema都可以映射到mongoose里面的一个collection,但是schema里面不具备操作数据的能力的，他只是个纯定义，model是由schema发布的一个模型，它里面有一些行为，简单来理解，它是具备某张表操作函数的一个集合，函数集合的操作对象是整张表。最后是entity,他是model所创建的一个对象的实体，它指的是某条数据。</p>
+<h2 id="使用schema-model-创建电影的数据模型"><a href="#使用schema-model-创建电影的数据模型" class="headerlink" title="使用schema model 创建电影的数据模型"></a>使用schema model 创建电影的数据模型</h2><p>这里直接用mongoose里面自带的一系列 API 方法来完成电影数据库模型的建立：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 电影的数据模型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="comment">// Mixed比较适用于数据类型变化比较频繁的数据</span></span><br><span class="line"><span class="keyword">const</span> Mixed = Schema.Types.Mixed;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MovieSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    doubanId: <span class="built_in">String</span>,</span><br><span class="line">    rate: <span class="built_in">Number</span>,</span><br><span class="line">    title: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// 简介</span></span><br><span class="line">    summary: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// url地址</span></span><br><span class="line">    video: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// 海报图</span></span><br><span class="line">    poster: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// 封面地址</span></span><br><span class="line">    cover: <span class="built_in">String</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 图床上面的ID</span></span><br><span class="line">    videoKey: <span class="built_in">String</span>,</span><br><span class="line">    posterKey: <span class="built_in">String</span>,</span><br><span class="line">    coverKey: <span class="built_in">String</span>,</span><br><span class="line">    </span><br><span class="line">    rawTitle: <span class="built_in">String</span>,</span><br><span class="line">    <span class="comment">// 电影的类别,申明成数组，数组里面的每一个值都为字符串</span></span><br><span class="line">    movieTypes: [<span class="built_in">String</span>],</span><br><span class="line"></span><br><span class="line">    pubdate: Mixed,</span><br><span class="line">    year: <span class="built_in">Number</span>,</span><br><span class="line">    <span class="comment">// 标签使用数组类型声明数组</span></span><br><span class="line">    tags: <span class="built_in">Array</span>,</span><br><span class="line"></span><br><span class="line">    meta:&#123;</span><br><span class="line">        <span class="comment">// 这条数据被创建时的时间</span></span><br><span class="line">        createdAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 这条数据上传的时间</span></span><br><span class="line">        upDatedAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 先将这个模型建立起来，然后再将这个模型发布出去</span></span><br><span class="line"><span class="comment">// 传入两个参数</span></span><br><span class="line">mongoose.model(<span class="string">'Movie'</span>,MovieSchema)</span><br></pre></td></tr></table></figure>
+<h2 id="用户模型的创建"><a href="#用户模型的创建" class="headerlink" title="用户模型的创建"></a>用户模型的创建</h2><p>接下来我们需要创建一个用户登录注册的模型，里面设计存储的数据有用的账户和密码，这里要注意密码的存储是不能用明文存储的，之前的博客里面也有介绍怎么来存储密码。<br>在schema目录下面新建一个<code>user.js</code>的文件，可以参照里面的注释来写代码。</p>
+<p>代码如下:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> bcrypt = <span class="built_in">require</span>(<span class="string">'bcrypt'</span>);</span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="keyword">const</span> Mixed = Schema.Types.Mixed;</span><br><span class="line"><span class="keyword">const</span> SALT_WORK_FACTOR = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// 设计最大的密码输入出错次数</span></span><br><span class="line"><span class="keyword">const</span> MAX_LOGIN_ATTEMPTS = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 锁定时间为2h</span></span><br><span class="line"><span class="keyword">const</span> LOCK_TIME = <span class="number">2</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> userSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    <span class="comment">// 设置该字段为 唯一字段</span></span><br><span class="line">    username: &#123;</span><br><span class="line">        unique: <span class="literal">true</span>,</span><br><span class="line">        type: <span class="built_in">String</span>,</span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    email: &#123;</span><br><span class="line">        unique: <span class="literal">true</span>,</span><br><span class="line">        type: <span class="built_in">String</span>,</span><br><span class="line">        required: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 密码要进行一个比较精细的控制</span></span><br><span class="line">    password: &#123;</span><br><span class="line">        unique: <span class="literal">true</span>,</span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">        type: <span class="built_in">String</span></span><br><span class="line">    &#125;,</span><br><span class="line">    loginAttempts: &#123;</span><br><span class="line">        type: <span class="built_in">Number</span>,</span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="number">0</span></span><br><span class="line">        <span class="comment">// 默认值为0，必须要传</span></span><br><span class="line">    &#125;,</span><br><span class="line">    lockUntil: <span class="built_in">Number</span>,</span><br><span class="line">    meta: &#123;</span><br><span class="line">        createdAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;,</span><br><span class="line">        upDateAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">userSchema.pre(<span class="string">'save'</span>, next =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.isNew) &#123;</span><br><span class="line">        <span class="keyword">this</span>.meta.createdAt = <span class="keyword">this</span>.meta.upDateAt = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.meta.upDateAt = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 使用mongoose里面的一个虚拟字段的使用方法,这个字段不会被存进数据库</span></span><br><span class="line">userSchema.virtual(<span class="string">'isLocked'</span>).get(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> !!(<span class="keyword">this</span>.lockUntil &amp;&amp; <span class="keyword">this</span>.lockUntil &gt; <span class="built_in">Date</span>.now());</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在数据保存进数据库之前，对密码进行一个加密处理</span></span><br><span class="line">userSchema.pre(<span class="string">'save'</span>, next =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.isModified(<span class="string">'password'</span>)) <span class="keyword">return</span> next();</span><br><span class="line"></span><br><span class="line">    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">return</span> next(err);</span><br><span class="line">        bcrypt.hash(<span class="keyword">this</span>.password, salt, (error, hash) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (error) <span class="keyword">return</span> next(error);</span><br><span class="line">            <span class="keyword">this</span>.password = hash;</span><br><span class="line">            next();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 这里的这个next会让整个过程跳转到下一步去</span></span><br><span class="line">    <span class="comment">// next();</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// methods是实例方法</span></span><br><span class="line">userSchema.methods = &#123;</span><br><span class="line">    comparePassword: <span class="function">(<span class="params">_password, password</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 来做一个明文密码与存储密码的比对</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            bcrypt.compare(_password, password, (err, isMatch) =&gt; &#123;</span><br><span class="line">                <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">                    <span class="comment">//    如果比对过程中没有出现问题,状态修改为完成</span></span><br><span class="line">                    resolve(isMatch);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">//    如果比对过程中出现问题，那么就抛出错误</span></span><br><span class="line">                    reject(err);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 判断用户是否超过登录次数然后将其进行一个锁定</span></span><br><span class="line">    <span class="comment">// 但是如果锁定时间比until晚了的话证明我们已经过了这个有效期了</span></span><br><span class="line">    incLoginAttepts: <span class="function">(<span class="params">user</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.lockUntil &amp;&amp; <span class="keyword">this</span>.lockUntil &lt; <span class="built_in">Date</span>.now()) &#123;</span><br><span class="line">                <span class="comment">// 如果当前用户已经被锁定</span></span><br><span class="line">                <span class="keyword">this</span>.update(&#123;</span><br><span class="line">                    $<span class="keyword">set</span>: &#123;</span><br><span class="line">                        loginAttempts: <span class="number">1</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    $unset: &#123;</span><br><span class="line">                        lockUntil: <span class="number">1</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;, (err) =&gt; &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">                        resolve(<span class="literal">true</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> reject(<span class="literal">false</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">let</span> updates = &#123;</span><br><span class="line">                    $inc: &#123;</span><br><span class="line">                        loginAttempts: <span class="number">1</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.loginAttempts + <span class="number">1</span> &gt;= MAX_LOGIN_ATTEMPTS &amp;&amp; !<span class="keyword">this</span>.isLocked) &#123;</span><br><span class="line">                    updates.$<span class="keyword">set</span> = &#123;</span><br><span class="line">                        lockUntil: <span class="built_in">Date</span>.now() + LOCK_TIME</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.update(updates, err =&gt; &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!err) &#123;</span><br><span class="line">                        resolve(<span class="literal">true</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        reject(<span class="literal">false</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">mongoose.model(<span class="string">'User'</span>, userSchema);</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建分类以及初始化所有的Schema"><a href="#创建分类以及初始化所有的Schema" class="headerlink" title="创建分类以及初始化所有的Schema"></a>创建分类以及初始化所有的Schema</h2><p>继续在schema目录下面新建一个叫做<code>category.js</code>的文件.</p>
+<p>里面存放关于电影的分类的数据库 <code>schema</code><br>代码如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 电影的数据模型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="keyword">const</span> &#123; ObjectId &#125; = Schema.Types;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> categorySchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">      type: <span class="built_in">String</span>,</span><br><span class="line">      unique: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    movies: [&#123;</span><br><span class="line">        type: ObjectId,</span><br><span class="line">        ref: <span class="string">'Movie'</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="comment">// meta几乎是每个schema模型里面都要有的东西</span></span><br><span class="line">    meta: &#123;</span><br><span class="line">        <span class="comment">// 这条数据被创建时的时间</span></span><br><span class="line">        createdAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 这条数据上传的时间</span></span><br><span class="line">        upDatedAt: &#123;</span><br><span class="line">            type: <span class="built_in">Date</span>,</span><br><span class="line">            <span class="keyword">default</span>: <span class="built_in">Date</span>.now()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">categorySchema.pre(<span class="string">'save'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">next</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.isNew) &#123;</span><br><span class="line">        <span class="keyword">this</span>.meta.createdAt = <span class="keyword">this</span>.meta.upDatedAt = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.meta.upDatedAt = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">    next();</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 先将这个模型建立起来，然后再将这个模型发布出去</span></span><br><span class="line"><span class="comment">// 传入两个参数</span></span><br><span class="line">mongoose.model(<span class="string">'Category'</span>, categorySchema)</span><br></pre></td></tr></table></figure>
+<p>movies 对象处是使用了<code>ObejctId</code> 模式字段来创建两个文档/模型实例间一对一的引用，(一组ObjectIds可创建一对多的引用)。该字段存储相关模型的id.</p>
+<p>而这里 <code>ref</code> 的作用是告知模式分配哪个模型给该字段。</p>
+<p>因而这里在<code>movie.js</code> 里面还是要加上和这里关联的字段：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = requrire(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Schema = mongoose.Schema;</span><br><span class="line"><span class="keyword">const</span> &#123; Mixed,ObjectId &#125; = Schema.Types;</span><br><span class="line"><span class="keyword">const</span> movieSchema = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    <span class="comment">// ... some codes</span></span><br><span class="line">    category: [&#123;</span><br><span class="line">        type: ObjectId,</span><br><span class="line">        ref: <span class="string">'Category'</span></span><br><span class="line">    &#125;]</span><br><span class="line">    <span class="comment">// ... some codes</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//  ... some codes</span></span><br><span class="line">mongoose.model(<span class="string">'Movie'</span>,movieSchema);</span><br></pre></td></tr></table></figure></p>
+<p>添加完分类的schema数据库模型之后，我们在database的<code>init.js</code>中添加上初始化schema的代码。</p>
+<p>我们需要require之前我们已经定义好的那些schema模块。这里我们使用一个叫做<code>glob</code>的 npm 库来完成操作</p>
+<p>node的glob模块允许你使用 *等符号, 来写一个glob规则,像在shell里一样,获取匹配对应规则的文件.</p>
+<p>于是我们在 <code>init.js</code> 里面使用<code>glob</code>这个库来引用所有的 schemas.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...some codes</span></span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="comment">// ... some codes</span></span><br><span class="line"></span><br><span class="line">exports.initSchemas = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    glob.sync(resolve(__dirname,<span class="string">'./schema/'</span>,<span class="string">'**/*.js'</span>)).forEach(<span class="built_in">require</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ... some codes</span></span><br></pre></td></tr></table></figure>
+<p>然后在server文件夹的根入口文件夹下面调用这个函数即可:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; connect,initSchemas &#125; = <span class="built_in">require</span>(<span class="string">'./database/init'</span>);</span><br><span class="line">(<span class="keyword">async</span>()=&gt;&#123;</span><br><span class="line">    <span class="comment">// 数据库链接的函数</span></span><br><span class="line">  <span class="keyword">await</span> connect(); </span><br><span class="line">  initSchemas();</span><br><span class="line">  <span class="comment">// 下面可以添加一些代码来做一波测试</span></span><br><span class="line">  <span class="comment">// 来创建一个Movie的schema对象，然后查看里面的所有字段   </span></span><br><span class="line">  <span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line">  <span class="keyword">const</span> movies = <span class="keyword">await</span> Movie.find();   </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'movies: '</span>, movies);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>然后使用 <code>node server/index.js</code> 来运行，会发现控制台会输出”[]”，这样我们的数据库schema初始化也就建立完成了。 </p>
+<p>到了这里我们的数据库的基础模型已经建立完成了，下面就来利用这些数据模型，将之前爬取到的数据所导入到数据库里面去吧。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/19/NodeJS-tasks/" rel="next" title="NodeJS 进程模型介绍">
+                <i class="fa fa-chevron-left"></i> NodeJS 进程模型介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/31/koa-4-2/" rel="prev" title="koa学习-建立数据库模型-4(下)">
+                koa学习-建立数据库模型-4(下) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装mongodb"><span class="nav-number">1.</span> <span class="nav-text">安装mongodb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-MondoDB-来对数据进行导入"><span class="nav-number">2.</span> <span class="nav-text">使用 MondoDB 来对数据进行导入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB-和-mongoose-里面的一些概念"><span class="nav-number">3.</span> <span class="nav-text">MongoDB 和 mongoose 里面的一些概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用schema-model-创建电影的数据模型"><span class="nav-number">4.</span> <span class="nav-text">使用schema model 创建电影的数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户模型的创建"><span class="nav-number">5.</span> <span class="nav-text">用户模型的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建分类以及初始化所有的Schema"><span class="nav-number">6.</span> <span class="nav-text">创建分类以及初始化所有的Schema</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

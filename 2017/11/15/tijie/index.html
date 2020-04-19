@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="希望能帮助那些卡题目的朋友们by Acmclub：汤畅绪 吴东小组等人。 申明本次题解可能出的并不是非常的好，因为这周考试太多。招架不过来，那些题目我自己也有很多是直接暴力解决的。但还是吸取了组员以及acmclub其他成员的代码建议。比较简单的题目我会直接给大家放核心代码，因为这些题目看代码你就会觉得恍然大悟。希望轻喷，求体谅。。。。如果有问题大家在NEUQ OJ交流群上提问就行了，群里的成员都会">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五周C++作业题解">
+<meta property="og:url" content="http://zoomdong.site/2017/11/15/tijie/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="希望能帮助那些卡题目的朋友们by Acmclub：汤畅绪 吴东小组等人。 申明本次题解可能出的并不是非常的好，因为这周考试太多。招架不过来，那些题目我自己也有很多是直接暴力解决的。但还是吸取了组员以及acmclub其他成员的代码建议。比较简单的题目我会直接给大家放核心代码，因为这些题目看代码你就会觉得恍然大悟。希望轻喷，求体谅。。。。如果有问题大家在NEUQ OJ交流群上提问就行了，群里的成员都会">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-19T13:57:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第五周C++作业题解">
+<meta name="twitter:description" content="希望能帮助那些卡题目的朋友们by Acmclub：汤畅绪 吴东小组等人。 申明本次题解可能出的并不是非常的好，因为这周考试太多。招架不过来，那些题目我自己也有很多是直接暴力解决的。但还是吸取了组员以及acmclub其他成员的代码建议。比较简单的题目我会直接给大家放核心代码，因为这些题目看代码你就会觉得恍然大悟。希望轻喷，求体谅。。。。如果有问题大家在NEUQ OJ交流群上提问就行了，群里的成员都会">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2017/11/15/tijie/">
+
+
+
+
+
+  <title>第五周C++作业题解 | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2017/11/15/tijie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第五周C++作业题解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T12:15:17+08:00">
+                2017-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,140
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="希望能帮助那些卡题目的朋友们"><a href="#希望能帮助那些卡题目的朋友们" class="headerlink" title="希望能帮助那些卡题目的朋友们"></a>希望能帮助那些卡题目的朋友们</h2><p>by Acmclub：<br>汤畅绪 吴东小组等人。</p>
+<h2 id="申明"><a href="#申明" class="headerlink" title="申明"></a>申明</h2><p>本次题解可能出的并不是非常的好，因为这周考试太多。招架不过来，那些题目我自己也有很多是直接暴力解决的。但还是吸取了组员以及acmclub其他成员的代码建议。比较简单的题目我会直接给大家放核心代码，因为这些题目看代码你就会觉得恍然大悟。希望轻喷，求体谅。。。。如果有问题大家在NEUQ OJ交流群上提问就行了，群里的成员都会为你们解决的，大家都很热心的。<br><a id="more"></a></p>
+<h2 id="分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。"><a href="#分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。" class="headerlink" title="分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。"></a>分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。</h2><h1 id="水题"><a href="#水题" class="headerlink" title="水题"></a>水题</h1><h2 id="1012-SZ斐波拉契数列"><a href="#1012-SZ斐波拉契数列" class="headerlink" title="1012: SZ斐波拉契数列"></a>1012: SZ斐波拉契数列</h2><p>比较水的一个题目。利用函数写一个递归或者循环一个递推都是可以解决的。</p>
+<h3 id="核心代码-递推"><a href="#核心代码-递推" class="headerlink" title="核心代码(递推)"></a>核心代码(递推)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int F(int a,int b,int n)&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==1) <span class="built_in">return</span> a;</span><br><span class="line">	<span class="keyword">if</span>(n==2) <span class="built_in">return</span> b;</span><br><span class="line">	<span class="keyword">if</span>(n&gt;2)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">if</span>(n%2==0) <span class="built_in">return</span> F(a,b,n-1)+F(a,b,n-2)+F(a,b,n-3);</span><br><span class="line">     <span class="keyword">else</span> <span class="built_in">return</span> F(a,b,n-1)+F(a,b,n-2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>递归的话直接在主函数里面写就行了。</p>
+<h2 id="1318-兔子问题"><a href="#1318-兔子问题" class="headerlink" title="1318: 兔子问题"></a>1318: 兔子问题</h2><p>题目描述：<br>有一对兔子，从出生后第3个月起每个月都生一对兔子，小兔</p>
+<p>子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数</p>
+<p>为多少？</p>
+<p>输入：<br>n</p>
+<p>输出：<br>兔子的总队数</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>同样递归或者递推来解决。<br>上面那个题目用的递归解决，这个题目上递推吧。</p>
+<h3 id="核心代码（递推）"><a href="#核心代码（递推）" class="headerlink" title="核心代码（递推）"></a>核心代码（递推）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int i=3;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		s[i]=s[i-1]+s[i-2];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>n为1,2另外讨论行了，一个循环就可以解决。</p>
+<h2 id="1319-角谷定理"><a href="#1319-角谷定理" class="headerlink" title="1319: 角谷定理"></a>1319: 角谷定理</h2><p>题目描述：<br>输入一个自然数，若为偶数，则把他除以2，若为奇数，则把它乘以3加1，经过如此有限次运算后，总可以得到自然数值1.求经过多少次可得到自然数1</p>
+<h4 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">22</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16</span><br></pre></td></tr></table></figure>
+<h3 id="题（hu）目（luan）分析"><a href="#题（hu）目（luan）分析" class="headerlink" title="题（hu）目（luan）分析"></a>题（hu）目（luan）分析</h3><p>一个循环，循环条件不为1，然后对n分奇数偶数的情况进行讨论。然后每循环一次用一个数来进行计数就行了。<br>题目比较水，不上代码了。</p>
+<h3 id="1156-求具有abcd-ab-cd-2性质的四位数"><a href="#1156-求具有abcd-ab-cd-2性质的四位数" class="headerlink" title="1156: 求具有abcd=(ab+cd)2性质的四位数"></a>1156: 求具有abcd=(ab+cd)2性质的四位数</h3><p>描述<br>题目描述：<br>3025这个数具有一种独特的性质：将它平分为二段，即30和25，使之相加后求平方，即(30+25)2，恰好等于3025本身。请求出具有这样性质的全部四位数</p>
+<p>满足题意的数全部四位数(从小到大输出,且数之间用两个空格分开) </p>
+<h3 id="代码讲解-amp-amp-题目分析"><a href="#代码讲解-amp-amp-题目分析" class="headerlink" title="代码讲解&amp;&amp;题目分析"></a>代码讲解&amp;&amp;题目分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int i=1000;i&lt;=9999;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int a=i/100,b=i<span class="_">-a</span>*100;//a表示4位数前2位，b表示后2位。</span><br><span class="line">		<span class="keyword">if</span>((a+b)*(a+b)==i)</span><br><span class="line">		cout&lt;&lt;i&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>题目要求是要找出其中有关的四位数，那我们直接遍历所有的4位数，不用担心会出现超时等问题，因为复杂度是O（n）。找出里面符合题目要求的既可了。</p>
+<h2 id="1509-汉诺塔"><a href="#1509-汉诺塔" class="headerlink" title="1509: 汉诺塔"></a>1509: 汉诺塔</h2><p>描述<br>题目描述：<br>汉诺塔是由三根杆子A，B，C组成的。A杆上有N个穿孔圆盘，盘的尺寸由下到上依次变小，编号从1到n。要求按下列规则将所有圆盘移至C杆：每次只能移动一个圆盘；大盘不能叠在小盘上面。提示：可将圆盘临时置于B杆，也可将从A杆移出的圆盘重新移回A杆，但都必须尊循上述两条规则。问：如何移？</p>
+<p>输入：<br>一个整数N（N&lt;=10），表示圆盘的个数</p>
+<p>输出：<br>移动盘子的过程，每一步一行，格式为“要移动的盘子所在的柱子编号—要移动到得柱子的编号”</p>
+<h4 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A---B</span><br><span class="line">A---C</span><br><span class="line">B---C</span><br></pre></td></tr></table></figure>
+<h3 id="题解and代码。"><a href="#题解and代码。" class="headerlink" title="题解and代码。"></a>题解and代码。</h3><p>比较经典的递归入门问题。<br>递归分三步进行：</p>
+<p>第一步将A上面除了最大的那个环，其他环借助由A借助于C环全放到B环上。</p>
+<p>第二步就是直接将最大的环从A移向C。</p>
+<p>第三步是把剩余其他的环从B上移动到C的上面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">void hhh(int n,char A,char B,char C)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==1)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;A&lt;&lt;<span class="string">"---"</span>&lt;&lt;C&lt;&lt;endl;</span><br><span class="line">		<span class="built_in">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	hhh(n-1,A,C,B);//第一步</span><br><span class="line">	cout&lt;&lt;A&lt;&lt;<span class="string">"---"</span>&lt;&lt;C&lt;&lt;endl;//第二步</span><br><span class="line">	hhh(n-1,B,A,C);//第三步</span><br><span class="line">	<span class="built_in">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n;</span><br><span class="line">	<span class="keyword">while</span>(cin&gt;&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		hhh(n,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>);	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1185-【明明的随机数】"><a href="#1185-【明明的随机数】" class="headerlink" title="1185: 【明明的随机数】"></a>1185: 【明明的随机数】</h2><p>描述<br>题目描述：<br>明明想在学校中请一些同学一起做一项问卷调查，为了实验的客观性，他先用 计算机生成了N个1到1000之间的随机整数（N≤100），对于其中重复的数字，只保留一个，把其余相同的数去掉，不同的数对应着不同的学生的学号。然 后再把这些数从小到大排序，按照排好的顺序去找同学做调查。请你协助明明完成“去重”与“排序”的工作。</p>
+<p>输入：<br>有2行，第1行为1个正整数，表示所生成的随机数的个数：<br>N<br>第2行有N个用空格隔开的正整数，为所产生的随机数。</p>
+<p>输出：<br>也是2行，第1行为1个正整数M，表示不相同的随机数的个数。第2行为M个用空格隔开的正整数，为从小到大排好序的不相同的随机数。</p>
+<h4 id="样例输入-3"><a href="#样例输入-3" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">10</span><br><span class="line">20 40 32 67 40 20 89 300 400 15</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-3"><a href="#样例输出-3" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">8</span><br><span class="line">15 20 32 40 67 89 300 400</span><br></pre></td></tr></table></figure>
+<p>题目分2个步骤完成。<br>第一步：排序。<br>第二步：去重。</p>
+<p>1.排序如果用sort完成，去掉重复的元素，可以考虑在输出的时候先输出第一个数组的元素。然后后面循环输出的时候写循环条件和前一个不相同的可以输出。<br>2.如果用数组进行的是桶排序，对每个元素都进行标记，把那些标记过的元素输出就可以去重了。<br>可能大家没听过桶排，直接用核心代码解释吧，其实你们可能还用过，只是名称不懂而已。<br>非常注意的是这个题目的格式，要知道最后一个数字后面是没有空格的。</p>
+<h3 id="桶排代码"><a href="#桶排代码" class="headerlink" title="桶排代码"></a>桶排代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int i=1;i&lt;=1000;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]=0;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span>(int i=1;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">    	cin&gt;&gt;x;</span><br><span class="line">    	a[x]=1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(int j=1;j&lt;=1000;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]==1)</span><br><span class="line">		&#123;</span><br><span class="line">			m++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;m&lt;&lt;endl;</span><br><span class="line">	int c=0;</span><br><span class="line">	<span class="keyword">for</span>(int j=1;j&lt;=1000;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[j]==1)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;j;</span><br><span class="line">			c++;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(c!=m)</span><br><span class="line">		&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="非水题"><a href="#非水题" class="headerlink" title="非水题"></a>非水题</h1><h2 id="1410-屌丝的逆袭"><a href="#1410-屌丝的逆袭" class="headerlink" title="1410: 屌丝的逆袭"></a>1410: 屌丝的逆袭</h2><p>描述<br>题目描述：<br>毕业于普通本科的小Q一直自称是资深屌丝，不仅学校不知名，甚至他自己在这个普通学校也是默默无闻——直到临近毕业的时候，班里5朵金花中的2位甚至从没和他说过话！<br>　　谁又能想到，如此不起眼的小Q在历经重重面试环节后，竟然如愿以偿加入了心仪已久的腾讯公司！消息刚刚传开的那几天，这在他们班甚至整个学院都是讨论的热门话题，如果这时候你还表示不知道小Q是谁，你都会被大家当作怪物的。<br>　　正所谓野百合也有春天，屌丝也有逆袭的那一天！<br>　　<br>　　刚到腾讯大厦上班的那几天，小Q眼中的一切都是那么新鲜，连每天见到的前台MM在他眼中都胖的那么可爱。小Q就这样在紧张与兴奋的情绪中度过了一天又一天，每天即勤奋认真又小心翼翼，很希望能给主管留下个好印象，以免失去这来之不易的工作机会。<br>　　一段时间以后，随着对工作环境以及同事的熟悉，小Q逐渐放松下来，在工作间隙，他细细观察了自己的工作环境，发现整个工作室是一个N行M列的矩形布局，或者是因为屌丝的本性逐步暴露，他还暗自给每个同事在心里进行了魅力值评分（为区别男女，男生一律用负整数表示，女生一律用正整数表示）。<br>　　现在，小Q把所有人的数据记录下来，并且这样定义一个位置的价值：<br>　　1、一个位置的价值只和其上下左右四个邻居的魅力值有关（对于靠边的位置，只考虑其存在的邻居）；<br>　　2、如果某位置的邻居和该位置主人性别不同，则总分加上邻居魅力值的绝对值，否则减去；<br>　　3、对周围所有邻居的数据处理后，最终的得分即为这个位置的最终得分，得分越高，则该位置越好；</p>
+<p>　　现在你能帮助小Q计算一下哪里才是最佳位置吗？</p>
+<p>输入：<br>输入包含多组测试数据；<br>每组测试数据的第一行包含2个整数N和M，表示工作室的布局是N行M列；<br>接下来的N行，每行有M个整数，分别表示对应位置员工的魅力值数据Ki，正整数表示女生的魅力值，负整数表示男生的魅力值；<br>N和M为0的时候表示输入数据结束。</p>
+<p>[数据范围]<br>N&lt;=20<br>M&lt;=20<br>-100&lt;=Ki&lt;=100</p>
+<p>输出：<br>请计算并输出最佳位置的行列号以及对应的得分，如果得分最高的位置有多个，则请输出行号最小的那个，行号还相同的话，再比较列号，只输出列号最小的那个即可。</p>
+<h4 id="样例输入-4"><a href="#样例输入-4" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2 3</span><br><span class="line">5 -4 3</span><br><span class="line">-6 3 7</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-4"><a href="#样例输出-4" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 2 11</span><br></pre></td></tr></table></figure>
+<h3 id="题目分析-amp-amp-代码实现。"><a href="#题目分析-amp-amp-代码实现。" class="headerlink" title="题目分析&amp;&amp;代码实现。"></a>题目分析&amp;&amp;代码实现。</h3><p>这个题目其实很简单，类似于搜索里面的dfs，但是比搜索要简单，因为不用标记，只需要记录每个点所谓的魅力值就可以了。emmm代码实现里面讲解的比较清晰。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;  </span></span><br><span class="line"><span class="comment">#include&lt;cmath&gt;  </span></span><br><span class="line">using namespace std;</span><br><span class="line">int emm[4][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;</span><br><span class="line">//用一个二维数组，来规定搜索的方向，当然这里用2个一维数组也可以。搜索周围的4个点就可以了，不用太严格于从哪个方向开始搜索。</span><br><span class="line">int m,n,map[25][25];  </span><br><span class="line">int fen(int a,int b)  </span><br><span class="line">&#123;  </span><br><span class="line">    int ans=0,i;  </span><br><span class="line">    <span class="keyword">for</span>(i=0;i&lt;4;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int tx=a+emm[i][0];  </span><br><span class="line">        int ty=b+emm[i][1];//相当于找这个点的上下左右的各个人的魅力值。  </span><br><span class="line">        <span class="keyword">if</span>(tx&lt;1||ty&lt;1||tx&gt;n||ty&gt;m)  </span><br><span class="line">            <span class="built_in">continue</span>;//判断查找的点是否越界，如果越界进行下一次循环，进入下一次查找。  </span><br><span class="line">        <span class="keyword">if</span>(map[a][b]*map[tx][ty]&lt;0)  </span><br><span class="line">            ans+=abs(map[tx][ty]); //2个人魅力值是负的就绝对值相加。 </span><br><span class="line">        <span class="keyword">else</span>  </span><br><span class="line">            ans-=abs(map[tx][ty]); //是正的就相减。 </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="built_in">return</span> ans;  </span><br><span class="line">&#125;  </span><br><span class="line">int main()  </span><br><span class="line">&#123;  </span><br><span class="line">    int i,j,max,x,y,score[25][25];  </span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;n&gt;&gt;m,n,m)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">for</span>(i=1;i&lt;=n;i++)  </span><br><span class="line">        &#123;</span><br><span class="line">			 <span class="keyword">for</span>(j=1;j&lt;=m;j++) </span><br><span class="line">		     &#123;</span><br><span class="line">                cin&gt;&gt;map[i][j]; </span><br><span class="line">			                &#125;</span><br><span class="line">				            &#125; </span><br><span class="line">        max=-9999999;  </span><br><span class="line">        <span class="keyword">for</span>(i=1;i&lt;=n;i++)  </span><br><span class="line">            <span class="keyword">for</span>(j=1;j&lt;=m;j++)  </span><br><span class="line">            &#123;  </span><br><span class="line">                score[i][j]=fen(i,j); //从最开始的那个点开始进行搜索。 </span><br><span class="line">                <span class="keyword">if</span>(score[i][j]&gt;max)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    max=score[i][j]; //用max来记录。 </span><br><span class="line">                    x=i,y=j;  </span><br><span class="line">                &#125; </span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span>(score[i][j]==max)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">continue</span>;//如果后面找到的值与之相等，不管，直接跳过。</span><br><span class="line">				 &#125; </span><br><span class="line">            &#125; </span><br><span class="line">			cout&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;y&lt;&lt;<span class="string">" "</span>&lt;&lt;max&lt;&lt;endl;   </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="built_in">return</span> 0;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这题也就那样吧。逃）。</p>
+<h2 id="1018-A-B-again"><a href="#1018-A-B-again" class="headerlink" title="1018: A+B again"></a>1018: A+B again</h2><p>描述<br>题目描述：<br>谷学长有一个非常简单的问题给你，给你两个整数A和B，你的任务是计算A+B。</p>
+<p>输入：<br>输入的第一行包含一个整数T(T&lt;=20)表示测试实例的个数，然后2*T行，分别表示A和B两个正整数。注意整数非常大，那意味着你不能用32位整数来处理。你可以确定的是整数的长度不超过1000。</p>
+<p>输出：<br>对于每一个样例，你应该输出两行，第一行是”Case #:”,#表示第几个样例，第二行是一个等式”A+B=Sum”,Sum表示A+B的结果。注意等式中有空格。</p>
+<h4 id="样例输入-5"><a href="#样例输入-5" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">112233445566778899</span><br><span class="line">998877665544332211</span><br></pre></td></tr></table></figure>
+<p>样例输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Case 1:</span><br><span class="line">1 + 2 = 3</span><br><span class="line">Case 2:</span><br><span class="line">112233445566778899 + 998877665544332211 = 1111111111111111110</span><br></pre></td></tr></table></figure></p>
+<h3 id="高精度模版-amp-amp-题目分析。"><a href="#高精度模版-amp-amp-题目分析。" class="headerlink" title="高精度模版&amp;&amp;题目分析。"></a>高精度模版&amp;&amp;题目分析。</h3><p>注意事项：高精度加法计算，注意每个加法位置要对整齐。然后同时要注意题目条件把数组开大一点。当然0+0的值也是要有结果的。<br>这个题目当然要用字符来储存数据，毕竟int，longlong，unsigned longlong太小了。然后转换成每个位置的计算。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;string&gt;</span></span><br><span class="line"><span class="comment">#include&lt;cstring&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int a[1500],b[1500],c[1501],lena,lenb,lenc,i,j,x,k;</span><br><span class="line">void add(char *a1,char *b1)</span><br><span class="line">&#123;</span><br><span class="line">    char temp[10000];</span><br><span class="line">    memset(a,0,sizeof(a));</span><br><span class="line">    memset(b,0,sizeof(b));</span><br><span class="line">    memset(c,0,sizeof(c));</span><br><span class="line">    lena=strlen(a1);</span><br><span class="line">    lenb=strlen(b1);</span><br><span class="line">    <span class="keyword">for</span>(i=0;i&lt;lena;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        a[lena-i]=a1[i]-48;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=0;i&lt;lenb;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        b[lenb-i]=b1[i]-48;</span><br><span class="line">    &#125;</span><br><span class="line">    lenc=1;</span><br><span class="line">    x=0;</span><br><span class="line">    <span class="keyword">while</span>(lenc&lt;=lena||lenc&lt;=lenb)//这里进行各个位置上的计算。</span><br><span class="line">    &#123;</span><br><span class="line">        c[lenc]=a[lenc]+b[lenc]+x;</span><br><span class="line">        x=c[lenc]/10;</span><br><span class="line">        c[lenc]%=10;</span><br><span class="line">        lenc++;</span><br><span class="line">    &#125;</span><br><span class="line">    c[lenc]=x;</span><br><span class="line">    <span class="keyword">if</span>(c[lenc]==0)</span><br><span class="line">    &#123;</span><br><span class="line">        lenc--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=lenc;i&gt;=1;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">          char a1[1500],b1[1500];</span><br><span class="line">          int n;cin&gt;&gt;n;</span><br><span class="line">          <span class="keyword">for</span>(int z=1;z&lt;=n;z++)</span><br><span class="line">          &#123;</span><br><span class="line">          cin&gt;&gt;a1&gt;&gt;b1;</span><br><span class="line">          cout&lt;&lt;<span class="string">"Case "</span>&lt;&lt;z&lt;&lt;<span class="string">":"</span>&lt;&lt;endl;</span><br><span class="line">          cout&lt;&lt;a1&lt;&lt;<span class="string">" + "</span>&lt;&lt;b1&lt;&lt;<span class="string">" = "</span>;</span><br><span class="line">          add(a1,b1);</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="1321-苹果的密码"><a href="#1321-苹果的密码" class="headerlink" title="1321: 苹果的密码"></a>1321: 苹果的密码</h2><p>描述<br>题目描述：<br>yyf得到了苹果，十分高兴，又怕苹果被偷吃，就果断的给装了一个安全系统，并且要给每一个苹果设立了一个有效的密码，一个有效的密码由L（3&lt;=L&lt;=15）(来自传统的拉丁字母集’a’…’z’)组成，至少有一个元音(‘a’, ‘e’, ‘i’, ‘o’, 或者’u’)，至少两个辅音(除去元音以外的音节)，并且有按字母表顺序出现的字母(例如，’abc’是有效的，而’bac’不是) .给定一个期望长度L和C个小写字母，写一个程序，打印出所有的长度为L、能由这些字母组成的有效密码。密码必须按字母表顺序打印出来，一行一个。</p>
+<p>输入：<br>第一行:两个由空格分开的整数，L和C<br>第二行: C个小写字母，密码是由这个字母集中的字母来构建的。</p>
+<p>输出：<br> 每一个输出行包括一个长度为L个字符的密码（每个 之后一个空格）。输出行必须按照字母顺序排列。</p>
+<h4 id="样例输入-6"><a href="#样例输入-6" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4 6</span><br><span class="line">atcisw</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-5"><a href="#样例输出-5" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">acis </span><br><span class="line">acit </span><br><span class="line">aciw </span><br><span class="line">acst </span><br><span class="line">acsw </span><br><span class="line">actw </span><br><span class="line">aist </span><br><span class="line">aisw </span><br><span class="line">aitw </span><br><span class="line">astw </span><br><span class="line">cist </span><br><span class="line">cisw </span><br><span class="line">citw </span><br><span class="line">istw</span><br></pre></td></tr></table></figure>
+<p>说实话，这个题目我a的比较血腥，300多行代码直接把L从3-15的所有情况讨论了一波（<br>毕竟这个题目数据比较弱）。然而仔细研究一波，发现这就是个简单的深度搜索题目。。。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>题目分析写在代码注释上面希望大家不要介意，写的很详细了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;cstdio&gt;</span></span><br><span class="line">int l,c;</span><br><span class="line">bool b[26];//标记数组</span><br><span class="line">char m[15];//密码</span><br><span class="line">void dfs(int n,int j)</span><br><span class="line">&#123;</span><br><span class="line">    int i,sum;</span><br><span class="line">    int K[26]=&#123;0&#125;;</span><br><span class="line">    <span class="keyword">if</span>(n==l)//密码是否达到题目要求长度</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(i=0;i&lt;l;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            K[m[i]]++;//统计密码里面每个出现的小写字母的个数</span><br><span class="line">        &#125;</span><br><span class="line">        sum=K[0]+K[4]+K[8]+K[14]+K[20];//统计小写元音字母个数</span><br><span class="line">        <span class="keyword">if</span>(sum&gt;=1&amp;&amp;l-sum&gt;=2)//判断条件  元音字母个数大于等于1 且 辅音字母大于等于2</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(i=0;i&lt;l;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%c"</span>,m[i]+<span class="string">'a'</span>);//输出字母使加97</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="built_in">printf</span>(<span class="string">" \n"</span>);//每次输出一个有效密码，根据题意应该还要输出一个空格！并且换行。</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=j;i&lt;26;i++)//保证字母顺序</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b[i]!=0)</span><br><span class="line">        &#123;</span><br><span class="line">            m[n]=i;</span><br><span class="line">            b[i]=<span class="literal">false</span>;</span><br><span class="line">            dfs(n+1,i);</span><br><span class="line">            b[i]=<span class="literal">true</span>;//搜完后还原标记，以便后面的字母使用现在这个字母</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char a;</span><br><span class="line">    scanf(<span class="string">"%d%d"</span>,&amp;l,&amp;c);//输入两个数字</span><br><span class="line">    getchar();//此处注意换行符<span class="string">'\n'</span>也是一个字符，会影响到下面输入的字母，因此用getchar()消化掉</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;c;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        scanf(<span class="string">"%c"</span>,&amp;a);</span><br><span class="line">        b[a-<span class="string">'a'</span>]=<span class="literal">true</span>;//标记出现过的字母，也可以写成b[a-97]=1;ASCLL上的小写字母是从97开始的,为了使b[0]对应a，此处应该减去一个<span class="string">'a'</span>的值97；</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(0,0);//从零开始，保证密码字母顺序</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1415-F4ck-Me"><a href="#1415-F4ck-Me" class="headerlink" title="1415: F4ck Me"></a>1415: F4ck Me</h2><p>描述<br>题目描述：<br>好无聊啊~</p>
+<p>谁来 AC 我啊~</p>
+<p>输入：<br>每行输入一个句子，你只需要统计每个小写字母出现的次数，每个字符串至多长100000 . 输入结束为文件结尾（EOF）</p>
+<p>注意，直接使用cin可能会超时哦！</p>
+<p>输出：<br>对于每行数据，输出每个字母出现次数，格式为： X:N</p>
+<p>每组数据后输出一个空行。</p>
+<h4 id="样例输入-7"><a href="#样例输入-7" class="headerlink" title="样例输入"></a>样例输入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello, this is my first acm contest!</span><br><span class="line">work hard <span class="keyword">for</span> neuq acm.</span><br></pre></td></tr></table></figure>
+<h4 id="样例输出-6"><a href="#样例输出-6" class="headerlink" title="样例输出"></a>样例输出</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">a:1</span><br><span class="line">b:0</span><br><span class="line">c:2</span><br><span class="line">d:0</span><br><span class="line">e:2</span><br><span class="line">f:1</span><br><span class="line">g:0</span><br><span class="line">h:2</span><br><span class="line">i:3</span><br><span class="line">j:0</span><br><span class="line">k:0</span><br><span class="line">l:2</span><br><span class="line">m:2</span><br><span class="line">n:1</span><br><span class="line">o:2</span><br><span class="line">p:0</span><br><span class="line">q:0</span><br><span class="line">r:1</span><br><span class="line">s:4</span><br><span class="line">t:4</span><br><span class="line">u:0</span><br><span class="line">v:0</span><br><span class="line">w:0</span><br><span class="line">x:0</span><br><span class="line">y:1</span><br><span class="line">z:0</span><br><span class="line"></span><br><span class="line">a:2</span><br><span class="line">b:0</span><br><span class="line">c:1</span><br><span class="line">d:1</span><br><span class="line">e:1</span><br><span class="line">f:1</span><br><span class="line">g:0</span><br><span class="line">h:1</span><br><span class="line">i:0</span><br><span class="line">j:0</span><br><span class="line">k:1</span><br><span class="line">l:0</span><br><span class="line">m:1</span><br><span class="line">n:1</span><br><span class="line">o:2</span><br><span class="line">p:0</span><br><span class="line">q:1</span><br><span class="line">r:3</span><br><span class="line">s:0</span><br><span class="line">t:0</span><br><span class="line">u:1</span><br><span class="line">v:0</span><br><span class="line">w:1</span><br><span class="line">x:0</span><br><span class="line">y:0</span><br><span class="line">z:0</span><br></pre></td></tr></table></figure>
+<h4 id="一个额外的知识点"><a href="#一个额外的知识点" class="headerlink" title="一个额外的知识点"></a>一个额外的知识点</h4><p>这个题目题目提示我们组并没有用，但还是给大家介绍一波。<br>在C++里面cin和cout是速度在计算那些大数据的时候比较容易卡时间然后tle的，而C语言的scanf和printf则不会出现这种情况，那这种情况怎么办呢？<br>不用担心，这里介绍2个猛男函数，可以使cin和cout的速度加快。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ios::syne_with_stdio(<span class="literal">false</span>);</span><br><span class="line">//放在cin后面，关闭和stdio同步，使速度和scanf一样快</span><br><span class="line">cin.tie（0）；</span><br><span class="line">//放在cout后面，输出速度一样加快。</span><br></pre></td></tr></table></figure></p>
+<h3 id="回归题目。"><a href="#回归题目。" class="headerlink" title="回归题目。"></a>回归题目。</h3><p>题目就比较简单了，单纯的统计小写字母而已，利用ascll值进行循环统计即可。输入字符用gets函数就可以了<br>代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;cstdio&gt;</span></span><br><span class="line"><span class="comment">#include&lt;cstring&gt;</span></span><br><span class="line">int main()</span><br><span class="line">    &#123;</span><br><span class="line">        char s[100000];</span><br><span class="line">        <span class="keyword">while</span>(gets(s)!=NULL)//读入一串字符，注意此处不能用scanf(<span class="string">"%s"</span>,s)因为sanf遇到空格停止输入，应该注意</span><br><span class="line">        &#123;</span><br><span class="line">            int num[26]=&#123;0&#125;;</span><br><span class="line">            <span class="keyword">for</span>(int i=0;i&lt;strlen(s);i++)</span><br><span class="line">            &#123; </span><br><span class="line">              //统计字母个数</span><br><span class="line">                <span class="keyword">for</span>(int j=0;j&lt;26;j++)</span><br><span class="line">                &#123;  </span><br><span class="line">                 </span><br><span class="line">                    <span class="keyword">if</span>(s[i] ==(j+97))</span><br><span class="line">                    &#123;</span><br><span class="line">                    num[j] ++;</span><br><span class="line">                    <span class="built_in">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(int i=0;i&lt;26;i++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%c:%d\n"</span>,i+97,num[i]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好了，到这里题解已经结束了，讲的并不是很详细。但无奈时间和精力都不是很充足，如果还有疑问建议在OJ群里面进行交流即可。<br>非常感谢观看。明天还要考CAD实际操作。逃）<br>By Acmclub   吴东</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"> <i class="fa fa-tag"></i> C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/06/Ubutun-anzhuang/" rel="next" title="利用vitural box创建一个虚拟机">
+                <i class="fa fa-chevron-left"></i> 利用vitural box创建一个虚拟机
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/17/ACM/" rel="prev" title="贪心算法">
+                贪心算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#希望能帮助那些卡题目的朋友们"><span class="nav-number">1.</span> <span class="nav-text">希望能帮助那些卡题目的朋友们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申明"><span class="nav-number">2.</span> <span class="nav-text">申明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。"><span class="nav-number">3.</span> <span class="nav-text">分了2个板块，一个是小组讨论觉得比较水的题目，还有一个就是有点难度的题目。</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#水题"><span class="nav-number"></span> <span class="nav-text">水题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1012-SZ斐波拉契数列"><span class="nav-number">1.</span> <span class="nav-text">1012: SZ斐波拉契数列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心代码-递推"><span class="nav-number">1.1.</span> <span class="nav-text">核心代码(递推)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1318-兔子问题"><span class="nav-number">2.</span> <span class="nav-text">1318: 兔子问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入"><span class="nav-number">2.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出"><span class="nav-number">2.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心代码（递推）"><span class="nav-number">2.1.</span> <span class="nav-text">核心代码（递推）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1319-角谷定理"><span class="nav-number">3.</span> <span class="nav-text">1319: 角谷定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题（hu）目（luan）分析"><span class="nav-number">3.1.</span> <span class="nav-text">题（hu）目（luan）分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1156-求具有abcd-ab-cd-2性质的四位数"><span class="nav-number">3.2.</span> <span class="nav-text">1156: 求具有abcd=(ab+cd)2性质的四位数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码讲解-amp-amp-题目分析"><span class="nav-number">3.3.</span> <span class="nav-text">代码讲解&amp;&amp;题目分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1509-汉诺塔"><span class="nav-number">4.</span> <span class="nav-text">1509: 汉诺塔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-2"><span class="nav-number">4.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-2"><span class="nav-number">4.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题解and代码。"><span class="nav-number">4.1.</span> <span class="nav-text">题解and代码。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1185-【明明的随机数】"><span class="nav-number">5.</span> <span class="nav-text">1185: 【明明的随机数】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-3"><span class="nav-number">5.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-3"><span class="nav-number">5.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桶排代码"><span class="nav-number">5.1.</span> <span class="nav-text">桶排代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非水题"><span class="nav-number"></span> <span class="nav-text">非水题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1410-屌丝的逆袭"><span class="nav-number">1.</span> <span class="nav-text">1410: 屌丝的逆袭</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-4"><span class="nav-number">1.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-4"><span class="nav-number">1.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目分析-amp-amp-代码实现。"><span class="nav-number">1.1.</span> <span class="nav-text">题目分析&amp;&amp;代码实现。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1018-A-B-again"><span class="nav-number">2.</span> <span class="nav-text">1018: A+B again</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-5"><span class="nav-number">2.0.1.</span> <span class="nav-text">样例输入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高精度模版-amp-amp-题目分析。"><span class="nav-number">2.1.</span> <span class="nav-text">高精度模版&amp;&amp;题目分析。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1321-苹果的密码"><span class="nav-number">3.</span> <span class="nav-text">1321: 苹果的密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-6"><span class="nav-number">3.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-5"><span class="nav-number">3.0.2.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目分析"><span class="nav-number">3.1.</span> <span class="nav-text">题目分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1415-F4ck-Me"><span class="nav-number">4.</span> <span class="nav-text">1415: F4ck Me</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-7"><span class="nav-number">4.0.1.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-6"><span class="nav-number">4.0.2.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个额外的知识点"><span class="nav-number">4.0.3.</span> <span class="nav-text">一个额外的知识点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回归题目。"><span class="nav-number">4.1.</span> <span class="nav-text">回归题目。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

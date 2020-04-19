@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="向数据库中导入爬去到的数据在上面所有的数据的schema模型都已经建立完成之后，接下面我们需要将之前爬去到的数据导入我们的数据里面去。 在首先在启动文件里面调用一下爬虫脚本来抓取一波数据. 12345678910// somde codes...(async () =&amp;gt; &amp;#123;   await connect();   initSchemas();   // 把爬虫程序 require">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa学习-建立数据库模型-4(下)">
+<meta property="og:url" content="http://zoomdong.site/2019/07/31/koa-4-2/index.html">
+<meta property="og:site_name" content="zoomdong&#39;s blog">
+<meta property="og:description" content="向数据库中导入爬去到的数据在上面所有的数据的schema模型都已经建立完成之后，接下面我们需要将之前爬去到的数据导入我们的数据里面去。 在首先在启动文件里面调用一下爬虫脚本来抓取一波数据. 12345678910// somde codes...(async () =&amp;gt; &amp;#123;   await connect();   initSchemas();   // 把爬虫程序 require">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-30T23:31:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="koa学习-建立数据库模型-4(下)">
+<meta name="twitter:description" content="向数据库中导入爬去到的数据在上面所有的数据的schema模型都已经建立完成之后，接下面我们需要将之前爬去到的数据导入我们的数据里面去。 在首先在启动文件里面调用一下爬虫脚本来抓取一波数据. 12345678910// somde codes...(async () =&amp;gt; &amp;#123;   await connect();   initSchemas();   // 把爬虫程序 require">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zoomdong.site/2019/07/31/koa-4-2/">
+
+
+
+
+
+  <title>koa学习-建立数据库模型-4(下) | zoomdong's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e6da9e1adae39521c69fe9a24285f3b4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zoomdong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A story about myself</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/31/koa-4-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">koa学习-建立数据库模型-4(下)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T07:26:39+08:00">
+                2019-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,420
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="向数据库中导入爬去到的数据"><a href="#向数据库中导入爬去到的数据" class="headerlink" title="向数据库中导入爬去到的数据"></a>向数据库中导入爬去到的数据</h2><p>在上面所有的数据的schema模型都已经建立完成之后，接下面我们需要将之前爬去到的数据导入我们的数据里面去。</p>
+<p>在首先在启动文件里面调用一下爬虫脚本来抓取一波数据.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// somde codes...</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">   <span class="keyword">await</span> connect();</span><br><span class="line">   initSchemas();</span><br><span class="line">   <span class="comment">// 把爬虫程序 require 进来，它就会自动去启动子进程去爬取数据    </span></span><br><span class="line">   <span class="built_in">require</span>(<span class="string">'./tasks/movie'</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// some codes...</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>然后我们去爬虫的程序里面修改一下，将爬去下来的数据保存到 mongoDB 数据库里面去.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span>()=&gt;&#123;</span><br><span class="line">    <span class="keyword">const</span> script = resolve(__dirname,<span class="string">'../crawler/trailer-list.js'</span>);</span><br><span class="line">    <span class="keyword">const</span> child = cp.fork(script,[]);</span><br><span class="line">    <span class="keyword">let</span> invoked = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    child.on(<span class="string">'error'</span>,err=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(invoked)&#123;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            invoked = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line">    child.on(<span class="string">'exit'</span>,code =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(invoked)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            invoked = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> err = code === <span class="number">0</span> ? <span class="literal">null</span> : <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'exit code '</span> + code);</span><br><span class="line">    &#125;)</span><br><span class="line">    child.on(<span class="string">'message'</span>,data =&gt; &#123;</span><br><span class="line">        <span class="comment">// result 为爬取下来的数据</span></span><br><span class="line">        <span class="keyword">let</span> result = data.result;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'result: '</span>, result);</span><br><span class="line">        <span class="comment">//  遍历爬取的数据，然后判断一下数据库里面有没有这组数据</span></span><br><span class="line">        result.forEach(<span class="keyword">async</span> item =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;</span><br><span class="line">                doubanId: item.doubanId</span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">if</span>(!movie)&#123;</span><br><span class="line">                movie = <span class="keyword">new</span> Movie(item);</span><br><span class="line">                <span class="comment">// 如果这条数据数据库里面没有，就把它存在数据</span></span><br><span class="line">                <span class="keyword">await</span> movie.save();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>执行完成之后，去数据库里面看一波，打开终端<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo service mongod start</span><br><span class="line">&gt; mongo </span><br><span class="line">&gt; show dbs</span><br><span class="line">&gt; use douban-test</span><br><span class="line">&gt; show tables</span><br><span class="line">&gt; db.movies.find(&#123;&#125;)</span><br><span class="line">&lt;!-- 如果要删除里面的数据，可以使用 --&gt;</span><br><span class="line">&gt; db.movies.remove(&#123;&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>看到里面有爬取的数据的话，就证明已经存取成功了(如果没有成功可以检查一下Schema设定的字段和爬取下面的数据的字段是否相同)。</p>
+<p>数据存储好之后，我们可以利用爬取下来的数据的doubanId去和之前的豆瓣API去匹配以得到更多的信息。</p>
+<p>那我们可以去 server/tasks目录下的 <code>api.js</code> 里面修改一波代码，之前我们这里使用的是写死的数据，现在我们使用从数据库里面拿到的数据来进行操作.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rp = <span class="built_in">require</span>(<span class="string">'request-promise-native'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Movie  = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line"><span class="keyword">const</span> Category = mongoose.model(<span class="string">'Category'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fetchMovie</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">`http://api.douban.com/v2/movie/subject/<span class="subst">$&#123;item.doubanId&#125;</span>?apikey=0df993c66c0c636e29ecbb5344252a4a`</span>;</span><br><span class="line">    <span class="comment">// 使用 rp 这个库去对url进行请求</span></span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> rp(url);</span><br><span class="line">    <span class="comment">//  res 是 请求回来的数据，但是这就是个字符串，我们要对他进行一个 JSON.parse()的处理</span></span><br><span class="line">    <span class="keyword">let</span> body ;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        body = <span class="built_in">JSON</span>.pase(res);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> body;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="keyword">async</span> ()=&gt; &#123;</span><br><span class="line">    <span class="comment">// 在爬取到的数据里面查询数据，满足一下几种条件的数据被拿出来</span></span><br><span class="line">    <span class="keyword">let</span> movies = <span class="keyword">await</span> Movie.find(&#123;</span><br><span class="line">        $or: [</span><br><span class="line">            <span class="comment">// 满足随便下面的哪个条件</span></span><br><span class="line">            &#123; <span class="attr">summary</span>: &#123; <span class="attr">$exists</span>: <span class="literal">false</span> &#125; &#125;,</span><br><span class="line">            &#123; <span class="attr">summary</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">title</span>: <span class="string">''</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">summary</span>: <span class="string">''</span> &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt; [movies[<span class="number">0</span>]].length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> movie = movies[i];</span><br><span class="line">        <span class="comment">// 对数据库里面的数据去进行一个请求</span></span><br><span class="line">        <span class="keyword">let</span> movieData = <span class="keyword">await</span> fetchMovie(movie);</span><br><span class="line">        <span class="keyword">if</span>(movieData)&#123;</span><br><span class="line">            <span class="keyword">let</span> tags = movieData.tags || [];</span><br><span class="line">            movie.tags = tags;</span><br><span class="line">            movie.summary = movieData.summary || <span class="string">''</span>;</span><br><span class="line">            movie.title = movieData.alt_title || movieData.title || <span class="string">''</span>;</span><br><span class="line">            movie.rawTitle = movieData.title || <span class="string">''</span>;</span><br><span class="line">            movie.movieTypes = movieData.genres || [];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;movie.movieTypes.length;i++)&#123;</span><br><span class="line">                <span class="keyword">let</span> item = movie.movieTypes[i];</span><br><span class="line">                <span class="comment">//  在数据库里面查找一下有没有保存过这条数据</span></span><br><span class="line">                <span class="keyword">let</span> cat = <span class="keyword">await</span> Category.findOne(&#123;</span><br><span class="line">                    name: item</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="keyword">if</span>(!cat) &#123;</span><br><span class="line">                    <span class="comment">// 如果没有没存储过，往里面添加一下</span></span><br><span class="line">                    cat = <span class="keyword">new</span> Category(&#123;</span><br><span class="line">                        name: item,</span><br><span class="line">                        movies: [movie._id]</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 如果里面存储过我们判断一下里面有没有保存过电影的id</span></span><br><span class="line">                    <span class="keyword">if</span>(cat.movies.indexOf(movie._id === <span class="number">-1</span>)) &#123;</span><br><span class="line">                        cat.movies.push(cat._id);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//  将 cat 存进数据库</span></span><br><span class="line">                <span class="keyword">await</span> cat.save();</span><br><span class="line">                <span class="keyword">if</span>(!movie.category)&#123;</span><br><span class="line">                    movie.category.push(cat._id);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span>(movie.category.indexOf(cat._id) === <span class="number">-1</span>) &#123;</span><br><span class="line">                        movie.category.push(cat._id);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;  </span><br><span class="line">             <span class="keyword">let</span> date = movieData.pubdates[<span class="number">0</span>].split(<span class="string">'('</span>)[<span class="number">0</span>] || <span class="string">''</span>;</span><br><span class="line">             <span class="keyword">let</span> country = movieData.countries || <span class="string">'未知'</span>;</span><br><span class="line">             <span class="keyword">let</span> pubdates = [];</span><br><span class="line">             pubdates.push(&#123;</span><br><span class="line">                 date: <span class="keyword">new</span> <span class="built_in">Date</span>(date),</span><br><span class="line">                 country</span><br><span class="line">             &#125;)</span><br><span class="line">             movie.pubdate = pubdates;</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;movieData.tags.length;i++)&#123;</span><br><span class="line">                 movie.tags.push(movieData.tags[i]);</span><br><span class="line">             &#125;</span><br><span class="line">            <span class="comment">//  movieData.tags.forEach(function(tag)&#123;</span></span><br><span class="line">            <span class="comment">//    movie.tags.push(tag.name);</span></span><br><span class="line">            <span class="comment">//  &#125;)</span></span><br><span class="line">            <span class="keyword">await</span> movie.save();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>这段主要是在数据库里面查找没有video值的数据，然后将这写数据发送给<code>video.js</code>，让<code>video.js</code> 根据查询到的doubanId去对数据进行爬取。</p>
+<p>写完之后，再次回到index.js那边去启动一些这个脚本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> connect();</span><br><span class="line">  initSchemas();</span><br><span class="line"><span class="comment">//   const Movie = mongoose.model('Movie');</span></span><br><span class="line"><span class="comment">//   const movies = await Movie.find(&#123;&#125;);</span></span><br><span class="line"><span class="comment">//   console.log('movies: ', movies);</span></span><br><span class="line">   <span class="comment">// 把它 require 进来，他就会启动子进程去爬取数据，然后把爬取到的数据存在数据库里面  </span></span><br><span class="line"><span class="comment">//    require('./tasks/movie');</span></span><br><span class="line">   <span class="built_in">require</span>(<span class="string">'./tasks/api'</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>然后运行启动脚本 <code>nodemon server/index.js</code></p>
+<p>一般情况下数据是能够存进去数据库里面的。</p>
+<h2 id="将海报图和视频资源存储到数据库"><a href="#将海报图和视频资源存储到数据库" class="headerlink" title="将海报图和视频资源存储到数据库"></a>将海报图和视频资源存储到数据库</h2><p>我们之前利用的是在tasks目录下面的 <code>trailer.js</code> 去启动一个子进程去对数据进行(预告片)爬取，然后之前里面的数据是写死的，我们这里可以利用数据库里面的数据去进行一个操作:</p>
+<p>在<code>trailer.js</code>里面引入数据库:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  首先调用一个子进程,子进程和事件循环这个机制是有很大区别的.</span></span><br><span class="line"><span class="keyword">const</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line"><span class="keyword">const</span> Category = mongoose.model(<span class="string">'Category'</span>);</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> movies = <span class="keyword">await</span> Movie.find(&#123;</span><br><span class="line">        $or: [</span><br><span class="line">            <span class="comment">// 满足 video 这个字段没有 或者 video 这个字段的值是空</span></span><br><span class="line">          &#123; <span class="attr">video</span>: &#123; <span class="attr">$exists</span>: <span class="literal">false</span> &#125; &#125;, </span><br><span class="line">          &#123; <span class="attr">video</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> script = resolve(__dirname, <span class="string">'../crawler/video.js'</span>)</span><br><span class="line">    <span class="comment">// 调用子进程上面的 fork 方法 ,它可以派生出一个子进程对象   </span></span><br><span class="line">    <span class="keyword">const</span> child = cp.fork(script, []);</span><br><span class="line">    <span class="comment">// 设置一个invoked变量来标识爬虫脚本是否有被运行过    </span></span><br><span class="line">    <span class="keyword">let</span> invoked = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//  用一个回调函数来监听异常 </span></span><br><span class="line">    child.on(<span class="string">'error'</span>, err =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (invoked) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            invoked = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line">    child.on(<span class="string">'exit'</span>, code =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (invoked) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            invoked = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> err = code === <span class="number">0</span> ? <span class="literal">null</span> : <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'exit code '</span> + code);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'err: '</span>, err);</span><br><span class="line">    &#125;)</span><br><span class="line">    child.on(<span class="string">'message'</span>, <span class="keyword">async</span> data =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> doubanId = data.doubanId;</span><br><span class="line">        <span class="keyword">let</span> movie = <span class="keyword">await</span> Movie.findOne(&#123;</span><br><span class="line">            doubanId: doubanId</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment">// 如果有预告片和封面图，就将这些值取下来存好，放进数据库。</span></span><br><span class="line">        <span class="keyword">if</span>(data.video)&#123;</span><br><span class="line">            movie.video = data.video;</span><br><span class="line">            movie.cover = data.cover;</span><br><span class="line">            <span class="keyword">await</span> movie.save();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果我们抓取到的那个数据是没有video的话，我们直接将这条数据直接移走就行了，不需要没有预告片的数据</span></span><br><span class="line">            <span class="keyword">await</span> movie.remove();</span><br><span class="line">            <span class="comment">// 只是删了电影可能还不够，还需要从目录层里面删一下</span></span><br><span class="line">            <span class="keyword">let</span> movieTypes = movie.movieTypes</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;movieTypes.length;i++)&#123;</span><br><span class="line">                <span class="keyword">let</span> type = movieTypes[i];</span><br><span class="line">                <span class="comment">// 拿到每一个type，然后查询一下</span></span><br><span class="line">                <span class="keyword">let</span> cat = Category.findOne(&#123;</span><br><span class="line">                   name: type</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 如果那一条电影被删了，那么分类里面对应的分类也要跟着删除</span></span><br><span class="line">                <span class="keyword">if</span>(cat)&#123;</span><br><span class="line">                    <span class="keyword">let</span> idx = cat.movies.indexOf(movie._id)</span><br><span class="line">                    <span class="keyword">if</span>(idx &gt; <span class="number">-1</span>)&#123;</span><br><span class="line">                      cat.movies = cat.movies.splice(idx,<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">await</span> cat.save();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// console.log(data);</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">// 将数据库里面查询到的movies发送给video 去爬取</span></span><br><span class="line">    child.send(movies)</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>这边响应一个’message’，那么子进程那边也要来一个.<br>直接修改一下 <code>video.js</code> 里面代码，让一个进程去<code>process.on(&#39;message&#39;)</code>,去里面获取数据即可，将之前写死的形式改一下。</p>
+<p>子进程这边拿到了<code>movies</code>这个值，然后对数据去进行抓取，将抓取到的值封装成一个对象<code>data</code> 返回回去给<code>trailer.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前缀是subject，后缀是豆瓣ID</span></span><br><span class="line"><span class="keyword">const</span> puppeteer = <span class="built_in">require</span>(<span class="string">'puppeteer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base = <span class="string">`https://movie.douban.com/subject/`</span>;</span><br><span class="line"><span class="comment">// const doubanId = '1849031';</span></span><br><span class="line"><span class="comment">// const videoBase = `https://movie.douban.com/trailer/219491/#content`;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sleep = <span class="function"><span class="params">time</span> =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(resolve, time);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.on(<span class="string">'message'</span>, <span class="keyword">async</span> movies =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'开始访问详情界面'</span>);</span><br><span class="line">    <span class="comment">// 相当于是个看不到的浏览器</span></span><br><span class="line">    <span class="keyword">const</span> broswer = <span class="keyword">await</span> puppeteer.launch(&#123;</span><br><span class="line">        args: [<span class="string">'--no-sandbox'</span>],</span><br><span class="line">        dumpio: <span class="literal">false</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> page = <span class="keyword">await</span> broswer.newPage();</span><br><span class="line">    <span class="comment">// 在打开新页面去往目标页面之前,去遍历一波启动进程程序那边传过来的movies</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; movies.length ; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> doubanId = movies[i].doubanId;</span><br><span class="line">        <span class="comment">// console.log(doubanId);</span></span><br><span class="line">        <span class="keyword">await</span> page.goto(base + doubanId, &#123;</span><br><span class="line">            waitUntil: <span class="string">'networkidle2'</span></span><br><span class="line">            <span class="comment">// 当网页空闲的时候，表示页面已经加载完成了</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">        <span class="comment">// 来获取详情页面</span></span><br><span class="line">        <span class="keyword">const</span> result = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">//  回调函数里面的代码都是在浏览器环境里面执行的,用 var 声明变量可能比较保险  </span></span><br><span class="line">            <span class="keyword">var</span> $ = <span class="built_in">window</span>.$;</span><br><span class="line">            <span class="keyword">var</span> it = $(<span class="string">'.related-pic-video'</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (it &amp;&amp; it.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> link = it.attr(<span class="string">'href'</span>);</span><br><span class="line">                <span class="comment">// 将括号里面的url提取出来</span></span><br><span class="line">                <span class="keyword">var</span> cover = it.attr(<span class="string">'style'</span>).match(<span class="regexp">/\((.+?)\)/g</span>)[<span class="number">0</span>].slice(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    link,</span><br><span class="line">                    cover</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">let</span> video;</span><br><span class="line">        <span class="keyword">if</span> (result.link || result.cover) &#123;</span><br><span class="line">            <span class="keyword">await</span> page.goto(result.link, &#123;</span><br><span class="line">                waitUntil: <span class="string">'networkidle2'</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="comment">//    等待个2s</span></span><br><span class="line">            <span class="keyword">await</span> sleep(<span class="number">1000</span>);</span><br><span class="line">            video = <span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">var</span> $ = <span class="built_in">window</span>.$;</span><br><span class="line">                <span class="keyword">var</span> it = $(<span class="string">'source'</span>);</span><br><span class="line">                <span class="keyword">if</span> (it &amp;&amp; it.length &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> it.attr(<span class="string">'src'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> data = &#123;</span><br><span class="line">            video,</span><br><span class="line">            doubanId,</span><br><span class="line">            cover: result.cover</span><br><span class="line">        &#125;</span><br><span class="line">        process.send(</span><br><span class="line">            data</span><br><span class="line">        );    </span><br><span class="line">    &#125;</span><br><span class="line">    broswer.close();</span><br><span class="line">    process.exit(<span class="number">0</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>然后在<code>index.js</code>里面运行一下<code>trailer.js</code>来将其启动起来。<code>server/index.js</code> 里面代码是这样的:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="comment">// const ejs = require('ejs');</span></span><br><span class="line"><span class="comment">// const pug = require('pug');</span></span><br><span class="line"><span class="comment">// const &#123; htmlTpl,ejsTpl,pugTpl &#125; = require('./tpl');</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; connect,initSchemas &#125; = <span class="built_in">require</span>(<span class="string">'./database/init'</span>); </span><br><span class="line"> </span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> connect();</span><br><span class="line">  initSchemas();</span><br><span class="line"><span class="comment">//   const Movie = mongoose.model('Movie');</span></span><br><span class="line"><span class="comment">//   const movies = await Movie.find(&#123;&#125;);</span></span><br><span class="line"><span class="comment">//   console.log('movies: ', movies);</span></span><br><span class="line">   <span class="comment">// 把它 require 进来，他就会启动子进程去爬取数据，然后把爬取到的数据存在数据库里面  </span></span><br><span class="line"><span class="comment">//    require('./tasks/movie');</span></span><br><span class="line"><span class="comment">//    require('./tasks/api');</span></span><br><span class="line">     <span class="built_in">require</span>(<span class="string">'./tasks/trailer'</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">app.use(views(resolve(__dirname, <span class="string">'./views'</span>), &#123;</span><br><span class="line">    extension: <span class="string">'pug'</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'index'</span>, &#123;</span><br><span class="line">        you: <span class="string">'zoomdong'</span>,</span><br><span class="line">        me: <span class="string">'fireairforce'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">4469</span>);</span><br></pre></td></tr></table></figure>
+<p>运行之后就可以在数据库里面存储到我们的数据了.</p>
+<h2 id="将数据存储到CDN节点上"><a href="#将数据存储到CDN节点上" class="headerlink" title="将数据存储到CDN节点上"></a>将数据存储到CDN节点上</h2><p>前面已经拿到了所有数据的预告片和海报信息，现在我们就要将这些信息全部传到我们的七牛云 CDN 上面去。因此我们需要在<code>qiniu.js</code>里面来引入一下这些数据:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> qiniu = <span class="built_in">require</span>(<span class="string">'qiniu'</span>);</span><br><span class="line"><span class="keyword">const</span> nanoid = <span class="built_in">require</span>(<span class="string">'nanoid'</span>);</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../config'</span>);</span><br><span class="line"><span class="keyword">const</span> bucket = config.qiniu.bucket;</span><br><span class="line"><span class="keyword">const</span> mac = <span class="keyword">new</span> qiniu.auth.digest.Mac(config.qiniu.AK, config.qiniu.SK);</span><br><span class="line"><span class="keyword">const</span> cfg = <span class="keyword">new</span> qiniu.conf.Config();</span><br><span class="line"><span class="comment">// 首先在qiniu.js里面声明一个上传对象</span></span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> qiniu.rs.BucketManager(mac, cfg);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> Movie = mongoose.model(<span class="string">'Movie'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> uploadToQiniu = <span class="keyword">async</span> (url, key) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 上传对象有个方法叫做fetch,它能够从网络上来获取某一份静态的资源</span></span><br><span class="line">        client.fetch(url, bucket, key, (err, ret, info) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (info.statusCode === <span class="number">200</span>) &#123;</span><br><span class="line">                    resolve(&#123;</span><br><span class="line">                        key</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    reject(info);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> movies = <span class="keyword">await</span> Movie.find(&#123;</span><br><span class="line">        $or:[</span><br><span class="line">            &#123; <span class="attr">videoKey</span>:&#123;<span class="attr">$exists</span>: <span class="literal">false</span>&#125; &#125;,</span><br><span class="line">            &#123; <span class="attr">videoKey</span>: <span class="literal">null</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">videoKey</span>: <span class="string">''</span> &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;movies.length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> movie = movies[i];</span><br><span class="line">        <span class="comment">//  如果movie对象里面有视频，并且这个视频没有被上传过的话</span></span><br><span class="line">        <span class="keyword">if</span> (movie.video &amp;&amp; !movie.key) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'开始上传 video'</span>);</span><br><span class="line">                <span class="keyword">let</span> videoData = <span class="keyword">await</span> uploadToQiniu(movie.video, nanoid() + <span class="string">'.mp4'</span>);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'开始上传 cover'</span>);</span><br><span class="line">                <span class="keyword">let</span> coverData = <span class="keyword">await</span> uploadToQiniu(movie.cover, nanoid() + <span class="string">'.png'</span>);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'开始上传 poster'</span>);</span><br><span class="line">                <span class="keyword">let</span> posterData = <span class="keyword">await</span> uploadToQiniu(movie.poster, nanoid() + <span class="string">'.png'</span>);</span><br><span class="line">                <span class="keyword">if</span> (videoData.key) &#123;</span><br><span class="line">                    movie.videoKey = videoData.key;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (coverData.key) &#123;</span><br><span class="line">                    movie.coverKey = coverData.key;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (posterData.key) &#123;</span><br><span class="line">                    movie.posterKey = posterData.key;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">console</span>.log(movie);</span><br><span class="line">                <span class="keyword">await</span> movie.save();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>然后在<code>index.js</code>里面调用一下，使其能够运行起来。</p>
+<p>server/index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="comment">// const ejs = require('ejs');</span></span><br><span class="line"><span class="comment">// const pug = require('pug');</span></span><br><span class="line"><span class="comment">// const &#123; htmlTpl,ejsTpl,pugTpl &#125; = require('./tpl');</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">const</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; resolve &#125; = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; connect,initSchemas &#125; = <span class="built_in">require</span>(<span class="string">'./database/init'</span>); </span><br><span class="line"> </span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> connect();</span><br><span class="line">  initSchemas();</span><br><span class="line"><span class="comment">//   const Movie = mongoose.model('Movie');</span></span><br><span class="line"><span class="comment">//   const movies = await Movie.find(&#123;&#125;);</span></span><br><span class="line"><span class="comment">//   console.log('movies: ', movies);</span></span><br><span class="line">   <span class="comment">// 把它 require 进来，他就会启动子进程去爬取数据，然后把爬取到的数据存在数据库里面  </span></span><br><span class="line"><span class="comment">//    require('./tasks/movie');</span></span><br><span class="line"><span class="comment">//    require('./tasks/api');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/trailer');</span></span><br><span class="line">     <span class="built_in">require</span>(<span class="string">'./tasks/qiniu'</span>);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">app.use(views(resolve(__dirname, <span class="string">'./views'</span>), &#123;</span><br><span class="line">    extension: <span class="string">'pug'</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> ctx.render(<span class="string">'index'</span>, &#123;</span><br><span class="line">        you: <span class="string">'zoomdong'</span>,</span><br><span class="line">        me: <span class="string">'fireairforce'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">4450</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="初始化管理员账号"><a href="#初始化管理员账号" class="headerlink" title="初始化管理员账号"></a>初始化管理员账号</h2><p>我们之前已经在<code>init.js</code> 里面初始化过我们的<code>schema</code>模型了，现在我们同样需要在里面初始化一个管理员的账号出来，便于后面的管理，因而我们可以在里面新建一个方法用于数据的创建，代码为:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">exports.initAdmin = <span class="keyword">async</span>() =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> User = mongoose.model(<span class="string">'User'</span>);</span><br><span class="line">    <span class="comment">// 先在数据库里面查询一下我们要创建的数据里面是否存在</span></span><br><span class="line">    <span class="keyword">let</span> user = <span class="keyword">await</span> User.findOne(&#123;</span><br><span class="line">        username:<span class="string">'zoomdong'</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span>(!user)&#123;</span><br><span class="line">        <span class="keyword">const</span> user = <span class="keyword">new</span> User(&#123;</span><br><span class="line">            username:<span class="string">'zoomdong'</span>,</span><br><span class="line">            email:<span class="string">'wudong@hrsoft.net'</span>,</span><br><span class="line">            password:<span class="string">'wd1344492820.'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">await</span> user.save();</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>创建完成之后，可以看看存在数据库里面的密码值是否已经进行了明文加密。</p>
+<p>然后在<code>index.js</code>里面加入这个启动脚本:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> connect();</span><br><span class="line">  initSchemas();</span><br><span class="line">  <span class="keyword">await</span> initAdmin();</span><br><span class="line">    <span class="comment">//   const Movie = mongoose.model('Movie');</span></span><br><span class="line">    <span class="comment">//   const movies = await Movie.find(&#123;&#125;);</span></span><br><span class="line">    <span class="comment">//   console.log('movies: ', movies);</span></span><br><span class="line">    <span class="comment">//   把它 require 进来，他就会启动子进程去爬取数据，然后把爬取到的数据存在数据库里面  </span></span><br><span class="line">    <span class="comment">//  require('./tasks/movie');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/api');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/trailer');</span></span><br><span class="line">    <span class="comment">//  require('./tasks/qiniu');</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>运行启动之后，看到数据库里面insert了一条数据则证明成功了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/31/koa-4-1/" rel="next" title="koa学习-建立数据库模型-4(上)">
+                <i class="fa fa-chevron-left"></i> koa学习-建立数据库模型-4(上)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/05/koa-5/" rel="prev" title="koa学习-实现路由及对外的API服务-5">
+                koa学习-实现路由及对外的API服务-5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/wd.png" alt="zoomdong">
+            
+              <p class="site-author-name" itemprop="name">zoomdong</p>
+              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fireairforce" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://mail.qq.com/cgi-bin/frame_html?sid=MCTRPGnQ3v0cNmY-&r=ded4850b32908916874cf40791f3b428" target="_blank" title="Email">
+                    
+                      <i class="fa fa-fw fa-email"></i>Email</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/u/5669304221/home?wvr=5&sudaref=graph.qq.com" target="_blank" title="Weibo">
+                    
+                      <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                高级链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yisin.top/" title="Yisin的博客" target="_blank">Yisin的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ela.moe/" title="陈lao的博客" target="_blank">陈lao的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://50er.github.io/" title="50er的博客" target="_blank">50er的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#向数据库中导入爬去到的数据"><span class="nav-number">1.</span> <span class="nav-text">向数据库中导入爬去到的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将海报图和视频资源存储到数据库"><span class="nav-number">2.</span> <span class="nav-text">将海报图和视频资源存储到数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据存储到CDN节点上"><span class="nav-number">3.</span> <span class="nav-text">将数据存储到CDN节点上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化管理员账号"><span class="nav-number">4.</span> <span class="nav-text">初始化管理员账号</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-
+lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">176.3k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" color="0,0,225" opacity="1" zindex="-3" count="50" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
