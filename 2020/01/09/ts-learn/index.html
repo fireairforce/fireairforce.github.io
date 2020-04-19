@@ -100,13 +100,13 @@
 <meta property="og:site_name" content="zoomdong&#39;s blog">
 <meta property="og:description" content="前言之前有写过一些typescript的基础知识，但是并没有很好的将这些知识应用到很好的开发场景里面去，而且很多知识在没有使用之后很快会遗忘，因此总结根据慕课网文章来总结一些ts的学习之道。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wdlj.zoomdong.xin/ts-1.png">
-<meta property="og:image" content="http://wdlj.zoomdong.xin/ts-2.png">
-<meta property="og:updated_time" content="2020-01-09T05:20:38.000Z">
+<meta property="og:image" content="http://q91ex1jyl.bkt.clouddn.com/ts-1.png">
+<meta property="og:image" content="http://q91ex1jyl.bkt.clouddn.com/ts-2.png">
+<meta property="og:updated_time" content="2020-04-19T13:30:06.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我们应该怎么学TypeScript">
 <meta name="twitter:description" content="前言之前有写过一些typescript的基础知识，但是并没有很好的将这些知识应用到很好的开发场景里面去，而且很多知识在没有使用之后很快会遗忘，因此总结根据慕课网文章来总结一些ts的学习之道。">
-<meta name="twitter:image" content="http://wdlj.zoomdong.xin/ts-1.png">
+<meta name="twitter:image" content="http://q91ex1jyl.bkt.clouddn.com/ts-1.png">
 
 
 
@@ -427,9 +427,9 @@
 <p>Typescript也是有一个<a href="https://www.tslang.cn/docs/home.html" target="_blank" rel="noopener">中文文档</a>,但是这个文档只是对英文文档的翻译，而且对于官方文档中出现的一些纰漏并没有做校验。而且可能文档的版本稍微会有些滞后。但是也很感谢这些译者所做的贡献，这对于英文不好的开发者有很大的帮助。</p>
 <h2 id="学会看报错"><a href="#学会看报错" class="headerlink" title="学会看报错"></a>学会看报错</h2><p>ts的报错一般会有多种。</p>
 <p>首先是<code>tslint</code>的报错，在对项目进行构建的时候，我们会使用<code>Tslint</code>对代码风格进行一个规范校验，根据<code>Tslint</code>配置的不同，提示对教过也不一样。如果我们配置当书写的代码不符合规范，使用<code>error</code>级别来提示时，会和<code>TypeScript</code>编译报错一样，在问题代码的下面用红色波浪线标出，鼠标放上去会有错误提示。所以我们使用<code>Tslint</code>的时候，遇到报错的时候，首先要区分的是<code>Tslint</code>报错还是<code>TS</code>报错，区分这两者的关键在于鼠标放上去的提示方框中，会标识<code>tslint</code>，说明是TSLint报了错。</p>
-<p><img src="http://wdlj.zoomdong.xin/ts-1.png" alt></p>
+<p><img src="http://q91ex1jyl.bkt.clouddn.com/ts-1.png" alt></p>
 <p>后面括号是导致这条报错产生的原因，具体的规则<code>no-console</code>可以在<code>tslint</code>的配置文件里面对这条规则去进行一个修改。</p>
-<p><img src="http://wdlj.zoomdong.xin/ts-2.png" alt></p>
+<p><img src="http://q91ex1jyl.bkt.clouddn.com/ts-2.png" alt></p>
 <p>上面这个代码报错是由于<code>ts</code>编译器报的错误。在我们写代码的时候，通过强类型系统，编译器可以在这个阶段检测到我们的一些错误。后面括号里面的是错误代码，所有的错误代码都可以在文档里面的<a href="https://www.tslang.cn/docs/handbook/error.html" target="_blank" rel="noopener">错误消息列表</a>查到。<br>还有一种运行时的错误，可以通过<code>F12</code>在<code>console</code>控制台看到。这个就懒得说了。</p>
 <h2 id="学会看声明文件"><a href="#学会看声明文件" class="headerlink" title="学会看声明文件"></a>学会看声明文件</h2><p>在原来没有<code>TypeScript</code>的时候，有很多<code>JS</code>插件和<code>JS</code>库，如果使用<code>TS</code>进行开发再使用这些 <code>JS</code> 编写的插件和库，就得不到类型提示等特性的支持了，所以<code>TypeScript</code>支持为<code>JS</code>库添加声明文件，以此来提供声明信息。我们使用<code>TypeScript</code>编写的库和插件编译后也是<code>JS</code>文件，所以在编译的时候就可以选择声明文件，这样再去进行发布，使用者依然能得到<code>TypeScript</code>的特性支持。一些<code>JS</code>库的作者已经使用<code>TS</code>进行了重写，有些提供了声明文件，一些是没有的，大部分库都有社区的人补充了声明文件，如果使用了自身没有提供声明文件的库的时候，可以使用<code>npm install @types/{模块名}</code>来进行安装，当然我们也可以自行来为他补充。</p>
 <p>看这些库的声明文件能够帮你提高对 <code>TypeScript</code> 的了解程度。因为可能你在实际开发中所接触的场景不是很复杂，运用到的 <code>TypeScript</code> 语法点也不是很全面，所以就会导致经常用的你很熟悉，不经常用的慢慢就忘掉了，甚至有的自始至终你都没有使用过。很多知识你只看理论知识，或者看简单的例子，是没法真正理解并深刻记忆的，只有在实际场景中去使用一下，才能加深理解。所以我们可以从这些库的声明文件入手，还有就是从<code>TypeScript</code>内置的<code>lib</code>声明文件入手。</p>

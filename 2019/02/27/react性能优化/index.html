@@ -100,12 +100,12 @@
 <meta property="og:site_name" content="zoomdong&#39;s blog">
 <meta property="og:description" content="性能优化在以前jquery的时代，也会有一些性能优化的问题:12$(&apos;#test&apos;).find(&apos;img&apos;)$(&apos;#test img&apos;) 比如以上两种写法虽然效果是一样的，但是性能就未必会相同了，前者的性能是比较好的，因为$这个符号是从右往左边去查找的.下面会讲解一些关于react和redux的性能优化的问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wdlj.zoomdong.xin/react_render.jpg">
-<meta property="og:updated_time" content="2019-02-27T12:36:30.000Z">
+<meta property="og:image" content="http://q91ex1jyl.bkt.clouddn.com/react_render.jpg">
+<meta property="og:updated_time" content="2020-04-19T13:30:06.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react性能优化">
 <meta name="twitter:description" content="性能优化在以前jquery的时代，也会有一些性能优化的问题:12$(&apos;#test&apos;).find(&apos;img&apos;)$(&apos;#test img&apos;) 比如以上两种写法虽然效果是一样的，但是性能就未必会相同了，前者的性能是比较好的，因为$这个符号是从右往左边去查找的.下面会讲解一些关于react和redux的性能优化的问题。">
-<meta name="twitter:image" content="http://wdlj.zoomdong.xin/react_render.jpg">
+<meta name="twitter:image" content="http://q91ex1jyl.bkt.clouddn.com/react_render.jpg">
 
 
 
@@ -427,7 +427,7 @@
 <li>虚拟DOM</li>
 </ul>
 <p>我们可以把整个页面可以理解为一颗树，从上往下会有一些分支，整个页面结构在内存里面react造了一个树形解构，每次我们调用例如setState函数，react会拿到调用setState之前的数据和调用之后的数据，然后两个数据进行对比，对比的原则并不是对树递归对比(复杂度O(n三次方)),而是一种平级的对比(顶层和顶层对比，其他层和其他层对比)，如果有不一样的，我们对react中原有的元素进行一些增删改查的策略以达到最小的性能损耗达到修改的目的(相当于做了最小的变动(diff))，这个过程是最小的操作了dom元素。</p>
-<p><img src="http://wdlj.zoomdong.xin/react_render.jpg" alt="images"></p>
+<p><img src="http://q91ex1jyl.bkt.clouddn.com/react_render.jpg" alt="images"></p>
 <p>我们可以由上图清晰看到react的声明周期的渲染过程.<br>我们组件更新最常用的策略就是this.setState()函数，由图可以看出在这一函数执行完成之后后面还有一系列的函数也要跟着执行，当然执行的前提必须是shouldComponentUpdate()这个函数的返回值为true,如果它为false，后面的那些函数便不会再次执行，这表示我们可以在一定的场合里面定制我们的shouldComponentUpdate()函数来打造出最先的渲染(render)的次数从而节省性能。</p>
 <p>其次就是利用父组件进行渲染来对子组件进行更新，对应的子组件也会执行一系列的函数(前提是componentWillReceiveProps()返回的值为true)从而达到子组件重新渲染的目的。</p>
 <p>定制shouldComponentUpdate()例子如下:</p>
