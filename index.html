@@ -320,6 +320,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/04/24/master-function-programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/24/master-function-programming/" itemprop="url">(译)JavaScript 函数式编程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-24T01:22:38+08:00">
+                2020-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,893
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<ul>
+<li>原文地址：<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0" target="_blank" rel="noopener">Master the JavaScript Interview: What is Functional Programming?</a></li>
+<li>原文作者：<a href="https://medium.com/@_ericelliott" target="_blank" rel="noopener">Eric Elliott</a></li>
+<li>译文出自：<a href="https://github.com/xitu/gold-miner" target="_blank" rel="noopener">掘金翻译计划</a></li>
+<li>本文永久链接：<a href="https://github.com/xitu/gold-miner/blob/master/TODO1/master-the-javascript-interview-what-is-functional-programming.md" target="_blank" rel="noopener">https://github.com/xitu/gold-miner/blob/master/TODO1/master-the-javascript-interview-what-is-functional-programming.md</a></li>
+<li>译者：<a href="https://github.com/fireairforce" target="_blank" rel="noopener">zoomdong</a></li>
+<li>校对者：<a href="https://github.com/QinRoc" target="_blank" rel="noopener">Roc</a>,<a href="https://github.com/xionglong58" target="_blank" rel="noopener">Long Xiong</a></li>
+</ul>
+</blockquote>
+<h1 id="掌握-JavaScript-面试：什么是函数式编程"><a href="#掌握-JavaScript-面试：什么是函数式编程" class="headerlink" title="掌握 JavaScript 面试：什么是函数式编程"></a>掌握 JavaScript 面试：什么是函数式编程</h1><p><img src="https://cdn-images-1.medium.com/max/3200/1*1OxglOpkZHLITbIKEVCy2g.jpeg" alt="Structure Synth — Orihaus (CC BY 2.0)"></p>
+<blockquote>
+<p>“掌握 JavaScript 面试” 是一系列的帖子，为了帮助求职者在面试中高级 JavaScript 职位时可能遇见的常见问题做准备。这些是我在真实面试场景中经常会问到的一些问题。</p>
+</blockquote>
+<p>函数式编程已经成为 JavaScript 领域中一个非常热门的话题。就在几年前，甚至很少有 JavaScript 程序员知道什么是函数式编程，但是我在过去 3 年看到的每个大型应用程序代码库中都大量使用了函数式编程思想。</p>
+<p><strong>函数式编程</strong>（通常缩写为 FP）是通过组合<strong>纯函数</strong>，避免<strong>状态共享</strong>、<strong>可变数据</strong>和<strong>副作用</strong>来构建软件的过程。函数式编程是<strong>声明式</strong>的，而不是<strong>命令式</strong>的，应用程序状态通过纯函数流动。与面向对象编程不同，在面向对象编程中，应用程序状态通常与对象中的方法共享和协作。</p>
+<p>函数式编程是一种<strong>编程范式</strong>，这意味着它是一种基于一些基本的、定义性的原则（如上所列）来思考软件构建的方法。其他编程范式包括面向对象编程和面向过程编程。</p>
+<p>与命令式或面向对象的代码相比，函数式代码往往更简洁、更可预测、更易于测试 —— 但如果你不熟悉它以及与之相关的常见模式，函数式代码看起来也会密集得多，而且相关的文档对于新人来说可能是难以理解的。</p>
+<p>如果你开始在 Google 上搜索函数式编程术语，你很快就会遇到一堵学术术语的墙，这对初学者来说是非常可怕的。说它有一个学习曲线是非常保守的说法。但是如果你已经使用 JavaScript 编程了一段时间，那么你很可能已经在实际的软件应用中使用了大量的函数式编程的概念和实用工具。</p>
+<blockquote>
+<p>Don’t let all the new words scare you away. It’s a lot easier than it sounds.</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/24/master-function-programming/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/01/10/electron-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1821,166 +2001,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/09/20/ts-2-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/wd.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/20/ts-2-2/" itemprop="url">typescript2-基础知识(下)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-20T10:16:31+08:00">
-                2019-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3,208
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  16
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类的一些基本示例:<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Greteer&#123;</span><br><span class="line">    greeting: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">message:<span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.greeting = message;</span><br><span class="line">    &#125;</span><br><span class="line">    greet()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Hello,'</span> + <span class="keyword">this</span>.greeting</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> greeter = <span class="keyword">new</span> Greteer(<span class="string">'world'</span>);</span><br><span class="line">greeter.greet();</span><br></pre></td></tr></table></figure></p>
-<p>类里面允许使用继承来拓展现有的类<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal&#123;</span><br><span class="line">    move(distance:<span class="built_in">number</span> = <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`Animal move <span class="subst">$&#123;distance&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Dog <span class="keyword">extends</span> Animal&#123;</span><br><span class="line">    bark()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'wolf!wolf!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dog = <span class="keyword">new</span> Dog();</span><br><span class="line">dog.bark();</span><br><span class="line">dog.move(<span class="number">10</span>);</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/20/ts-2-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-  
-</div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2034,7 +2054,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">131</span>
+                  <span class="site-state-item-count">132</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2158,7 +2178,7 @@ lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">176.3k</span>
+    <span title="Site words total count">181.2k</span>
   
 </div>
 
