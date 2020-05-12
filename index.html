@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  805
+                  841
                 </span>
               
 
@@ -421,7 +421,12 @@
 
       
         
-          <h2 id="interface-amp-amp-type"><a href="#interface-amp-amp-type" class="headerlink" title="interface &amp;&amp; type"></a>interface &amp;&amp; type</h2><p>两者几乎没有区别,但是 <code>interface</code> 可以合并多个相同的 <code>interface</code>,而 <code>type</code> 只能使用 <code>&amp;</code> 进行连接。<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  a: <span class="built_in">number</span>;</span><br><span class="line">  b: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> B = &#123;</span><br><span class="line">  a: <span class="built_in">number</span>;</span><br><span class="line">  b: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <h2 id="一些学习资料"><a href="#一些学习资料" class="headerlink" title="一些学习资料"></a>一些学习资料</h2><p>一本不错的 TS 书籍，已经买了实体书:</p>
+<ul>
+<li><a href="https://github.com/jkchao/typescript-book-chinese" target="_blank" rel="noopener">深入理解 TypeScript</a><br>一个不错的TS练习repo:</li>
+<li><a href="https://github.com/mdevils/typescript-exercises" target="_blank" rel="noopener">typescript exercise</a></li>
+</ul>
+<h2 id="interface-amp-amp-type"><a href="#interface-amp-amp-type" class="headerlink" title="interface &amp;&amp; type"></a>interface &amp;&amp; type</h2><p>两者几乎没有区别,但是 <code>interface</code> 可以合并多个相同的 <code>interface</code>,而 <code>type</code> 只能使用 <code>&amp;</code> 进行连接。<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  a: <span class="built_in">number</span>;</span><br><span class="line">  b: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> B = &#123;</span><br><span class="line">  a: <span class="built_in">number</span>;</span><br><span class="line">  b: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>区别:<br><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  a: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> A &#123;</span><br><span class="line">  b: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a: A = &#123;</span><br><span class="line">  a: <span class="number">3</span>,</span><br><span class="line">  b: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
