@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2020-05-14T05:41:02.819Z</updated>
+  <updated>2020-05-17T10:05:38.553Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mbp加速git-clone</title>
+    <link href="http://zoomdong.site/2020/05/17/mbp%E5%8A%A0%E9%80%9Fgit-clone/"/>
+    <id>http://zoomdong.site/2020/05/17/mbp加速git-clone/</id>
+    <published>2020-05-17T10:03:18.000Z</published>
+    <updated>2020-05-17T10:05:38.553Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="配置-shadowsocks-代理"><a href="#配置-shadowsocks-代理" class="headerlink" title="配置 shadowsocks 代理"></a>配置 shadowsocks 代理</h2><p>即小飞机</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200517175437.png" alt="image-20200517175437615"></p><h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200517175503.png" alt="image-20200517175502982"></p><p>然后在命令行里面使用如下的命令:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &apos;socks5://127.0.0.1:1086&apos;</span><br><span class="line">git config --global https.proxy &apos;socks5://127.0.0.1:1086&apos;</span><br></pre></td></tr></table></figure><p>然后就可以加速处理了。</p><h2 id="取消加速代理"><a href="#取消加速代理" class="headerlink" title="取消加速代理"></a>取消加速代理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;配置-shadowsocks-代理&quot;&gt;&lt;a href=&quot;#配置-shadowsocks-代理&quot; class=&quot;headerlink&quot; title=&quot;配置 shadowsocks 代理&quot;&gt;&lt;/a&gt;配置 shadowsocks 代理&lt;/h2&gt;&lt;p&gt;即小飞机&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>常见的 BFS 模板题目</title>
@@ -481,29 +503,6 @@
     
       &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;已经使用 hooks 开发有一段时间了，还是写点东西记一下学到的一些东西吧。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;hooks API&lt;/code&gt; 个人认为存在的目的就是为了让函数式组件横行天下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu使用 qq 最佳体验</title>
-    <link href="http://zoomdong.site/2019/09/02/ubuntu-tim/"/>
-    <id>http://zoomdong.site/2019/09/02/ubuntu-tim/</id>
-    <published>2019-09-02T06:28:23.000Z</published>
-    <updated>2019-09-02T06:30:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ubuntu-qq-最佳体验"><a href="#ubuntu-qq-最佳体验" class="headerlink" title="ubuntu qq 最佳体验"></a>ubuntu qq 最佳体验</h2><p>个人到现在已经使用了<code>ubuntu</code>大约有1年半的时间了,到现在已经尝试过各种方式来安装<code>ubuntu</code>上面的<code>qq</code>版本:</p><ul><li>使用wine来安装老版本的qq(大概是qq2014)</li><li>使用虚拟机创建一个<code>windows</code>主机从而安装<code>qq</code></li><li>使用<code>deepin</code>系统下的qq</li></ul><a id="more"></a><p>个人到目前位置是觉得第三种方式是能够称为最佳体验的,至少相比于第一种,它的版本是有所提升的,相比于第二种能很好的提高使用的性能．</p><p>所以这里就来介绍一下怎么使用第三种方式来兼容安装<code>tim</code>和<code>wechat</code>。</p><p>首先先使用命令来看一下本地的系统环境:</p><p>使用命令<code>lsb_release -a</code>:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Distributor ID:Ubuntu</span><br><span class="line">Description:Ubuntu 16.04.6 LTS</span><br><span class="line">Release:16.04</span><br><span class="line">Codename:xenial</span><br></pre></td></tr></table></figure><p>然后教程是这样的:</p><ul><li>首先安装wine:<code>git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git</code></li><li>clone到仓库之后，然后进去里面将<code>shell</code>脚本跑起来:<code>cd deepin-wine-ubuntu &amp;&amp; sudo sh ./install.sh</code></li><li>然后去 <a href="http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.office/" target="_blank" rel="noopener">tim镜像网站</a> 和 <a href="http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.wechat/" target="_blank" rel="noopener">微信镜像网站</a> 下载到对应的<code>deb</code>安装包(微信最好不要下载最新的)</li><li>将下载下来的<code>deb</code>包使用命令行进行解压<code>sudo dpkg -i xxx.deb</code></li></ul><p>然后在电脑上就可以找到对应的文件了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;ubuntu-qq-最佳体验&quot;&gt;&lt;a href=&quot;#ubuntu-qq-最佳体验&quot; class=&quot;headerlink&quot; title=&quot;ubuntu qq 最佳体验&quot;&gt;&lt;/a&gt;ubuntu qq 最佳体验&lt;/h2&gt;&lt;p&gt;个人到现在已经使用了&lt;code&gt;ubuntu&lt;/code&gt;大约有1年半的时间了,到现在已经尝试过各种方式来安装&lt;code&gt;ubuntu&lt;/code&gt;上面的&lt;code&gt;qq&lt;/code&gt;版本:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;使用wine来安装老版本的qq(大概是qq2014)&lt;/li&gt;
-&lt;li&gt;使用虚拟机创建一个&lt;code&gt;windows&lt;/code&gt;主机从而安装&lt;code&gt;qq&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;使用&lt;code&gt;deepin&lt;/code&gt;系统下的qq&lt;/li&gt;
-&lt;/ul&gt;
     
     </summary>
     
