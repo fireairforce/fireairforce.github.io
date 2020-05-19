@@ -93,16 +93,22 @@
 
 
 
-<meta name="description" content="I strove with none,for none was worth my strife.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zoomdong&#39;s blog">
-<meta property="og:url" content="http://zoomdong.site/archives/page/7/index.html">
+<meta name="description" content="http 请求流程HTTP协议，正是建立在 TCP 连接的基础之上。HTTP是一种允许浏览器上服务器获取资源的协议，是Web的基础，通常由浏览器发起请求，用来获取不同类型的文件。http也是浏览器使用最多的最广的协议。 浏览器端发起http请求如果你在浏览器里面输入一个url，浏览器会完成哪些动作呢？ 1.构建请求首先，浏览器构建请求行信息，构建好后浏览器发起请求。 1GET /index.htm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器原理学习笔记-http请求流程">
+<meta property="og:url" content="http://zoomdong.site/2020/05/19/broswer-3/index.html">
 <meta property="og:site_name" content="zoomdong&#39;s blog">
-<meta property="og:description" content="I strove with none,for none was worth my strife.">
+<meta property="og:description" content="http 请求流程HTTP协议，正是建立在 TCP 连接的基础之上。HTTP是一种允许浏览器上服务器获取资源的协议，是Web的基础，通常由浏览器发起请求，用来获取不同类型的文件。http也是浏览器使用最多的最广的协议。 浏览器端发起http请求如果你在浏览器里面输入一个url，浏览器会完成哪些动作呢？ 1.构建请求首先，浏览器构建请求行信息，构建好后浏览器发起请求。 1GET /index.htm">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519095343.png">
+<meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519200612.png">
+<meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519201116.png">
+<meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519202211.png">
+<meta property="og:updated_time" content="2020-05-19T12:27:40.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zoomdong&#39;s blog">
-<meta name="twitter:description" content="I strove with none,for none was worth my strife.">
+<meta name="twitter:title" content="浏览器原理学习笔记-http请求流程">
+<meta name="twitter:description" content="http 请求流程HTTP协议，正是建立在 TCP 连接的基础之上。HTTP是一种允许浏览器上服务器获取资源的协议，是Web的基础，通常由浏览器发起请求，用来获取不同类型的文件。http也是浏览器使用最多的最广的协议。 浏览器端发起http请求如果你在浏览器里面输入一个url，浏览器会完成哪些动作呢？ 1.构建请求首先，浏览器构建请求行信息，构建好后浏览器发起请求。 1GET /index.htm">
+<meta name="twitter:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519095343.png">
 
 
 
@@ -132,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://zoomdong.site/archives/page/7/">
+  <link rel="canonical" href="http://zoomdong.site/2020/05/19/broswer-3/">
 
 
 
 
 
-  <title>归档 | zoomdong's blog</title>
+  <title>浏览器原理学习笔记-http请求流程 | zoomdong's blog</title>
   
 
 
@@ -167,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/fireairforce"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
@@ -305,390 +311,220 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/19/broswer-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">浏览器原理学习笔记-http请求流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-19T20:27:08+08:00">
+                2020-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        非常好! 目前共计 138 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/09/e6-2/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">ES6--Class</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,279
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-09T03:41:24+08:00" content="2019-03-09">
-          03-09
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/09/e6-1/" itemprop="url">
-              
-                <span itemprop="name">ES6--模块化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-09T03:40:48+08:00" content="2019-03-09">
-          03-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/01/js原型链学习/" itemprop="url">
-              
-                <span itemprop="name">js原型和原型链学习(转)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-01T12:58:11+08:00" content="2019-03-01">
-          03-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h2 id="http-请求流程"><a href="#http-请求流程" class="headerlink" title="http 请求流程"></a>http 请求流程</h2><p>HTTP协议，正是建立在 TCP 连接的基础之上。HTTP是一种允许浏览器上服务器获取资源的协议，是Web的基础，通常由浏览器发起请求，用来获取不同类型的文件。http也是浏览器使用最多的最广的协议。</p>
+<h2 id="浏览器端发起http请求"><a href="#浏览器端发起http请求" class="headerlink" title="浏览器端发起http请求"></a>浏览器端发起http请求</h2><p>如果你在浏览器里面输入一个url，浏览器会完成哪些动作呢？</p>
+<h3 id="1-构建请求"><a href="#1-构建请求" class="headerlink" title="1.构建请求"></a>1.构建请求</h3><p>首先，浏览器构建请求行信息，构建好后浏览器发起请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html HTTP1.1</span><br></pre></td></tr></table></figure>
+<h3 id="2-查找缓存"><a href="#2-查找缓存" class="headerlink" title="2.查找缓存"></a>2.查找缓存</h3><p>在真正发起请求之前，浏览器会先在浏览器缓存中查询是否有需要请求的文件。其中，<strong>浏览器缓存是一种在本地保存资源副本，以供下次请求时直接使用的技术。</strong></p>
+<p>浏览器发现请求的资源已经有缓存的副本，它会直接拦截请求，返回该资源的副本，并直接结束请求，而不会再去源服务器里面去下载。这样的好处有：</p>
+<ul>
+<li>缓解服务端压力，提升性能(获取资源的耗时更短了)</li>
+<li>对于网站来说，缓存时实现快速资源加载的重要组成部分</li>
+</ul>
+<p>如果缓存失败，就会进入网络请求过程了。</p>
+<h3 id="3-准备-IP-地址和端口"><a href="#3-准备-IP-地址和端口" class="headerlink" title="3.准备 IP 地址和端口"></a>3.准备 IP 地址和端口</h3><p>浏览器使用HTTP作为应用层协议，用来封装请求的文本信息；并使用<strong>TCP/IP 做传输层协议</strong>将它发到网络上去</p>
+<p>，所以在HTTP开始工作之前，浏览器需要通过TCP与服务器先建立连接。HTTP 的内容是通过TCP的<strong>传输数据阶段来实现的</strong>。</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519095343.png" alt="image-20200519095343595"></p>
+<p>在上一节中，有讲到数据包都是通过 IP 地址传输给接受方。由于 IP 地址是数学标识，比较难记，使用域名就会容易记忆，所以基于域名和IP的映射关系又出现了一套服务，负责把域名和IP地址做一一映射的关系。这套服务就叫做“域名系统”，简称<code>DNS</code>。</p>
+<p>所以这样推导下来，<strong>第一步浏览器会请求 DNS 返回域名对应的IP。</strong>浏览器也提供DNS数据缓存服务，如果某个域名解析过了，那么浏览器就会缓存解析的结果，下次查询的时候可以直接使用。</p>
+<p>拿到IP之后，就会去获取端口号，一般在没有指明端口的情况下，HTTP默认端口号是80。</p>
+<h3 id="4-等待TCP队列"><a href="#4-等待TCP队列" class="headerlink" title="4.等待TCP队列"></a>4.等待TCP队列</h3><p>IP地址和端口都准备好的情况下，也不会直接建立 TCP 链接，根据<code>Chrome</code>的机制，同一个域名同时最多只能建立 6 个 TCP 连接。如果同一域名下同时有 10 个请求，其中 4 个请求就会进入排队等待状态，直到进行中的请求结束。</p>
+<p>如果当前请求数量小于 6，就会直接进入下一步连接。</p>
+<h3 id="5-建立TCP连接"><a href="#5-建立TCP连接" class="headerlink" title="5.建立TCP连接"></a>5.建立TCP连接</h3><p>排队等待结束之后，就可和服务器快乐握手了。过程参考上一篇文章。</p>
+<h3 id="6-发送HTTP请求"><a href="#6-发送HTTP请求" class="headerlink" title="6.发送HTTP请求"></a>6.发送HTTP请求</h3><p>一旦建立了 TCP 链接，浏览器就可以和服务器通信了。而 HTTP 中的数据正是在这个通信过程中完成。</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519200612.png" alt="image-20200519200612664"></p>
+<p>浏览器会向服务器发送<strong>请求头</strong>，它包含了<strong>请求方法、请求 URI 和 HTTP 协议版本</strong></p>
+<p>具体参数含义可自行百度。</p>
+<h3 id="7-服务端处理-HTTP-请求流程"><a href="#7-服务端处理-HTTP-请求流程" class="headerlink" title="7.服务端处理 HTTP 请求流程"></a>7.服务端处理 HTTP 请求流程</h3><h4 id="1-返回请求"><a href="#1-返回请求" class="headerlink" title="1. 返回请求"></a>1. 返回请求</h4><p>服务器处理结束之后，就会把数据返回给浏览器。可以通过工具软件 <code>curl</code> 来查看返回的请求数据，具体使用方法是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i baidu.com</span><br></pre></td></tr></table></figure>
+<p>返回的数据格式为:</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519201116.png" alt="image-20200519201116461"></p>
+<p>首先会返回响应行。包括有协议版本和状态码。</p>
+<p>服务器会通过状态码告诉浏览器处理结果。</p>
+<p>发送完响应头之后，服务器就可以继续发送响应体数据，一般里面会包括 HTML 的实际内容。</p>
+<h4 id="2-断开连接"><a href="#2-断开连接" class="headerlink" title="2.断开连接"></a>2.断开连接</h4><p>一般情况下，服务端返回了数据后，就会关闭 TCP 连接。不过浏览器或者服务器在其头信息中加入了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection: keep-Alive</span><br></pre></td></tr></table></figure>
+<p>这样在发送之后就仍然可以保持打开状态，这样浏览器就可以继续通过同一个TCP连接发送请求。<strong>保持 TCP 连接可以省去下次请求时需要连接的时间，提升资源加载速度。 </strong></p>
+<h3 id="3-重定向"><a href="#3-重定向" class="headerlink" title="3.重定向"></a>3.重定向</h3><p>到这里请求流程似乎就结束了，不过还有种情况时需要考虑的，例如我们打开<code>geekbang.org</code>之后，最终的页面地址是<code>https://www.geekbang.org</code></p>
+<p>两个url不同的原因是因为会有个重定向的操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I geekbang.org // 大写 I 表示只需要响应头和响应行数据，不需要响应体</span><br></pre></td></tr></table></figure>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200519202211.png" alt="image-20200519202211622"></p>
+<p>极客时间上还有个问题解答，可以去看一看:<a href="https://time.geekbang.org/column/article/116588" target="_blank" rel="noopener">https://time.geekbang.org/column/article/116588</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/27/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Welcome to my blog</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-27T20:46:10+08:00" content="2019-02-27">
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/27/react性能优化/" itemprop="url">
-              
-                <span itemprop="name">react性能优化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-27T20:35:50+08:00" content="2019-02-27">
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/27/js里面数组去重/" itemprop="url">
-              
-                <span itemprop="name">js里面数组去重</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-27T12:28:18+08:00" content="2019-02-27">
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/24/context的使用/" itemprop="url">
-              
-                <span itemprop="name">context的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-24T04:10:10+08:00" content="2019-02-24">
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/24/js里面对象数组属性名的修改/" itemprop="url">
-              
-                <span itemprop="name">js里面修改json数组的属性名</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-24T04:09:56+08:00" content="2019-02-24">
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/21/react高阶组件HOC的使用/" itemprop="url">
-              
-                <span itemprop="name">react高阶组件HOC的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-21T08:56:08+08:00" content="2019-02-21">
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/21/broswercookies的使用/" itemprop="url">
-              
-                <span itemprop="name">broswercookies的使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-21T08:55:11+08:00" content="2019-02-21">
-          02-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/18/broswer-2/" rel="next" title="浏览器原理学习笔记-网络数据包的传输">
+                <i class="fa fa-chevron-left"></i> 浏览器原理学习笔记-网络数据包的传输
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/14/">14</a><a class="extend next" rel="next" href="/archives/page/8/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -696,6 +532,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOD"></div>
+    </div>
+
+  
+
+
 
 
         </div>
@@ -717,8 +562,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -822,6 +676,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http-请求流程"><span class="nav-number">1.</span> <span class="nav-text">http 请求流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器端发起http请求"><span class="nav-number">2.</span> <span class="nav-text">浏览器端发起http请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-构建请求"><span class="nav-number">2.1.</span> <span class="nav-text">1.构建请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-查找缓存"><span class="nav-number">2.2.</span> <span class="nav-text">2.查找缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-准备-IP-地址和端口"><span class="nav-number">2.3.</span> <span class="nav-text">3.准备 IP 地址和端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-等待TCP队列"><span class="nav-number">2.4.</span> <span class="nav-text">4.等待TCP队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-建立TCP连接"><span class="nav-number">2.5.</span> <span class="nav-text">5.建立TCP连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-发送HTTP请求"><span class="nav-number">2.6.</span> <span class="nav-text">6.发送HTTP请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-服务端处理-HTTP-请求流程"><span class="nav-number">2.7.</span> <span class="nav-text">7.服务端处理 HTTP 请求流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-返回请求"><span class="nav-number">2.7.1.</span> <span class="nav-text">1. 返回请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-断开连接"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.断开连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-重定向"><span class="nav-number">2.8.</span> <span class="nav-text">3.重定向</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -987,6 +857,10 @@ lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1015,6 +889,17 @@ lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
