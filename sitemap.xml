@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zoomdong.site/2020/05/14/bfs-template/</loc>
+    
+    <lastmod>2020-05-19T16:20:38.081Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zoomdong.site/2020/05/19/broswer-3/</loc>
     
     <lastmod>2020-05-19T12:27:40.791Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://zoomdong.site/2020/05/17/mbp%E5%8A%A0%E9%80%9Fgit-clone/</loc>
     
     <lastmod>2020-05-17T10:32:34.174Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zoomdong.site/2020/05/14/bfs-template/</loc>
-    
-    <lastmod>2020-05-14T05:41:02.819Z</lastmod>
     
   </url>
   
@@ -58,20 +58,6 @@
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2019/07/19/koa-3/</loc>
-    
-    <lastmod>2020-04-19T13:30:06.302Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zoomdong.site/2019/08/12/koa-7/</loc>
-    
-    <lastmod>2020-04-19T13:30:06.302Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://zoomdong.site/2019/08/05/koa-5/</loc>
     
     <lastmod>2020-04-19T13:30:06.302Z</lastmod>
@@ -79,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2020/01/09/ts-learn/</loc>
+    <loc>http://zoomdong.site/2019/07/19/koa-3/</loc>
     
     <lastmod>2020-04-19T13:30:06.302Z</lastmod>
     
@@ -93,14 +79,28 @@
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2019/02/27/react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    <loc>http://zoomdong.site/2018/12/03/%E4%BD%BF%E7%94%A8hexo-github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2020-04-19T13:30:06.302Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2018/12/03/%E4%BD%BF%E7%94%A8hexo-github%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://zoomdong.site/2020/01/09/ts-learn/</loc>
+    
+    <lastmod>2020-04-19T13:30:06.302Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zoomdong.site/2019/08/12/koa-7/</loc>
+    
+    <lastmod>2020-04-19T13:30:06.302Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zoomdong.site/2019/02/27/react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2020-04-19T13:30:06.302Z</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2019/03/22/featuring-branching/</loc>
+    <loc>http://zoomdong.site/2018/12/22/flex%E5%B8%83%E5%B1%80%E4%BB%8B%E7%BB%8D/</loc>
     
     <lastmod>2020-04-19T13:30:06.299Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2018/12/22/flex%E5%B8%83%E5%B1%80%E4%BB%8B%E7%BB%8D/</loc>
+    <loc>http://zoomdong.site/2019/03/22/featuring-branching/</loc>
     
     <lastmod>2020-04-19T13:30:06.299Z</lastmod>
     
@@ -590,14 +590,14 @@
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2019/01/19/%E9%87%8D%E6%B8%A9redux%E5%92%8Credux-thunk/</loc>
+    <loc>http://zoomdong.site/2018/04/06/python/</loc>
     
     <lastmod>2019-01-19T05:31:48.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zoomdong.site/2018/04/06/python/</loc>
+    <loc>http://zoomdong.site/2019/01/19/%E9%87%8D%E6%B8%A9redux%E5%92%8Credux-thunk/</loc>
     
     <lastmod>2019-01-19T05:31:48.000Z</lastmod>
     
