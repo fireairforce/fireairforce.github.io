@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？ 参考 labuladong算法笔记是可以有一个bfs的算法迭代框架的: 1234567891011121314151617181920212223242526272829303">
+<meta name="description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见的 BFS 模板题目">
 <meta property="og:url" content="http://zoomdong.site/2020/05/14/bfs-template/index.html">
 <meta property="og:site_name" content="zoomdong&#39;s blog">
-<meta property="og:description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？ 参考 labuladong算法笔记是可以有一个bfs的算法迭代框架的: 1234567891011121314151617181920212223242526272829303">
+<meta property="og:description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-19T16:20:38.081Z">
+<meta property="og:updated_time" content="2020-05-20T15:06:16.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见的 BFS 模板题目">
-<meta name="twitter:description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？ 参考 labuladong算法笔记是可以有一个bfs的算法迭代框架的: 1234567891011121314151617181920212223242526272829303">
+<meta name="twitter:description" content="bfs解题框架参考文章 算法框架bfs题目出现的常见场景：问题的本质实际上是在一张图里面找从 start 到 end 的最近距离 广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？">
 
 
 
@@ -421,6 +421,7 @@
         <h2 id="bfs解题框架"><a href="#bfs解题框架" class="headerlink" title="bfs解题框架"></a>bfs解题框架</h2><p><a href="https://labuladong.gitbook.io/algo/di-ling-zhang-bi-du-xi-lie/bfs-kuang-jia" target="_blank" rel="noopener">参考文章</a></p>
 <h3 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h3><p>bfs题目出现的常见场景：<strong>问题的本质实际上是在一张图里面找从 start 到 end 的最近距离</strong></p>
 <p>广义的描述有很多的题目变形:例如走迷宫、有的格子不能走、起点到终点的最短路？有瞬间传送的门？</p>
+<a id="more"></a>
 <p>参考 labuladong算法笔记是可以有一个bfs的算法迭代框架的:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span> <span class="params">(Node start, Node target)</span> </span>&#123;</span><br><span class="line">  Queue&lt;Node&gt; q;</span><br><span class="line">  <span class="comment">// 用来去重的数据结构</span></span><br><span class="line">  Set&lt;Node&gt; visited;</span><br><span class="line">  <span class="comment">// 起点进入队列</span></span><br><span class="line">  q.offer(start);</span><br><span class="line">  <span class="comment">// 标记</span></span><br><span class="line">  visited.add(start);</span><br><span class="line">  <span class="keyword">int</span> <span class="built_in">step</span> = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (q <span class="keyword">not</span> empty) &#123;</span><br><span class="line">    <span class="keyword">int</span> sz = q.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">// 将队列中的节点四周扩散</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;sz;i++) &#123;</span><br><span class="line">      Node cur = q.poll()</span><br><span class="line">      <span class="comment">// 边界条件，如果这个点到了终点，就返回路径的值</span></span><br><span class="line">      <span class="keyword">if</span> (cur === target) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">step</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 不满足则将周围的点加到队列里面来</span></span><br><span class="line">      <span class="keyword">for</span> (Node x in cur.adj()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x <span class="keyword">not</span> in visited) &#123;</span><br><span class="line">          q.offer(x);</span><br><span class="line">          visited.add(x);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 每次走完之后更新一下路径</span></span><br><span class="line">  <span class="built_in">step</span> ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>里面 <code>cur.adj()</code> 就代表cur附近相邻的节点;visited的作用主要是为了防止走回头路，但一般的二叉树结构，没有子节点到父节点到指针，不会走回头路就不需要<code>visited</code>。</p>
