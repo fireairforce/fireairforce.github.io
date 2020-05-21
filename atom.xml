@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zoomdong.site/"/>
-  <updated>2020-05-21T16:17:33.454Z</updated>
+  <updated>2020-05-21T17:44:12.011Z</updated>
   <id>http://zoomdong.site/</id>
   
   <author>
@@ -17,17 +17,17 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>cpp-node-1</title>
+    <title>《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装</title>
     <link href="http://zoomdong.site/2020/05/22/cpp-node-1/"/>
     <id>http://zoomdong.site/2020/05/22/cpp-node-1/</id>
     <published>2020-05-21T16:16:01.000Z</published>
-    <updated>2020-05-21T16:17:33.454Z</updated>
+    <updated>2020-05-21T17:44:12.011Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装"><a href="#《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装" class="headerlink" title="《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装"></a>《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装</h2><ul><li><p>电脑环境: macOS 10.15.4</p></li><li><p>安装好<code>xcode</code></p></li><li>安装<code>node-gyp</code></li><li>自带<code>node</code></li></ul><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521220817.png" alt="image-20200521220817431"></p><a id="more"></a><h3 id="node-gyp"><a href="#node-gyp" class="headerlink" title="node-gyp"></a>node-gyp</h3><ol><li><p><code>node-gyp install</code>将 <code>Node.js</code> 源码的一些头文件下载到本地目录。</p></li><li><p>目录结构为:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221347.png" alt="image-20200521221347878"></p></li></ol><p>然后找到官方的 <a href="https://github.com/XadillaX/nyaa-nodejs-demo" target="_blank" rel="noopener">repo</a></p><p>进到<code>1.first build</code> 目录中去，可以在目录下执行下面的命令:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221950.png" alt="image-20200521221950469"></p><ul><li><code>node-gyp configure</code>生成一些构建源码的项目文件。这一步会生成一个<code>build</code>目录出来里面有<code>Makefile</code>文件和一些必要的配置文件</li><li><code>node-gyp build</code>用于将当前所在目录的模块进行重构，将Cpp代码编译成二进制文件。这时会在<code>build/Release/</code> 目录下生成一个<code>first.node</code>文件出来</li></ul><p>然后可以在命令行工具里面使用<code>node</code>环境来引入我们构建出来的模块:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521222531.png" alt="image-20200521222531450"></p><ul><li><code>node-gyp clean</code> 用于清理生成的构建文件 &amp; <code>out</code>目录。</li></ul><p>当然有个懒人命令 <code>node-gyp rebuild</code> 能够依次去执行<code>node-gyp clean</code>、<code>node-gyp configure</code>、<code>node-gyp build</code>。</p><p><strong><code>node-gyp</code>的构建原理:在安装  C++ 原生模块时，使用 <code>GYP</code> 通过一个<code>binding.gyp</code>文件来构建各系统所需要的<code>C++</code>项目文件(mac下面是<code>makefile</code>文件)</strong>。</p><p> 基于上面的原理，其实nodejs里面其他的cpp的构建工具都大同小异，只不过<code>node-gyp</code> 是官方支持，所以不需要嵌入任何的脚本，其他构建工具需要在<code>package.json</code>的<code>scripts</code>中加入一些脚本使其在包安装阶段能够执行构建。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h2><ul><li><p>电脑环境: macOS 10.15.4</p></li><li><p>安装好<code>xcode</code></p></li><li>安装<code>node-gyp</code></li><li>自带<code>node</code></li></ul><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521220817.png" alt="image-20200521220817431"></p><a id="more"></a><h3 id="node-gyp"><a href="#node-gyp" class="headerlink" title="node-gyp"></a>node-gyp</h3><ol><li><p><code>node-gyp install</code>将 <code>Node.js</code> 源码的一些头文件下载到本地目录。</p></li><li><p>目录结构为:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221347.png" alt="image-20200521221347878"></p></li></ol><p>然后找到官方的 <a href="https://github.com/XadillaX/nyaa-nodejs-demo" target="_blank" rel="noopener">repo</a></p><p>进到<code>1.first build</code> 目录中去，可以在目录下执行下面的命令:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221950.png" alt="image-20200521221950469"></p><ul><li><code>node-gyp configure</code>生成一些构建源码的项目文件。这一步会生成一个<code>build</code>目录出来里面有<code>Makefile</code>文件和一些必要的配置文件</li><li><code>node-gyp build</code>用于将当前所在目录的模块进行重构，将Cpp代码编译成二进制文件。这时会在<code>build/Release/</code> 目录下生成一个<code>first.node</code>文件出来</li></ul><p>然后可以在命令行工具里面使用<code>node</code>环境来引入我们构建出来的模块:</p><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521222531.png" alt="image-20200521222531450"></p><ul><li><code>node-gyp clean</code> 用于清理生成的构建文件 &amp; <code>out</code>目录。</li></ul><p>当然有个懒人命令 <code>node-gyp rebuild</code> 能够依次去执行<code>node-gyp clean</code>、<code>node-gyp configure</code>、<code>node-gyp build</code>。</p><p><strong><code>node-gyp</code>的构建原理:在安装  C++ 原生模块时，使用 <code>GYP</code> 通过一个<code>binding.gyp</code>文件来构建各系统所需要的<code>C++</code>项目文件(mac下面是<code>makefile</code>文件)</strong>。</p><p> 基于上面的原理，其实nodejs里面其他的cpp的构建工具都大同小异，只不过<code>node-gyp</code> 是官方支持，所以不需要嵌入任何的脚本，其他构建工具需要在<code>package.json</code>的<code>scripts</code>中加入一些脚本使其在包安装阶段能够执行构建。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装&quot;&gt;&lt;a href=&quot;#《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装&quot; class=&quot;headerlink&quot; title=&quot;《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装&quot;&gt;&lt;/a&gt;《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装&lt;/h2&gt;&lt;ul&gt;
+      &lt;h2 id=&quot;基础环境&quot;&gt;&lt;a href=&quot;#基础环境&quot; class=&quot;headerlink&quot; title=&quot;基础环境&quot;&gt;&lt;/a&gt;基础环境&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;电脑环境: macOS 10.15.4&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;安装好&lt;code&gt;xcode&lt;/code&gt;&lt;/p&gt;
