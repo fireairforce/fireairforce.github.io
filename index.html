@@ -320,6 +320,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/22/cpp-node-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/wd.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/22/cpp-node-1/" itemprop="url">cpp-node-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-22T00:16:01+08:00">
+                2020-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  390
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装"><a href="#《Node-js-来一打-Cpp-拓展》学习笔记-1-环境安装" class="headerlink" title="《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装"></a>《Node.js,来一打 Cpp 拓展》学习笔记-1-环境安装</h2><ul>
+<li><p>电脑环境: macOS 10.15.4</p>
+</li>
+<li><p>安装好<code>xcode</code></p>
+</li>
+<li>安装<code>node-gyp</code></li>
+<li>自带<code>node</code></li>
+</ul>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521220817.png" alt="image-20200521220817431"></p>
+<h3 id="node-gyp"><a href="#node-gyp" class="headerlink" title="node-gyp"></a>node-gyp</h3><ol>
+<li><p><code>node-gyp install</code>将 <code>Node.js</code> 源码的一些头文件下载到本地目录。</p>
+</li>
+<li><p>目录结构为:</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221347.png" alt="image-20200521221347878"></p>
+</li>
+</ol>
+<p>然后找到官方的 <a href="https://github.com/XadillaX/nyaa-nodejs-demo" target="_blank" rel="noopener">repo</a></p>
+<p>进到<code>1.first build</code> 目录中去，可以在目录下执行下面的命令:</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521221950.png" alt="image-20200521221950469"></p>
+<ul>
+<li><code>node-gyp configure</code>生成一些构建源码的项目文件。这一步会生成一个<code>build</code>目录出来里面有<code>Makefile</code>文件和一些必要的配置文件</li>
+<li><code>node-gyp build</code>用于将当前所在目录的模块进行重构，将Cpp代码编译成二进制文件。这时会在<code>build/Release/</code> 目录下生成一个<code>first.node</code>文件出来</li>
+</ul>
+<p>然后可以在命令行工具里面使用<code>node</code>环境来引入我们构建出来的模块:</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200521222531.png" alt="image-20200521222531450"></p>
+<ul>
+<li><code>node-gyp clean</code> 用于清理生成的构建文件 &amp; <code>out</code>目录。</li>
+</ul>
+<p>当然有个懒人命令 <code>node-gyp rebuild</code> 能够依次去执行<code>node-gyp clean</code>、<code>node-gyp configure</code>、<code>node-gyp build</code>。</p>
+<p><strong><code>node-gyp</code>的构建原理:在安装  C++ 原生模块时，使用 <code>GYP</code> 通过一个<code>binding.gyp</code>文件来构建各系统所需要的<code>C++</code>项目文件(mac下面是<code>makefile</code>文件)</strong>。</p>
+<p> 基于上面的原理，其实nodejs里面其他的cpp的构建工具都大同小异，只不过<code>node-gyp</code> 是官方支持，所以不需要嵌入任何的脚本，其他构建工具需要在<code>package.json</code>的<code>scripts</code>中加入一些脚本使其在包安装阶段能够执行构建。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+<div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/20/dfs-template/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1784,165 +1969,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/01/09/ts-learn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/wd.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/09/ts-learn/" itemprop="url">我们应该怎么学TypeScript</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-09T13:17:57+08:00">
-                2020-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,246
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前有写过一些<code>typescript</code>的基础知识，但是并没有很好的将这些知识应用到很好的开发场景里面去，而且很多知识在没有使用之后很快会遗忘，因此总结根据慕课网文章来总结一些<code>ts</code>的学习之道。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/09/ts-learn/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-  
-</div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1996,7 +2022,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2120,7 +2146,7 @@ lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">188.9k</span>
+    <span title="Site words total count">189.3k</span>
   
 </div>
 
