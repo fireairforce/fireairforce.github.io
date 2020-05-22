@@ -1884,7 +1884,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #087a0f;
+  background: #8ae767;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3056,7 +3056,7 @@ body {
   background: url("https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200522014630.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 50%;
+  background-size: cover;
 }
 .header-inner {
   opacity: 0.9;
