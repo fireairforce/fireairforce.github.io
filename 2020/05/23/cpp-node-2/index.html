@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523130900.png">
 <meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523132014.png">
 <meta property="og:image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523132837.png">
-<meta property="og:updated_time" content="2020-05-23T05:58:08.590Z">
+<meta property="og:updated_time" content="2020-05-23T05:58:24.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Node.js,来一打 Cpp 拓展》学习笔记- Node 模块原理解析 &amp;&amp; Cpp 模块优点">
 <meta name="twitter:description" content="为什么要写C++拓展模块C++ 比 JS 解释器高效相同意思的代码，在 JavaScript 解析器中执行 JavaScript 代码的效率通常比直接执行一个 C++ 编译好后的二进制文件要低。（这里指那些非并行、计算密集型的代码，因为模型不用，单线程下实现 C++ 的 Web 请求处理和有着异步 I/O 优势的 Node.js 下实现的 Web 请求处理也是不能相提并论的 —— Node.js底">
@@ -316,6 +316,7 @@
         <h3 id="为什么要写C-拓展模块"><a href="#为什么要写C-拓展模块" class="headerlink" title="为什么要写C++拓展模块"></a>为什么要写C++拓展模块</h3><h4 id="C-比-JS-解释器高效"><a href="#C-比-JS-解释器高效" class="headerlink" title="C++ 比 JS 解释器高效"></a>C++ 比 JS 解释器高效</h4><p>相同意思的代码，在 JavaScript 解析器中执行 JavaScript 代码的效率通常比直接执行一个 C++ 编译好后的二进制文件要低。（这里指那些非并行、计算密集型的代码，因为模型不用，单线程下实现 C++ 的 Web 请求处理和有着异步 I/O 优势的 Node.js 下实现的 Web 请求处理也是不能相提并论的 —— Node.js底层使用了别的线程）</p>
 <p>有个 <code>NBody</code>的例子，相同的代码，使用C++ 大约只需要<code>6-7s</code>，但使用<code>Node.JS</code>却需要<code>20s</code>左右，具体代码可以参看书中例子。</p>
 <p>C++效率虽然高，但是所需要的维护成本和开发效率和 <code>Node.js</code> 也不在一个层次上。因此偶尔在一个整体使用 <code>Node.js</code> 开发的项目中使用 C++ 写一两个拓展也是一种很奇妙的体验。</p>
+<a id="more"></a>
 <h4 id="已有的Cpp轮子"><a href="#已有的Cpp轮子" class="headerlink" title="已有的Cpp轮子"></a>已有的Cpp轮子</h4><p>还有一种比较常见的使用Cpp拓展的原因是市面上或者手头上已经有一套C++的轮子，而且使用<code>Node</code> 再次实现一遍非常麻烦且不现实，这时就可以基于这个轮子包裹一层C++的拓展了，当然前提是项目的主体本身就是 <code>Node</code>。</p>
 <p>综合以上两点，使用C++来写Node.js原生拓展的两大理由——性能和开发成本</p>
 <p>对于有显著性能提升的情况，使用CPP来完成是很爽的，而对于已经存在的C++类库，那些难以迁移或者无法迁移的项目又何苦迁移，使用 Cpp 拓展也是件很有意思的事情。</p>
