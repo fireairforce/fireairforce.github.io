@@ -1,87 +1,26 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-Hans">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163941.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163941.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163941.png">
+  <link rel="mask-icon" href="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163941.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zoomdong.site","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="zoomdong's blog" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="NodeJS的进程模型关于进程模型首先需要理解的有大概这么几个问题:  什么是同步异步？ 什么是异步IO？ 什么是阻塞非阻塞？ 什么是事件循环和事件驱动？ 什么是单线程？ 什么是进程 什么是子进程 怎么样来启动子进程 进程间如何来通信">
+  <meta name="description" content="NodeJS的进程模型关于进程模型首先需要理解的有大概这么几个问题:  什么是同步异步？ 什么是异步IO？ 什么是阻塞非阻塞？ 什么是事件循环和事件驱动？ 什么是单线程？ 什么是进程 什么是子进程 怎么样来启动子进程 进程间如何来通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NodeJS 进程模型介绍">
 <meta property="og:url" content="http://zoomdong.site/2019/07/19/NodeJS-tasks/index.html">
@@ -93,39 +32,18 @@
 <meta name="twitter:title" content="NodeJS 进程模型介绍">
 <meta name="twitter:description" content="NodeJS的进程模型关于进程模型首先需要理解的有大概这么几个问题:  什么是同步异步？ 什么是异步IO？ 什么是阻塞非阻塞？ 什么是事件循环和事件驱动？ 什么是单线程？ 什么是进程 什么是子进程 怎么样来启动子进程 进程间如何来通信">
 
+<link rel="canonical" href="http://zoomdong.site/2019/07/19/NodeJS-tasks/">
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://zoomdong.site/2019/07/19/NodeJS-tasks/">
-
-
-
-
 
   <title>NodeJS 进程模型介绍 | zoomdong's blog</title>
   
@@ -135,170 +53,150 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">zoomdong's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <p class="site-subtitle">A story about myself</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zoomdong's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Go ahead</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
-  
+  </li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content post posts-expand">
             
 
-  <div id="posts" class="posts-expand">
     
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/19/NodeJS-tasks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
       <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="description" content="A Idiot">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="zoomdong's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">NodeJS 进程模型介绍</h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          NodeJS 进程模型介绍
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
+              <span class="post-meta-item-text">Posted on</span>
               
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-19T13:53:50+08:00">
-                2019-07-19
-              </time>
-            
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2019-07-19 13:53:50 / Modified: 22:01:16" itemprop="dateCreated datePublished" datetime="2019-07-19T13:53:50+08:00">2019-07-19</time>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
 
       
         <h2 id="NodeJS的进程模型"><a href="#NodeJS的进程模型" class="headerlink" title="NodeJS的进程模型"></a>NodeJS的进程模型</h2><p>关于进程模型首先需要理解的有大概这么几个问题:</p>
@@ -333,262 +231,197 @@
 <p>首先我们可以先设定有三个阶段：第一阶段是定时器阶段，第二阶段是文件读写 IO 操作的一个回调阶段,第三个阶段就是setImmediate阶段（checked阶段）。</p>
 <p>在test目录下面新建一个 <code>eventloop.js</code> 文件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在checked（第三个阶段）会执行的函数</span></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调1'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调2'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调3'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 这个是第一阶段里面的函数</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调1'</span>);</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>这个初次执行的话输出的顺序是这样的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[阶段1....定时器] 定时器 回调1</span><br><span class="line">[阶段3.immediate] immediate 回调1</span><br><span class="line">[阶段3.immediate] immediate 回调2</span><br><span class="line">[阶段3.immediate] immediate 回调3</span><br></pre></td></tr></table></figure></p>
+<p>这个初次执行的话输出的顺序是这样的:<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[阶段<span class="number">1.</span>...定时器] 定时器 回调<span class="number">1</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">1</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">2</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">3</span></span><br></pre></td></tr></table></figure></p>
 <p>但是如果反复执行的话，它的顺序是有可能发生变化的。</p>
 <p>原因是在事件循环启动的时候，有可能定时器的回调函数还没有被检测到，那么这个时候就会进入到第二个阶段，在第二个阶段发现没有IO的回调函数，这个时候就会直接进入到第三个阶段（checked），就会执行<code>setImmediate</code>。这个执行完成之后，就回去检查有没有到期的定时器，这个时候就会发现<code>setTimeout</code>到期了,然后就回去执行<code>setTimeuot</code>里面的回调函数。</p>
 <p>我们可以继续将上面的代码写的更复杂一点:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在checked（第三个阶段）会执行的函数</span></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调1'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调2'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调3'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 这个是第一阶段里面的函数</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调1'</span>);</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调5'</span>);</span><br><span class="line">    <span class="comment">// 这个回调函数并不处于任何一个阶段</span></span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调2'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调3'</span>);</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调4'</span>);</span><br><span class="line">&#125;,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调1'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调2'</span>);</span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调4'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调3'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>上面代码中，第一次事件循环的时候，先执行的是<code>nextTick</code>函数，（虽然回调4在回调2里面，但是它会被放到第一个队列的队列尾）。</p>
 <p>等到<code>nextTick</code>和<code>promise</code>执行完成之后，它会再去执行第一阶段定时器里面的函数，同样的，在setTimeout回调函数里面的<code>nextTick</code>这个时候会被放到回调队列的尾部，最后才执行。第一阶段的执行完成之后，这个时候再去执行第三节阶段的 <code>setImmediate</code> 函数。依次去执行。所以输出的结果是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[...待切入下一阶段] nextTick 回调1</span><br><span class="line">[...待切入下一阶段] nextTick 回调2</span><br><span class="line">[...待切入下一阶段] nextTick 回调3</span><br><span class="line">[...待切入下一阶段] nextTick 回调4</span><br><span class="line">[阶段1....定时器] 定时器 回调1</span><br><span class="line">[阶段1....定时器] 定时器 回调5</span><br><span class="line">[阶段1....定时器] 定时器 回调3</span><br><span class="line">[阶段1....定时器] 定时器 回调4</span><br><span class="line">[...待切入下一阶段] nextTick 回调2</span><br><span class="line">[阶段3.immediate] immediate 回调1</span><br><span class="line">[阶段3.immediate] immediate 回调2</span><br><span class="line">[阶段3.immediate] immediate 回调3</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[...待切入下一阶段] nextTick 回调<span class="number">1</span></span><br><span class="line">[...待切入下一阶段] nextTick 回调<span class="number">2</span></span><br><span class="line">[...待切入下一阶段] nextTick 回调<span class="number">3</span></span><br><span class="line">[...待切入下一阶段] nextTick 回调<span class="number">4</span></span><br><span class="line">[阶段<span class="number">1.</span>...定时器] 定时器 回调<span class="number">1</span></span><br><span class="line">[阶段<span class="number">1.</span>...定时器] 定时器 回调<span class="number">5</span></span><br><span class="line">[阶段<span class="number">1.</span>...定时器] 定时器 回调<span class="number">3</span></span><br><span class="line">[阶段<span class="number">1.</span>...定时器] 定时器 回调<span class="number">4</span></span><br><span class="line">[...待切入下一阶段] nextTick 回调<span class="number">2</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">1</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">2</span></span><br><span class="line">[阶段<span class="number">3.</span>immediate] immediate 回调<span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>一些自我验证性的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">    readFile,</span><br><span class="line">    readFileSync</span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在checked（第三个阶段）会执行的函数</span></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调1'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调2'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段3.immediate] immediate 回调3'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一个阶段] promise 回调1'</span>);</span><br><span class="line">    setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 这个回调会在阶段三来执行</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...阶段3.immediate] promise 回调1 增加的immediate 回调4'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">readFile(<span class="string">'../package.json'</span>, <span class="string">'utf-8'</span>, data =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段2...IO 回调] 读文件回调1'</span>);</span><br><span class="line">    readFile(<span class="string">'../video.mp4'</span>, <span class="string">'utf-8'</span>, data =&gt; &#123; <span class="comment">// 读一个体积比较大的文件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[阶段2...IO 回调] 读文件回调2'</span>);</span><br><span class="line">        setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 这个回调会在阶段三来执行</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...阶段3.immediate] 读文件 回调2 增加的immediate 回调4'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[....阶段3.immediate] immediate 回调4'</span>);</span><br><span class="line">        <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...待切入下一个阶段] promise 回调2'</span>);</span><br><span class="line">            process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] promise 回调2增加的 nextTick 回调5'</span>);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...待切入写一个阶段] promise 回调3'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    setImmediate(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[....阶段3.immediate] immediate 回调5'</span>);</span><br><span class="line">        process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...待切入下一个阶段] immediate 回调5 增加的 nextTick 回调6'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入到下一个阶段]  这里正在同步阻塞读写一个大文件'</span>);</span><br><span class="line">        <span class="keyword">const</span> video = readFileSync(<span class="string">'../video.mp4'</span>,<span class="string">'utf-8'</span>);</span><br><span class="line">        process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...待切入下一个阶段] immediate 回调5 增加的 nextTick 回调7'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        readFile(<span class="string">'../package.json'</span>,<span class="string">'utf-8'</span>,data=&gt;&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[阶段2...IO 回调] 读文件回调2'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 这个回调会在阶段三来执行</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[...阶段3.immediate] 读文件 回调2 增加的immediate 回调6'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器回调8'</span>);</span><br><span class="line">        &#125;,<span class="number">0</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] 读文件回调 1 增加的 nextTick 回调6'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调6'</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调7'</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这个是第一阶段里面的函数</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调1'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调5'</span>);</span><br><span class="line">    <span class="comment">// 这个回调函数并不处于任何一个阶段</span></span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调2'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调3'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[阶段1....定时器] 定时器 回调4'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调1'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调2'</span>);</span><br><span class="line">    process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调4'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">process.nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'[...待切入下一阶段] nextTick 回调3'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>它的执行过程大概是这样的:<br>先执行第一阶段的回调函数(定时器setTimeout)=&gt;然后执行第二阶段的回调函数(读写IO里面的(readFile))=&gt;最后执行setImmediate函数里面的回调函数，但是在执行这一阶段的函数之前，首先要先把<code>process.nextTick()</code>里面的回调函数执行干净，然后再去执行<code>Promise</code>里面的回调函数。(process.nextTick的优先级是高于promise),但是process.nextTick的优先级是低于同步代码的。</p>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/19/koa-3/" rel="next" title="koa学习-数据抓取-3">
-                <i class="fa fa-chevron-left"></i> koa学习-数据抓取-3
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/31/koa-4-1/" rel="prev" title="koa学习-建立数据库模型-4(上)">
-                koa学习-建立数据库模型-4(上) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">zoomdong</p>
-              <p class="site-description motion-element" itemprop="description">I strove with none,for none was worth my strife.</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">141</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS的进程模型"><span class="nav-number">1.</span> <span class="nav-text">NodeJS的进程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是同步，异步？什么是阻塞，非阻塞"><span class="nav-number">1.1.</span> <span class="nav-text">什么是同步，异步？什么是阻塞，非阻塞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO模型"><span class="nav-number">2.</span> <span class="nav-text">IO模型</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">zoomdong</span>
-
-  
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>zoomdong
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://zoomdong.site/2019/07/19/NodeJS-tasks/" title="NodeJS 进程模型介绍">http://zoomdong.site/2019/07/19/NodeJS-tasks/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-hans" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
-
-
-
+      <footer class="post-footer">
 
         
 
 
-
-
-
-
-
         
-      </div>
-    </footer>
-
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/19/koa-3/" rel="prev" title="koa学习-数据抓取-3">
+      <i class="fa fa-chevron-left"></i> koa学习-数据抓取-3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/31/koa-4-1/" rel="next" title="koa学习-建立数据库模型-4(上)">
+      koa学习-建立数据库模型-4(上) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
+  </article>
+  
+  
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS的进程模型"><span class="nav-number">1.</span> <span class="nav-text">NodeJS的进程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是同步，异步？什么是阻塞，非阻塞"><span class="nav-number">1.1.</span> <span class="nav-text">什么是同步，异步？什么是阻塞，非阻塞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO模型"><span class="nav-number">2.</span> <span class="nav-text">IO模型</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zoomdong"
+      src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+  <p class="site-author-name" itemprop="name">zoomdong</p>
+  <div class="site-description" itemprop="description">A Idiot</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fireairforce" title="GitHub → https://github.com/fireairforce" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zoomdong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
 
 
 
 
 
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -605,109 +438,8 @@
 
 
 
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
 
 
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
 
   
 
