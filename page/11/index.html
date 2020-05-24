@@ -158,6 +158,64 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/11/29/dva路由设置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/29/dva路由设置/" class="post-title-link" itemprop="url">dva动态加载路由的写法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2018-11-29 10:12:20 / Modified: 10:15:40" itemprop="dateCreated datePublished" datetime="2018-11-29T10:12:20+08:00">2018-11-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Router, Route, Switch &#125; <span class="keyword">from</span> <span class="string">'dva/router'</span>;</span><br><span class="line"><span class="keyword">import</span> dynamic <span class="keyword">from</span> <span class="string">'dva/dynamic'</span>;</span><br><span class="line"><span class="keyword">import</span> IndexPage <span class="keyword">from</span> <span class="string">'./routes/IndexPage'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RouterConfig</span>(<span class="params">&#123; history,app &#125;</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> UserPage=dynamic(&#123;</span><br><span class="line">    app,</span><br><span class="line">    component:<span class="function"><span class="params">()</span>=&gt;</span><span class="keyword">import</span>(<span class="string">'./routes/usersPage'</span>)</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;Switch&gt;</span><br><span class="line">        &lt;Route path=<span class="string">"/"</span> exact component=&#123;IndexPage&#125; /&gt;</span><br><span class="line">        &lt;Route path=<span class="string">"/users"</span> exact component=&#123;UserPage&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/Switch&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>Router&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> RouterConfig;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/11/29/搞搞dva/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -777,78 +835,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/06/05/作业/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/05/作业/" class="post-title-link" itemprop="url">学长技术部布置的作业</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-06-05 14:55:22" itemprop="dateCreated datePublished" datetime="2018-06-05T14:55:22+08:00">2018-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-07-18 16:10:12" itemprop="dateModified" datetime="2018-07-18T16:10:12+08:00">2018-07-18</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="这篇blog吧，专门用来记录技术部学长布置的作业都有啥。"><a href="#这篇blog吧，专门用来记录技术部学长布置的作业都有啥。" class="headerlink" title="这篇blog吧，专门用来记录技术部学长布置的作业都有啥。"></a>这篇blog吧，专门用来记录技术部学长布置的作业都有啥。</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/06/05/作业/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -920,7 +906,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">142</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
