@@ -158,6 +158,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/19/koa-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/19/koa-3/" class="post-title-link" itemprop="url">koa学习-数据抓取-3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-07-19 13:53:17" itemprop="dateCreated datePublished" datetime="2019-07-19T13:53:17+08:00">2019-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-19 21:30:06" itemprop="dateModified" datetime="2020-04-19T21:30:06+08:00">2020-04-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="利用-Puppeteer-对数据爬取"><a href="#利用-Puppeteer-对数据爬取" class="headerlink" title="利用 Puppeteer 对数据爬取"></a>利用 Puppeteer 对数据爬取</h2><p>puppeteer是使用无头浏览器来模拟人工登录一个网站来对数据进行一个抓取，然后抓取之后注入一些人工的脚本来对数据进行一个处理。</p>
+<p>关于 puppeteer 可以去github上看看<a href="https://github.com/GoogleChrome/puppeteer" target="_blank" rel="noopener">官方文档</a></p>
+<p>我们这里利用puppeteer来完成一个豆瓣爬虫的开发.</p>
+<p>首先我们要爬取的网站是:<a href="https://movie.douban.com/tag/#/?sort=U&amp;range=6,10&amp;tags=" target="_blank" rel="noopener">https://movie.douban.com/tag/#/?sort=U&amp;range=6,10&amp;tags=</a>, 我需要得到电影记录篇的海报图片的url，以及电影的名称，电影的豆瓣ID和电影的评分</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/19/koa-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/17/koa-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -798,74 +873,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/03/28/webpack-12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/28/webpack-12/" class="post-title-link" itemprop="url">webpack12--css代码分割</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-03-28 13:31:17 / Modified: 13:33:32" itemprop="dateCreated datePublished" datetime="2019-03-28T13:31:17+08:00">2019-03-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="chunkfilename"><a href="#chunkfilename" class="headerlink" title="chunkfilename"></a>chunkfilename</h2><p>一般在使用webpack的时候，我们会在output里面加上一个chunkName的配置:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">    <span class="comment">//  publicPath:'http://cdn.com.cn',</span></span><br><span class="line">    filename: <span class="string">'[name].js'</span>,</span><br><span class="line">    chunkFilename: <span class="string">'[name].chunk.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname,<span class="string">'../dist'</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一般我们的入口文件会走filename这个配置项，而间接引入的一些代码js代码文件(比如一些异步的文件)，这些文件都是在被入口文件所间接引用，一般这些文件在打包的时候，就会走chunkFilename这个配置项.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/03/28/webpack-12/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -937,7 +944,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">143</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
