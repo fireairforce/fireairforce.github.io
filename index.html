@@ -158,6 +158,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/28/broswer-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/28/broswer-5/" class="post-title-link" itemprop="url">浏览器原理学习笔记-页面渲染流程(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-28 00:55:31 / Modified: 00:56:18" itemprop="dateCreated datePublished" datetime="2020-05-28T00:55:31+08:00">2020-05-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>通常，我们编写好 HTML、JavaScript、CSS等文件，经过浏览器就会显示出漂亮的页面。</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200526114743.png" alt="image-20200526114743309"></p>
+<p>RT,左边输入html,js,css，这些数据经过中间的一个渲染过程，最终输出为屏幕上的像素。</p>
+<p>这中间的渲染模块就是我们需要讨论的问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/28/broswer-5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/27/how-to-be-antd-contributor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -805,73 +874,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/17/mbp加速git-clone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/17/mbp加速git-clone/" class="post-title-link" itemprop="url">macOS 加速 git clone</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-17 18:32:11 / Modified: 18:32:34" itemprop="dateCreated datePublished" datetime="2020-05-17T18:32:11+08:00">2020-05-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="配置-shadowsocks-代理"><a href="#配置-shadowsocks-代理" class="headerlink" title="配置 shadowsocks 代理"></a>配置 shadowsocks 代理</h2><p>即小飞机</p>
-<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200517175437.png" alt="image-20200517175437615"></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200517175503.png" alt="image-20200517175502982"></p>
-<p>点击高级配置一波代理：</p>
-<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200517181844.png" alt="image-20200517181844309"></p>
-<p>然后在命令行里面使用如下的命令:</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global http.proxy <span class="string">'socks5://127.0.0.1:1086'</span></span><br><span class="line">git<span class="built_in"> config </span>--global https.proxy <span class="string">'socks5://127.0.0.1:1086'</span></span><br></pre></td></tr></table></figure>
-<p>然后就可以加速处理了。</p>
-<h2 id="取消加速代理"><a href="#取消加速代理" class="headerlink" title="取消加速代理"></a>取消加速代理</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git<span class="built_in"> config </span>--global --unset http.proxy</span><br><span class="line">git<span class="built_in"> config </span>--global --unset https.proxy</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -943,7 +945,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/10/04/nuxt-ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/04/nuxt-ssr/" class="post-title-link" itemprop="url">Nuxt.js及Vue-SSR学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-04 10:08:38 / Modified: 10:12:34" itemprop="dateCreated datePublished" datetime="2019-10-04T10:08:38+08:00">2019-10-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Nuxt-js基础"><a href="#Nuxt-js基础" class="headerlink" title="Nuxt.js基础"></a>Nuxt.js基础</h2><ul>
+<li>Vue2</li>
+<li>Vue Router</li>
+<li>Vuex</li>
+<li>Vue Server Renderer</li>
+<li>vue-meta</li>
+</ul>
+<p>首先还是<a href="https://nuxtjs.org/" target="_blank" rel="noopener">官方地址</a>给上。</p>
+<p>安装:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先安装一下vue-cli工具</span></span><br><span class="line">yarn global add @vue/cli-init </span><br><span class="line"><span class="comment">// 初始化模板</span></span><br><span class="line">vue init nuxt-community/koa-template</span><br></pre></td></tr></table></figure></p>
+<p>还源的工具可以使用<code>nrm</code>，类似于版本控制的<code>npm</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm ls</span><br></pre></td></tr></table></figure></p>
+<p><code>nuxt.js</code>是非常适合做<code>vue</code>的<code>ssr</code>渲染的，他可以让<code>ssr</code>变得非常非常简单。</p>
+<p>我们直接利用刚才那个命令来生成一个<code>nuxt.js</code>模板。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init nuxt-community/koa-template nuxt-start</span><br></pre></td></tr></table></figure>
+<p>不过这里可能会遇见一个问题。具体可以参考，项目的<a href="https://github.com/fireairforce/nuxt-starter/blob/master/README.md" target="_blank" rel="noopener">README.md文档</a>。</p>
+<p>这东西的设计其实和<code>umi</code>很类似(可能<code>umi</code>是借鉴了这边吧。。)有一点就是<code>pages</code>目录下面的文件即为路由。我们创建一个<code>xxx.vue</code>，然后去<code>localhost:3000/xxx</code>,就可以直接访问到对应的页面了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/04/nuxt-ssr/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/10/04/pwa-case/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -819,77 +899,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/09/02/ubuntu-tim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/02/ubuntu-tim/" class="post-title-link" itemprop="url">ubuntu使用 qq 最佳体验</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-09-02 14:28:23 / Modified: 14:30:26" itemprop="dateCreated datePublished" datetime="2019-09-02T14:28:23+08:00">2019-09-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ubuntu-qq-最佳体验"><a href="#ubuntu-qq-最佳体验" class="headerlink" title="ubuntu qq 最佳体验"></a>ubuntu qq 最佳体验</h2><p>个人到现在已经使用了<code>ubuntu</code>大约有1年半的时间了,到现在已经尝试过各种方式来安装<code>ubuntu</code>上面的<code>qq</code>版本:</p>
-<ul>
-<li>使用wine来安装老版本的qq(大概是qq2014)</li>
-<li>使用虚拟机创建一个<code>windows</code>主机从而安装<code>qq</code></li>
-<li>使用<code>deepin</code>系统下的qq</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/09/02/ubuntu-tim/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -961,7 +970,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -158,6 +158,79 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/31/koa-4-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/31/koa-4-1/" class="post-title-link" itemprop="url">koa学习-建立数据库模型-4(上)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-07-31 07:25:54 / Modified: 07:38:22" itemprop="dateCreated datePublished" datetime="2019-07-31T07:25:54+08:00">2019-07-31</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装mongodb"><a href="#安装mongodb" class="headerlink" title="安装mongodb"></a>安装mongodb</h2><p>之前其实我已经有写过关于怎么在ubuntu上安装mongodb了，这个可以去看一下之前的博客文章，然后这一次的话，主要是想试试在服务器上面安装MongoDB。</p>
+<p>首先登录一下服务器，我的是:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> zoomdong<span class="variable">@zoomdong</span>.xin</span><br></pre></td></tr></table></figure></p>
+<p>当然如果想免密码登录服务器的话，可以参考一下 <a href="https://blog.csdn.net/zhuying_linux/article/details/7049078" target="_blank" rel="noopener">这篇文章</a></p>
+<p>进入服务器里面之后的话，可以使用 <code>lsb_release -a</code> 来查看关于服务器的一系列有用的信息。</p>
+<p>关于centOS的安装过程直接参考mongodb官网上面关于 <code>Red Hat</code> 的介绍来进行安装。</p>
+<p>在第一段进行repo的复制的时候我们可以将 <code>mongodb</code> 的官方下载源切换成阿里的下载源。即修改一下baseURL即可，baseURL的地址如下:</p>
+<p><a href="https://mirrors.aliyun.com/mongodb/yum/redhat/7/mongodb-org/3.6/x86_64/" target="_blank" rel="noopener"> 阿里源mongodb 下载地址</a></p>
+<p>由于我安装的是3.6版本的mongodb，所以这里就选择了3.6。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/31/koa-4-1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/19/NodeJS-tasks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -804,80 +877,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/04/01/webpack-14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/01/webpack-14/" class="post-title-link" itemprop="url">webpack14--webpack中一些工程化的构建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-01 23:36:15" itemprop="dateCreated datePublished" datetime="2019-04-01T23:36:15+08:00">2019-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-04-07 13:27:30" itemprop="dateModified" datetime="2019-04-07T13:27:30+08:00">2019-04-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="webpack中关于Library的打包"><a href="#webpack中关于Library的打包" class="headerlink" title="webpack中关于Library的打包"></a>webpack中关于Library的打包</h2><p>我们先新建一个项目:libiary<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y</span><br></pre></td></tr></table></figure></p>
-<p>然后安装一波webpack<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> webpack webpack-cli <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
-<p>·`<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/01/webpack-14/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -949,7 +948,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

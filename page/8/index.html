@@ -158,6 +158,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/03/01/js原型链学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/01/js原型链学习/" class="post-title-link" itemprop="url">js原型和原型链学习(转)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-03-01 12:58:11 / Modified: 13:00:04" itemprop="dateCreated datePublished" datetime="2019-03-01T12:58:11+08:00">2019-03-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="测试题"><a href="#测试题" class="headerlink" title="测试题"></a>测试题</h2><p>注释后前面是我的答案，后面修正的是正确的答案,前面没有答案，表示我不会，后续可以好好复习。<a href="https://juejin.im/post/5c72a1766fb9a049ea3993e6" target="_blank" rel="noopener">参考文章</a></p>
+<p><strong>题目1</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> A = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">A.prototype.n = <span class="number">1</span> ;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> A();</span><br><span class="line">A.prototype = &#123;</span><br><span class="line">    n:<span class="number">2</span>,</span><br><span class="line">    m:<span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> A();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(b.n); <span class="comment">// 1 </span></span><br><span class="line"><span class="built_in">console</span>.log(b.m); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(c.n); <span class="comment">// 2 </span></span><br><span class="line"><span class="built_in">console</span>.log(c.m); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/01/js原型链学习/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/02/27/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -765,72 +832,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/02/18/express中密码加密/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/18/express中密码加密/" class="post-title-link" itemprop="url">express中对后台密码加密</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-02-18 03:08:08 / Modified: 11:14:54" itemprop="dateCreated datePublished" datetime="2019-02-18T03:08:08+08:00">2019-02-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>一般在进行后端开发的时候，我们不会采用一般的密码存储方式，因为正常情况下数据库发生泄露会导致密码的泄露，因此后端一般会对里面的密码进行一系列的加密，最近刚好在学习express框架，因此这里介绍一下express里面采用md5对密码进行加密的方法,关于md5的介绍具体可以看<a href="https://www.jianshu.com/p/785e7725d612" target="_blank" rel="noopener">这个</a>．其实简单来说md5其实就是一种单向的不可逆的加密算法，它采用的是一种非对称的加密方式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/02/18/express中密码加密/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -902,7 +903,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">145</span>
+          <span class="site-state-item-count">146</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
