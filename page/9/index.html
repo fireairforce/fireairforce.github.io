@@ -158,6 +158,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/02/18/react中proptypes的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/18/react中proptypes的使用/" class="post-title-link" itemprop="url">react中proptypes的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-02-18 03:07:52 / Modified: 11:11:06" itemprop="dateCreated datePublished" datetime="2019-02-18T03:07:52+08:00">2019-02-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>我们一般使用这个库来做一些react里面的属性验证问题.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install prop-types</span><br></pre></td></tr></table></figure></p>
+<p>比如说我们在在通过props进行父子组件之前的属性传值的时候，可以通过这个函数来对这个东西进行一系列的检验,比如说下面的例子中的父子组件的的属性传值，我们可以通过校验一些传值的属性来避免一些常见的错误.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/02/18/react中proptypes的使用/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/01/30/node-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -777,76 +844,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2018/12/30/linux下给git-clone加速/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/30/linux下给git-clone加速/" class="post-title-link" itemprop="url">linux下给git clone加速</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-12-30 14:54:28 / Modified: 23:04:10" itemprop="dateCreated datePublished" datetime="2018-12-30T14:54:28+08:00">2018-12-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ol>
-<li>nslook global.ssl.fastly.Net #获取域名的IP</li>
-<li>nslook github.com</li>
-<li><p>sudo vim /etc/hosts<br>在里面加上下面几行:</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">151.101.72.249</span> global-ssl.fastly.Net #第一步中获取的ip</span><br><span class="line"><span class="number">192.30.253.113</span> github.com #此处<span class="number">112</span>还是<span class="number">113</span>根据自己的情况进行调整</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启网络</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/networking.restart</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然后git的速度就可以提升很多了.</p>
-<p>参考博客地址:<a href="https://blog.csdn.net/blgmh/article/details/74531982" target="_blank" rel="noopener">https://blog.csdn.net/blgmh/article/details/74531982</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -918,7 +915,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

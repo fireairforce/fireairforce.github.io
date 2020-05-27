@@ -158,6 +158,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/09/02/shell-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/02/shell-4/" class="post-title-link" itemprop="url">shell脚本4-grep的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-09-02 14:28:03 / Modified: 14:29:34" itemprop="dateCreated datePublished" datetime="2019-09-02T14:28:03+08:00">2019-09-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="grep和egrep"><a href="#grep和egrep" class="headerlink" title="grep和egrep"></a>grep和egrep</h2><p>这两个命令的作用都是一个过滤器的作用，他们的本质上都是来进行一个文本的过滤，我们一般使用比较多的是<code>grep</code>命令。</p>
+<h3 id="grep-的语法格式"><a href="#grep-的语法格式" class="headerlink" title="grep 的语法格式"></a>grep 的语法格式</h3><ul>
+<li>第一种格式:<code>grep [option][pattern][file1,file2,...]</code></li>
+<li>第二种格式: <code>command | grep [option][pattren]</code></li>
+</ul>
+<p>第一种是在文件里面进行一个操作，第二种是在某个执行某个命令之后去再次对执行这个命令的结果去进行一个<code>grep</code>操作。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/09/02/shell-4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/08/27/shell-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -862,83 +933,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/19/NodeJS-tasks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/19/NodeJS-tasks/" class="post-title-link" itemprop="url">NodeJS 进程模型介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-07-19 13:53:50 / Modified: 22:01:16" itemprop="dateCreated datePublished" datetime="2019-07-19T13:53:50+08:00">2019-07-19</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="NodeJS的进程模型"><a href="#NodeJS的进程模型" class="headerlink" title="NodeJS的进程模型"></a>NodeJS的进程模型</h2><p>关于进程模型首先需要理解的有大概这么几个问题:</p>
-<ol>
-<li>什么是同步异步？</li>
-<li>什么是异步IO？</li>
-<li>什么是阻塞非阻塞？</li>
-<li>什么是事件循环和事件驱动？</li>
-<li>什么是单线程？</li>
-<li>什么是进程</li>
-<li>什么是子进程</li>
-<li>怎么样来启动子进程</li>
-<li>进程间如何来通信</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/07/19/NodeJS-tasks/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1010,7 +1004,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
