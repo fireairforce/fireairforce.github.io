@@ -1021,7 +1021,7 @@ pre .javascript .function {
 }
 .site-nav-toggle .toggle .toggle-line,
 .site-nav-right .toggle .toggle-line {
-  background: var(--text-color);
+  background: var(--text-color) !important;
   border-radius: 1px;
 }
 .site-nav {
@@ -1171,7 +1171,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #66333d;
+  background: #738a74;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
