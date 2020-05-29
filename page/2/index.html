@@ -158,6 +158,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/18/broswer-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/18/broswer-2/" class="post-title-link" itemprop="url">浏览器原理学习笔记-网络数据包的传输</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-18 14:23:54 / Modified: 14:24:59" itemprop="dateCreated datePublished" datetime="2020-05-18T14:23:54+08:00">2020-05-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>衡量 Web 页面性能有个重要的指标叫做:<code>FP</code>(First Paint),是指从<strong>页面加载到首次开始绘制的时长</strong>。更少的FP意味着更多的PV，更高的参与度、以及转换率。影响其的一个很重要的因素就是<strong>网络加载速度</strong>。</p>
+<p>想要优化网页的加载速度，需要对网络有一个深入的认识。</p>
+<h2 id="数据包的传输过程"><a href="#数据包的传输过程" class="headerlink" title="数据包的传输过程"></a>数据包的传输过程</h2><p><strong>互联网实际是一套理论和协议组成的体系架构。</strong>其中，因为有了协议这一众所周知的规则和标准，各方都同意使用 的前提下，那么它们的通信之间将变得毫无障碍。</p>
+<p>互联网中的数据是通过数据包来传输的。发送的数据很大的话，会被拆成很多小的包来传输。例如音频数据就并不是一个大的文件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/18/broswer-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/17/mbp加速git-clone/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -808,81 +877,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/10/08/mini-program/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/08/mini-program/" class="post-title-link" itemprop="url">小程序杂记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-10-08 13:37:01" itemprop="dateCreated datePublished" datetime="2019-10-08T13:37:01+08:00">2019-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-10 15:04:52" itemprop="dateModified" datetime="2019-10-10T15:04:52+08:00">2019-10-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>迫于生计开始写小程序.</p>
-<p>小程序重要的东西有布局:<br>使用的是<code>flex</code>布局,这点很重要的。</p>
-<p><code>justify-content</code>和<code>align-items</code>一个表示水平轴一个表示交叉轴，但是这两者的话都没有一个绝对的主轴，这点是要根据<code>flex-direction</code>的设定来确定的，<code>flex-direction</code>为<code>row</code>那么水平方向的就为主轴,另外一个为交叉轴，如果为<code>column</code>，那么垂直方向的就为主轴,另外一个为交叉轴。</p>
-<p>当然如果加了<code>reverse</code>之后交叉轴的方向就得换个参照点了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/08/mini-program/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -954,7 +948,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

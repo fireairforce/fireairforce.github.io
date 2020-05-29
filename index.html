@@ -158,6 +158,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/29/broswer-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/29/broswer-6/" class="post-title-link" itemprop="url">浏览器原理学习笔记-页面渲染流程(下)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-29 17:21:26 / Modified: 17:23:25" itemprop="dateCreated datePublished" datetime="2020-05-29T17:21:26+08:00">2020-05-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><p>因为页面中还有一些复杂的动画效果，例如一些复杂的 3D 变化、页面滚动。为了更方便地实现这些效果，<strong>渲染引擎还需要为特定的节点生成专用的图层，并生成一颗对应的图层树</strong>(LayerTree)。</p>
+<p>想要更直观地理解图层，可以打开 Chrome 的“开发者工具”， 选择“Layers”标签，就可以看到可视化页面的分层情况。</p>
+<p>渲染引擎给页面分了很多图层，这些图层按照一定的顺序叠加在一起，就形成了最终的页面。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/29/broswer-6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/28/broswer-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -805,75 +873,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/18/broswer-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/18/broswer-2/" class="post-title-link" itemprop="url">浏览器原理学习笔记-网络数据包的传输</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-18 14:23:54 / Modified: 14:24:59" itemprop="dateCreated datePublished" datetime="2020-05-18T14:23:54+08:00">2020-05-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>衡量 Web 页面性能有个重要的指标叫做:<code>FP</code>(First Paint),是指从<strong>页面加载到首次开始绘制的时长</strong>。更少的FP意味着更多的PV，更高的参与度、以及转换率。影响其的一个很重要的因素就是<strong>网络加载速度</strong>。</p>
-<p>想要优化网页的加载速度，需要对网络有一个深入的认识。</p>
-<h2 id="数据包的传输过程"><a href="#数据包的传输过程" class="headerlink" title="数据包的传输过程"></a>数据包的传输过程</h2><p><strong>互联网实际是一套理论和协议组成的体系架构。</strong>其中，因为有了协议这一众所周知的规则和标准，各方都同意使用 的前提下，那么它们的通信之间将变得毫无障碍。</p>
-<p>互联网中的数据是通过数据包来传输的。发送的数据很大的话，会被拆成很多小的包来传输。例如音频数据就并不是一个大的文件。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/18/broswer-2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -945,7 +944,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">146</span>
+          <span class="site-state-item-count">147</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
