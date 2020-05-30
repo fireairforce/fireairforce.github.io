@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="zoomdong&#39;s blog">
 <meta property="og:description" content="Chrome V8 基础-上Node.js 与 Chrome V8Node.js 的 JavaScript 运行时引擎是 Chrome V8，那么它们是以何种形式链接起来的呢？  2006 年，V8 开始投入研发 2008年9月，V8 发布了第一个版本，并且 Chrome 浏览器也几乎同期发布，至此 js 还是运行在浏览器中的一门脚本语言 2009年， ry 开发了 Node.js  之后 js">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-30T06:43:37.288Z">
+<meta property="og:updated_time" content="2020-05-30T06:44:05.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Node.js,来一打 Cpp 拓展》学习笔记- Chrome V8 基础-上">
 <meta name="twitter:description" content="Chrome V8 基础-上Node.js 与 Chrome V8Node.js 的 JavaScript 运行时引擎是 Chrome V8，那么它们是以何种形式链接起来的呢？  2006 年，V8 开始投入研发 2008年9月，V8 发布了第一个版本，并且 Chrome 浏览器也几乎同期发布，至此 js 还是运行在浏览器中的一门脚本语言 2009年， ry 开发了 Node.js  之后 js">
@@ -184,7 +184,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-05-30 14:43:07 / Modified: 14:43:37" itemprop="dateCreated datePublished" datetime="2020-05-30T14:43:07+08:00">2020-05-30</time>
+              <time title="Created: 2020-05-30 14:43:07 / Modified: 14:44:05" itemprop="dateCreated datePublished" datetime="2020-05-30T14:43:07+08:00">2020-05-30</time>
             </span>
 
           
@@ -209,6 +209,7 @@
 <p>也就是说，Node.js 实际上就是 Chrome V8 引擎的一个宿主。如果你有兴趣，也完全可以用 Chrome V8 创造一个别的 <code>.js</code> ，比如 <code>Mode.js</code> 、 <code>Lode.js</code>等。</p>
 <p>因此，我们并不需要对 Chrome V8 有一个特别深入的了解，也不需要知道它的算法、原理等。我们只用关心它暴露出来的一些 api，以及使用这些 api 所必要的储备知识。</p>
 <p>有了这些 api，我们就能让自己的 C++ 扩展与 Node.js 进行互通了 —— 因为 Node.js 底层很大程度上也是直接使用了 Chrome V8 所暴露出来的 api。</p>
+<a id="more"></a>
 <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="内存机制"><a href="#内存机制" class="headerlink" title="内存机制"></a>内存机制</h4><p>Chrome V8 中，内存机制是很重要的，其中就包括了它在内的各种概念。v8 高效的一个重要原因就是因为它的内存机制。</p>
 <p><code>Chrome V8</code> 中 js 的数据类型都是由 v8 内部的内存机制进行管理的。</p>
 <p><code>Node.js</code> 实际上就是一个使用 C++ 完成的程序，其能执行 js 代码，它的底层主要由两部分第三方库组成——Chrome V8 和 libuv:</p>
