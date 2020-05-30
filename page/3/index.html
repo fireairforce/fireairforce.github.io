@@ -158,6 +158,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/11/01/electron/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/01/electron/" class="post-title-link" itemprop="url">electron开发小记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-01 14:39:00 / Modified: 14:40:32" itemprop="dateCreated datePublished" datetime="2019-11-01T14:39:00+08:00">2019-11-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="electron开发记录"><a href="#electron开发记录" class="headerlink" title="electron开发记录"></a>electron开发记录</h2><p>首先根据官方文档的<a href="https://electronjs.org/docs/tutorial/first-app#trying-this-example" target="_blank" rel="noopener">启动脚手架</a>来先跑一波<code>electron</code>,注意这一步在<code>npm i</code>的时候有一个比较大的依赖在注入进来，所以会安装比较长的时间。</p>
+<ul>
+<li><code>Electron</code>本身是基于<code>Chrominum</code>和<code>Node.js</code></li>
+<li>开源</li>
+<li>跨平台</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/01/electron/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/10/08/mini-program/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -834,79 +905,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/09/08/qiniu-upload/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/08/qiniu-upload/" class="post-title-link" itemprop="url">使用Antd Upload组件上传文件到七牛</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-09-08 16:10:18 / Modified: 13:45:14" itemprop="dateCreated datePublished" datetime="2019-09-08T16:10:18+08:00">2019-09-08</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="使用Upload组件将文件上传到七牛"><a href="#使用Upload组件将文件上传到七牛" class="headerlink" title="使用Upload组件将文件上传到七牛"></a>使用Upload组件将文件上传到七牛</h2><p>需求大概是这样的，我们需要使用<code>Antd</code>的<code>Upload</code>组件将上传的文件传到七牛云上面，然后让七牛那边返回一个<code>url</code>即可。</p>
-<p>结合了一下之前写过的关于七牛那边的<a href="https://developer.qiniu.com/kodo/sdk/1289/nodejs" target="_blank" rel="noopener">Node SDK</a>.</p>
-<p>大概是这样一个操作:</p>
-<ul>
-<li>先获取到七牛那边的一个token值</li>
-<li>然后将文件上传到七牛那边提供的一个url上面(一个post接口，要附带token提交上去)</li>
-<li>拿到返回的url地址</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/09/08/qiniu-upload/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -978,7 +976,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

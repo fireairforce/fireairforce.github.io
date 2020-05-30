@@ -158,6 +158,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/08/05/koa-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/05/koa-5/" class="post-title-link" itemprop="url">koa学习-实现路由及对外的API服务-5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-08-05 01:40:54" itemprop="dateCreated datePublished" datetime="2019-08-05T01:40:54+08:00">2019-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-19 21:30:06" itemprop="dateModified" datetime="2020-04-19T21:30:06+08:00">2020-04-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="实现一个最小统计的-API-服务器"><a href="#实现一个最小统计的-API-服务器" class="headerlink" title="实现一个最小统计的 API 服务器"></a>实现一个最小统计的 API 服务器</h2><p>之前我们已经将整个网站的数据库写完了之后，现在我们需要构建一些API层面的东<br>西，来写一些http请求的东西.</p>
+<p><img src="http://q91ex1jyl.bkt.clouddn.com/koa2-1.jpg" alt="koa-learnning"></p>
+<p>这一节我们来做一下关于网站路由的东西。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> koa-router -S</span><br></pre></td></tr></table></figure>
+<p>先从一个最简单的做起，我们在上面引用了 <code>koa-router</code>,然后我们在server下面新建一个文件夹<code>routes</code>来专门存放我们的路由文件.</p>
+<p>在routes里面新建一个<code>index.js</code>，然后在里面做一个很简单的操作;</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/05/koa-5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/07/31/koa-4-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -797,78 +874,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/04/01/somethings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/01/somethings/" class="post-title-link" itemprop="url">2019做的一些事情</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-01 23:36:47" itemprop="dateCreated datePublished" datetime="2019-04-01T23:36:47+08:00">2019-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-05-04 03:55:44" itemprop="dateModified" datetime="2019-05-04T03:55:44+08:00">2019-05-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一些东西的记录"><a href="#一些东西的记录" class="headerlink" title="一些东西的记录"></a>一些东西的记录</h2><p>2019年到现在几乎每周都会看一到两部电影，目前看的有些多了，准备记录一下.同时也记录一下其他的东西</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/01/somethings/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -940,7 +945,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
