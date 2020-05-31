@@ -158,6 +158,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/08/07/koa-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/07/koa-6/" class="post-title-link" itemprop="url">koa-前后端交互-6</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-08-07 06:16:14 / Modified: 06:18:16" itemprop="dateCreated datePublished" datetime="2019-08-07T06:16:14+08:00">2019-08-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>PS: 本节几乎都是前端内容，熟悉前端的可以不用看。</p>
+<h2 id="构建基本前端目录"><a href="#构建基本前端目录" class="headerlink" title="构建基本前端目录"></a>构建基本前端目录</h2><p>现在根目录下新建一个<code>src</code> 文件夹，里面用来放前端的源代码。</p>
+<p>这里由于主要介绍 <code>koa2</code> 是怎么使用起来的，所以这里重点还是放在koa2上面，前端就只是粗略的介绍。</p>
+<p><code>src</code> 目录下分别放有<code>assets</code>,<code>components</code>,<code>layouts</code>,<code>lib</code>,<code>views</code></p>
+<p>然后目录下放两个文件:<code>index.html</code> 和 <code>index.js</code></p>
+<p>因为是个单页应用，所以只需要一个html文件即可。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>预告片网站<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'./index.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/08/07/koa-6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/08/05/koa-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -800,80 +871,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2019/04/07/webpack-15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/07/webpack-15/" class="post-title-link" itemprop="url">webpack15--一些高级的配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-04-07 12:16:35 / Modified: 12:17:52" itemprop="dateCreated datePublished" datetime="2019-04-07T12:16:35+08:00">2019-04-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Eslint在webpack中的配置"><a href="#Eslint在webpack中的配置" class="headerlink" title="Eslint在webpack中的配置"></a>Eslint在webpack中的配置</h2><p>每次在开发的时候，可能团队需要使用相同的代码规范，我们可以使用eslint来约束我们的代码.</p>
-<blockquote>
-<p>npm install eslint -D</p>
-</blockquote>
-<p>然后使用相对应的eslint配置来进行.</p>
-<blockquote>
-<p>npx eslint –init</p>
-</blockquote>
-<p>然后我们可以在下面选择几种比较通用的eslint模板，一般我们就选择比较直接的模板(选择第一项).</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/04/07/webpack-15/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -945,7 +942,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
