@@ -158,6 +158,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/06/02/broswer-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/02/broswer-8/" class="post-title-link" itemprop="url">浏览器原理学习笔记-浏览器中 js 执行机制(下)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-02 19:31:30 / Modified: 19:32:12" itemprop="dateCreated datePublished" datetime="2020-06-02T19:31:30+08:00">2020-06-02</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>作用域指在程序中定义变量的区域，该位置决定了变量的生命周期。通俗理解，作用域就是变量与函数的可访问范围，即作用域控制着变量和函数的可见性和生命周期。</p>
+<ul>
+<li>全局作用域</li>
+<li>函数作用域</li>
+</ul>
+<p>js之前支持上面两种作用域，因为作者设计该语言的时候只是用了最简单的方式。没有块级作用域，这就导致了变量提升这样神奇的设计。</p>
+<h3 id="变量提升所带来的问题"><a href="#变量提升所带来的问题" class="headerlink" title="变量提升所带来的问题"></a>变量提升所带来的问题</h3><p>由于变量提升作用，使用 js 编写和其他语言相同逻辑的代码，都可能会导致不一样的执行结果。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/02/broswer-8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/06/01/dp-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -784,78 +856,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/23/cpp-node-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/23/cpp-node-2/" class="post-title-link" itemprop="url">《Node.js,来一打 Cpp 拓展》学习笔记- Node 模块原理解析 && Cpp 模块优点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-23 13:56:34 / Modified: 13:58:24" itemprop="dateCreated datePublished" datetime="2020-05-23T13:56:34+08:00">2020-05-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="为什么要写C-拓展模块"><a href="#为什么要写C-拓展模块" class="headerlink" title="为什么要写C++拓展模块"></a>为什么要写C++拓展模块</h3><h4 id="C-比-JS-解释器高效"><a href="#C-比-JS-解释器高效" class="headerlink" title="C++ 比 JS 解释器高效"></a>C++ 比 JS 解释器高效</h4><p>相同意思的代码，在 JavaScript 解析器中执行 JavaScript 代码的效率通常比直接执行一个 C++ 编译好后的二进制文件要低。（这里指那些非并行、计算密集型的代码，因为模型不用，单线程下实现 C++ 的 Web 请求处理和有着异步 I/O 优势的 Node.js 下实现的 Web 请求处理也是不能相提并论的 —— Node.js底层使用了别的线程）</p>
-<p>有个 <code>NBody</code>的例子，相同的代码，使用C++ 大约只需要<code>6-7s</code>，但使用<code>Node.JS</code>却需要<code>20s</code>左右，具体代码可以参看书中例子。</p>
-<p>C++效率虽然高，但是所需要的维护成本和开发效率和 <code>Node.js</code> 也不在一个层次上。因此偶尔在一个整体使用 <code>Node.js</code> 开发的项目中使用 C++ 写一两个拓展也是一种很奇妙的体验。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/23/cpp-node-2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -923,7 +927,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
