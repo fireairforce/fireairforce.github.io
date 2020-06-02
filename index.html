@@ -181,10 +181,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-02 19:31:30 / Modified: 19:32:12" itemprop="dateCreated datePublished" datetime="2020-06-02T19:31:30+08:00">2020-06-02</time>
+              <time title="Created: 2020-06-02 19:31:30" itemprop="dateCreated datePublished" datetime="2020-06-02T19:31:30+08:00">2020-06-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-03 00:44:19" itemprop="dateModified" datetime="2020-06-03T00:44:19+08:00">2020-06-03</time>
+              </span>
 
           
 
@@ -204,6 +210,8 @@
 </ul>
 <p>js之前支持上面两种作用域，因为作者设计该语言的时候只是用了最简单的方式。没有块级作用域，这就导致了变量提升这样神奇的设计。</p>
 <h3 id="变量提升所带来的问题"><a href="#变量提升所带来的问题" class="headerlink" title="变量提升所带来的问题"></a>变量提升所带来的问题</h3><p>由于变量提升作用，使用 js 编写和其他语言相同逻辑的代码，都可能会导致不一样的执行结果。</p>
+<h4 id="1-变量容易在不被察觉的情况下被覆盖"><a href="#1-变量容易在不被察觉的情况下被覆盖" class="headerlink" title="1. 变量容易在不被察觉的情况下被覆盖"></a>1. 变量容易在不被察觉的情况下被覆盖</h4><p>之前前面那篇文章有说到的调用栈执行上下文后声明的会覆盖掉前声明的。</p>
+<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200602001927.png" alt="image-20200602001927127"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/06/02/broswer-8/#more" rel="contents">
