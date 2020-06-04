@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="zoomdong&#39;s blog">
 <meta property="og:description" content="dp技巧思路总结——背包0-1背包相关题目可以参考上一篇文章，这篇开始介绍一些其他的背包问题例如多重背包等。 子集背包问题这题在0-1背包那边已经讲过了，这里重新讲一次： Leetcode 416题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-04T11:08:46.028Z">
+<meta property="og:updated_time" content="2020-06-04T16:14:49.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背包问题分析">
 <meta name="twitter:description" content="dp技巧思路总结——背包0-1背包相关题目可以参考上一篇文章，这篇开始介绍一些其他的背包问题例如多重背包等。 子集背包问题这题在0-1背包那边已经讲过了，这里重新讲一次： Leetcode 416题">
@@ -182,10 +182,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-06-04 19:08:04 / Modified: 19:08:46" itemprop="dateCreated datePublished" datetime="2020-06-04T19:08:04+08:00">2020-06-04</time>
+              <time title="Created: 2020-06-04 19:08:04" itemprop="dateCreated datePublished" datetime="2020-06-04T19:08:04+08:00">2020-06-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-05 00:14:49" itemprop="dateModified" datetime="2020-06-05T00:14:49+08:00">2020-06-05</time>
+              </span>
 
           
 
@@ -232,7 +238,35 @@
 <p>所以，可以进行一个状态压缩，将二维 dp 压缩成一维的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> solve = <span class="function">(<span class="params">arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> sum = arr.reduce(<span class="function">(<span class="params">prev, next</span>) =&gt;</span> prev + next)</span><br><span class="line">  <span class="keyword">if</span> (sum &amp; <span class="number">1</span> || arr.length &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> dp = <span class="built_in">Array</span>.from(sum + <span class="number">1</span>, <span class="literal">false</span>)</span><br><span class="line">  dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;arr.length;i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = sum;j &gt;= <span class="number">0</span> ;j--) &#123;</span><br><span class="line">      <span class="keyword">if</span>(j &gt;= nums[i]) &#123;</span><br><span class="line">        dp[j] = dp[j] || dp[j - nums[i]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> dp[sum]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>需要注意的是</strong> <strong><code>j</code></strong> <strong>应该从后往前反向遍历，因为每个物品（或者说数字）只能用一次，以免之前的结果影响其他的结果</strong>。</p>
-<h3 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h3>
+<h3 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h3><p>参考这个题目：<a href="https://leetcode-cn.com/problems/coin-change-2/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/coin-change-2/</a> 零钱兑换2号</p>
+<p>转换成背包的描述形式：</p>
+<p>有个最大容量为 <code>amount</code> 背包，有一系列物品 <code>conis</code> ，每个物品的重量为 <code>conis[i]</code> ，<strong>每个物品的数量是无限的</strong>。这里同<code>0,1</code>背包区别在于物品可以无限量的选择，状态转移方程式有一丢丢不同而已。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>确定状态和选择：</li>
+</ol>
+<p>状态还是分为背包容量和可选择的物品，选择就是是否装进背包。</p>
+<p>明白了状态和选择，那么这个问题就基本上解决了，套框架即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 状态<span class="number">1</span> <span class="keyword">in</span> 状态<span class="number">1</span>的所有取值</span><br><span class="line"> <span class="keyword">for</span> 状态<span class="number">2</span> <span class="keyword">in</span> 状态<span class="number">2</span>的所有取值</span><br><span class="line">  <span class="keyword">for</span> ...</span><br><span class="line">    dp[状态<span class="number">1</span>][状态<span class="number">2</span>][...] = 计算(选择<span class="number">1</span>,选择<span class="number">2.</span>..)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>明确 <code>dp</code> 数组的定义。</li>
+</ol>
+<p>这题的状态也是两个，使用前<code>i</code> 种物品，当背包容量为 <code>j</code> 时，有 <code>dp[i][j]</code> 种方法可以装满背包。</p>
+<p><strong>那就是使用<code>coins</code> 数组的前 <code>i</code> 个硬币，想要凑出 <code>j</code> 金额，有 <code>dp[i][j]</code> 中凑法</strong>。</p>
+<p>经过以上的定义，可以得到：</p>
+<p><code>base case</code> 为 <code>dp[0][...] = 0, dp[...][0] = 1</code>。因为如果不使用任何硬币面值，就无法凑出任何金额；如果凑出的目标金额为<code>0</code>，那么“无为而治”就是唯一的一种凑法。</p>
+<p>那么我们最后要的结果就是 <code>dp[N][amount]</code>，其中 N 为 <code>conis</code> 数组的大小。</p>
+<p>大致的代码思路为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[N+<span class="number">1</span>][amount+<span class="number">1</span>];</span><br><span class="line">dp[<span class="number">0</span>][...] = <span class="number">0</span>;</span><br><span class="line">dp[...][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i in [<span class="number">1.</span>..N]:</span><br><span class="line">  <span class="keyword">for</span> j in [<span class="number">1.</span>..amount]:</span><br><span class="line">    物品 i 放进背包,</span><br><span class="line">    物品 i 不放进背包</span><br><span class="line"><span class="keyword">return</span> dp[N][amount];</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>根据选择来确定状态转移的逻辑</li>
+</ol>
+<p>这个问题的特殊之处在于物品的数量是无限的，所以这里和之前的背包问题有一丢丢不同。</p>
+<p>这里如果不把 <code>i</code> 物品装入背包，也就是说不使用 <code>coins[i]</code> 这个面值的硬币，凑出面额 <code>j</code> 的方法数<code>dp[i][j]</code>  应该为 <code>dp[i-1][j]</code></p>
+<p>如果 <code>i</code> 物品装入了背包，也就是说使用了 <code>coins[i]</code> 这个面值的硬币，那么 <code>dp[i][j]</code>  应该等于 <code>dp[i][j-conis[i-1]]</code></p>
+<p>这里的索引仍然是从1开头，所以上面是<code>conis[i-1]</code></p>
+<p>综上两种选择，<strong>我们要求的 <code>dp[i][j]</code> 是 “共有多少种凑法”，所以 <code>dp[i][j]</code> 的值应该是以上两种选择的结果之和</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>;j&lt;=amount;j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= coins[i<span class="number">-1</span>]) &#123;</span><br><span class="line">      dp[i][j] = dp[i<span class="number">-1</span>][j] + dp[i][j-conis[i<span class="number">-1</span>]];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[N][amount]</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -326,7 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dp技巧思路总结——背包"><span class="nav-number">1.</span> <span class="nav-text">dp技巧思路总结——背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子集背包问题"><span class="nav-number">2.</span> <span class="nav-text">子集背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法分析"><span class="nav-number">2.1.</span> <span class="nav-text">解法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态压缩"><span class="nav-number">2.2.</span> <span class="nav-text">状态压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全背包问题"><span class="nav-number">2.3.</span> <span class="nav-text">完全背包问题</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dp技巧思路总结——背包"><span class="nav-number">1.</span> <span class="nav-text">dp技巧思路总结——背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子集背包问题"><span class="nav-number">2.</span> <span class="nav-text">子集背包问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解法分析"><span class="nav-number">2.1.</span> <span class="nav-text">解法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态压缩"><span class="nav-number">2.2.</span> <span class="nav-text">状态压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全背包问题"><span class="nav-number">2.3.</span> <span class="nav-text">完全背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">2.4.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
