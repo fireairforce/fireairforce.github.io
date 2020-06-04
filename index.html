@@ -158,6 +158,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/06/04/dp-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
+      <meta itemprop="name" content="zoomdong">
+      <meta itemprop="description" content="A Idiot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zoomdong's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/04/dp-3/" class="post-title-link" itemprop="url">背包问题分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-04 19:08:04 / Modified: 19:08:46" itemprop="dateCreated datePublished" datetime="2020-06-04T19:08:04+08:00">2020-06-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="dp技巧思路总结——背包"><a href="#dp技巧思路总结——背包" class="headerlink" title="dp技巧思路总结——背包"></a>dp技巧思路总结——背包</h2><p>0-1背包相关题目可以参考上一篇文章，这篇开始介绍一些其他的背包问题例如多重背包等。</p>
+<h2 id="子集背包问题"><a href="#子集背包问题" class="headerlink" title="子集背包问题"></a>子集背包问题</h2><p>这题在0-1背包那边已经讲过了，这里重新讲一次：</p>
+<p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">Leetcode 416题</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/04/dp-3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/06/02/broswer-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -787,83 +855,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://zoomdong.site/2020/05/25/broswer-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200523163713.jpeg">
-      <meta itemprop="name" content="zoomdong">
-      <meta itemprop="description" content="A Idiot">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zoomdong's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/25/broswer-4/" class="post-title-link" itemprop="url">浏览器原理学习笔记-从输入URL到页面渲染</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-05-25 00:35:43 / Modified: 00:36:28" itemprop="dateCreated datePublished" datetime="2020-05-25T00:35:43+08:00">2020-05-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>完整示意图为:</p>
-<p><img src="https://zoomdong.oss-cn-beijing.aliyuncs.com/img/20200524225634.png" alt></p>
-<p>整个过程需要进程的配合。结合之前的浏览器进程架构以及上面的示意图，整个过程的大概描述如下:</p>
-<ul>
-<li>首先，浏览器进程接收用户输入的 <code>URL</code>请求，浏览器进程便将该 URL 转发给网络进程。</li>
-<li>然后，在网络进程中发起真正的 URL 请求</li>
-<li>接着网络进程接收到了响应头数据，解析响应头数据，将数据转发给网络进程。</li>
-<li>浏览器进程接收到网络进程的响应头数据之后，发送“提交导航(<code>CommitNavigation</code>)”消息到渲染进程</li>
-<li>渲染进程接收到“提交导航”的消息之后，便开始准备接收 HTML 数据，接收数据的方式是直接和网络进程建立数据管道</li>
-<li>最后渲染进程会向浏览器进程“确认提交”，这是告诉浏览器进程:“已经准备好接受和解析页面数据”</li>
-<li>浏览器进程接收到渲染进程“提交文档”的消息之后，便开始移除之前旧的文档，然后更新浏览器进程中的页面状态</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/25/broswer-4/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -935,7 +926,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-count">152</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
